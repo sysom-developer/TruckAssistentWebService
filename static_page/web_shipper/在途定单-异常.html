@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>在途运单-异常</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<LINK href="css/indexs.css" type=text/css rel=stylesheet>
+<SCRIPT src="js/jquery.js" type=text/javascript></SCRIPT>
+<SCRIPT src="js/jQselect.js" type=text/javascript></SCRIPT>
+<SCRIPT type=text/javascript>
+	function showorder(){
+		$(".mask").show();
+		$(".editorcontent").show();
+		$(".order_detail").show();
+		$(".head").addClass("fixed");
+		$(".container").addClass("serachfixed");
+	}
+	
+	$(document).ready(function() {
+		$(".order>ul").each(function(){
+		 	$(this).find(".oper_editor").hover(function(){
+              	$(this).html("<a  onclick='showedit()'>订单跟踪</a>");
+		  	},
+		  	function(){
+             	 $(this).html("<img src='images/gz.png'>");
+		  	});
+		   
+		  		
+         }); 
+   	    $(".usermenu").click(function(){
+			$(".user_nav").toggle(200);
+		});
+   		$(".usermenu").blur(function(){
+			$(".user_nav").hide();
+		});	
+		
+	
+			 $("#select").selectbox()
+		 
+		
+		$(".close").click(function(){
+			$(".order_detail").hide();
+			$(".editorcontent").hide();
+			$(".mask").hide();
+			$(".map").hide();
+			$(".head").removeClass("fixed");
+		   $(".container").removeClass("serachfixed");
+		})
+		
+		$(".lookmap").click(function(){
+			$(".order_detail").hide();
+			$(".map").show();
+		
+		})
+	
+      
+       
+	});
+</SCRIPT>
+</head>
+
+<body>
+<div class="head">
+	<div class="top">
+    	<div class="logo floatleft"><a href=""><img src="images/logo.png"></a></div>
+        <div class="signin floatleft">
+        	<a href=""><div class="message"><span>10</span></div></a>
+          	<a href=""><div class="set"> <span>10</span></div></a>
+           	<div class="user">
+            	<span class="username">
+                	<p>James wuzhe</p>
+                    <p>
+                    	<img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star2.png">
+                     </p>
+                  </span>
+                  <span class="userpic">
+                  	    <img src="images/rw.gif">
+                  </span>
+                  <span class="usermenu"></span>
+            </div>
+            <div class="user_nav">
+            	<ul>
+                    <li><a href="合同模板.html">修改合同模板</a></li>
+                	<li><a href="">修改个人资料</a></li>
+                    <li><a href="">退出登陆</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="nav">
+    	<ul>
+       		<li><a href="">首页</a></li>
+        	<li><a href="">我的车队</a></li>
+            <li><a href="">新建订单</a></li>
+            <li><a href="">待接订单</a></li>
+            <li><a href="">待运订单</a></li>
+            <li class="current"><a href="">在途订单</a></li>
+            <li><a href="">历史订单</a></li>
+            <li><a href="">统计报表</a></li>
+        </ul>
+    </div>
+</div>
+<div class="editorcontent" style="display:none"> 
+
+	<!--订单详情开始-->
+    	<div class="order_detail"  style="display:none">
+       		 <div class="close"></div>
+               <div class="lookmap">查看地图</div>
+        	 <div class="ordernum"><p><span>订单编号：</span>29847252</p>
+             <p><span>总里程：</span>1600公里&nbsp; &nbsp; <span>剩余里程：</span>800公里&nbsp; &nbsp;<span>预计到达：</span>05-05 18：00</p>
+             </div>
+             <div class="order_staic">
+            	<div class="line"></div>
+            	<ul>
+                	<li><div></div><span><img src="images/step1.png"></span><p>接单</p></li>
+                    <li><div></div><span><img src="images/step2.png"></span><p>装货</p></li>
+                    <li class="transit"><div></div><span><img src="images/step3.png"></span><p>运输中</p></li>
+                    <li class="rough"><div></div><span><img src="images/step4.png"></span><p>卸货</p></li>
+                    <li class="rough"><div></div><span><img src="images/step5.png"></span><p>完成</p></li>
+                </ul>
+            </div>
+            <div class="order_process">
+            	
+            	<ul>
+                	<li class="unusual"><span class="radius"><i></i></span><span class="cn"><p>运单车辆在安徽省合肥停留超过90分钟</p></span><span class="data">2015-4-20 18:00</span></li>
+                    <li class="unusual_1"><span class="radius"><i></i></span><span class="cn"><font style="color:#ff6547">车辆异常上报：</font>高速路遇到堵车</span><span class="data">2015-4-20 18:00</span></li>
+                    <li><span class="radius"><i></i></span><span class="cn">已给运单车司机评价</span><span class="data">2015-4-20 18:00</span></li>
+                    <li><span class="radius"><i></i></span><span class="cn"><p>已给运单车司机评价</p><p><img src="images/pd1.jpg"><img src="images/pd1.jpg"><img src="images/pd1.jpg"></p></span><span class="data">2015-4-20 18:00</span></li>
+                    <li><span class="radius"><i></i></span><span class="cn">已给运单车司机评价</span><span class="data">2015-4-20 18:00</span></li>
+                    <li><span class="radius"><i></i></span><span class="cn">已给运单车司机评价</span><span class="data">2015-4-20 18:00</span></li>
+                 
+                </ul>
+            </div>
+    </div>
+    <!--订单详情结束-->
+     <!--地图开始-->
+  	<div class="map">
+     	<div class="close"></div>
+        <div class="mapnr"><img src="images/map.jpg"></div>
+    </div>
+  
+   <!--地图结束-->
+</div>
+<div class="mask" style="display:none"></div>
+
+<div class="container" >
+	<div class="serach">
+    	<div class="serach_select">
+        	<DIV class="w86select w85" >
+       					 <SELECT  style="display: none" name="select" id="select">
+           					 <OPTION value=1>创建时间</OPTION>
+           					 <OPTION value=2>货物类型</OPTION>
+       					 </SELECT>
+   			 </DIV>
+             
+        </div>
+        
+        <div class="serach_blank">
+        	<span><input name="serachcontent" type="text" value="请输入搜索内容..." class="so" onfocus="this.value=''"><input name="submit" type="button" class="serachin"/></span>
+        </div>
+    </div>
+
+	<div class="order zting">
+			<ul class="white listtitle"> 
+				<li>订单编号</li> 
+				<li>司机姓名</li> 
+				<li>联系方式</li> 
+				<li>车牌号码</li> 
+              
+                <li>出发地	</li> 
+				<li>目的地</li> 
+				<li>当前位置</li> 
+                <li>发车时间</li> 
+                <li>预计到达时间</li> 
+                <li>运输状态</li> 
+				<li>操作</li> 
+           </ul>
+            <ul class="hui">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">小王</li> 
+				<li onclick="showorder()">16782937473</li> 
+				<li onclick="showorder()">皖2e389</li> 
+				<li onclick="showorder()">成都</li> 
+				<li onclick="showorder()">上海</li> 
+				<li onclick="showorder()">上海 13：00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                <li class="red" onclick="showorder()">异常</li> 
+				<li> <span  class="oper_editor" style="width:100%;"><img src="images/gz.png" ></span>  </li> 
+            </ul> 
+             <ul class="white">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">小王</li> 
+				<li onclick="showorder()">16782937473</li> 
+				<li onclick="showorder()">皖2e389</li> 
+				<li onclick="showorder()">成都</li> 
+				<li onclick="showorder()">上海</li> 
+				<li onclick="showorder()">上海 13：00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                  <li class="red" onclick="showorder()">异常</li>  
+				<li> <span  class="oper_editor" style="width:100%;"><img src="images/gz.png" ></span>  </li> 
+            </ul> 
+             <ul class="hui">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">小王</li> 
+				<li onclick="showorder()">16782937473</li> 
+				<li onclick="showorder()">皖2e389</li> 
+				<li onclick="showorder()">成都</li> 
+				<li onclick="showorder()">上海</li> 
+				<li onclick="showorder()">上海 13：00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                  <li class="red" onclick="showorder()">异常</li>  
+				<li> <span  class="oper_editor" style="width:100%;"><img src="images/gz.png" ></span>  </li> 
+            </ul> 
+             <ul class="white">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">小王</li> 
+				<li onclick="showorder()">16782937473</li> 
+				<li onclick="showorder()">皖2e389</li> 
+				<li onclick="showorder()">成都</li> 
+				<li onclick="showorder()">上海</li> 
+				<li onclick="showorder()">上海 13：00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                  <li class="red" onclick="showorder()">异常</li>  
+				<li> <span  class="oper_editor" style="width:100%;"><img src="images/gz.png" ></span>  </li> 
+            </ul> 
+             <ul class="hui">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">小王</li> 
+				<li onclick="showorder()">16782937473</li> 
+				<li onclick="showorder()">皖2e389</li> 
+				<li onclick="showorder()">成都</li> 
+				<li onclick="showorder()">上海</li> 
+				<li onclick="showorder()">上海 13：00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                  <li class="red" onclick="showorder()">异常</li>  
+				<li> <span  class="oper_editor" style="width:100%;"><img src="images/gz.png" ></span>  </li> 
+            </ul> 
+             <ul class="white">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">小王</li> 
+				<li onclick="showorder()">16782937473</li> 
+				<li onclick="showorder()">皖2e389</li> 
+				<li onclick="showorder()">成都</li> 
+				<li onclick="showorder()">上海</li> 
+				<li onclick="showorder()">上海 13：00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                <li onclick="showorder()"> 4-15 15:00</li> 
+                  <li class="red" onclick="showorder()">异常</li>  
+				<li> <span  class="oper_editor" style="width:100%;"><img src="images/gz.png" ></span>  </li> 
+            </ul> 
+          
+</div> 
+  <div class="page"><a href=""><img src="images/prev.gif"></a><a href="" ><img src="images/preva.gif"></a><a href="" ><img src="images/nexta.gif"></a><a href=""><img src="images/next.gif"></a>共98条记录 显示1/12</div>
+</div>
+</body>
+</html>

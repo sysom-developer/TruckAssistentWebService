@@ -1,0 +1,137 @@
+﻿body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td{ margin:0;padding:0;}
+table{ border-collapse:collapse;border-spacing:0;}
+fieldset,img{ border:0;}
+ol,ul,li{ list-style:none; list-style-position:outside;}
+img{ border:0;}
+body{font-size:12px; background:#f5f5f5; font-family:"微软雅黑"; color:#000; line-height:24px;}
+a:link,a:visited,a:hover{text-decoration:none;color:#0675ce;}
+a:hover{text-decoration:underline;color:red;}
+input,textarea,select,button{font-size:12px;font-family:"微软雅黑";}
+ul li{float:left; display:inline; overflow:hidden;}
+
+.header{width:100%; overflow:hidden; height:85px; background:url(../../images/web_admin/header_bg.gif) repeat-x;}
+.header .header_content{width:100%; height:85px; overflow:hidden; margin:0px auto; position:relative;}
+.header .header_content .logo{background:url(../../images/web_admin/logo_bg.jpg) no-repeat; height:51px; width:160px; position:absolute; top:0px; left:10px;}
+.header .header_content .shop{float:right; width:100%; overflow:hidden;}
+.header .header_content .rows{width:100%; line-height:36px; overflow:hidden;}
+.header .header_content .rows span.company{float:left; padding-left:180px;}
+.header .header_content .rows span.user{float:right; padding-right:15px;}
+
+.header .header_content .navigation{width:100%; overflow:hidden; margin:12px 0px 0px 0px;}
+.header .header_content .navigation ul{padding-left:200px;}
+.header .header_content .navigation ul li{width:112px; line-height:30px; margin-right:15px; font-size:14px; font-weight:bold; text-align:center;}
+.header .header_content .navigation ul li.on{background:url(../../images/web_admin/nav_li_on.gif) no-repeat;}
+.header .header_content .navigation ul li a:link,
+.header .header_content .navigation ul li a:visited,
+.header .header_content .navigation ul li a:hover{color:#FFF;}
+.header .header_content .navigation ul li.on a:link,
+.header .header_content .navigation ul li.on a:visited,
+.header .header_content .navigation ul li.on a:hover{color:#292929;}
+
+
+.warrper{width:100%; margin:1px auto 0px; overflow:hidden;}
+.warrper .menu_box{width:240px; background:#054b87 url(../../images/web_admin/menu_box_bg.png) no-repeat left top; overflow:hidden; float:left; border-right:1px solid #31a0f9; margin-right:5px;}
+.warrper .menu_box ul{width:100%; margin:50px 0px 0px; overflow:hidden;}
+.warrper .menu_box ul li{width:100%; font-size:14px; font-weight:bold; line-height:37px; padding:2px 0px; cursor:pointer;}
+.warrper .menu_box ul li.on{background:url(../../images/web_admin/menu_li_on.gif) no-repeat;}
+.warrper .menu_box ul li a{background:url(../../images/web_admin/menu_li_a.png) no-repeat left center; padding-left:15px; margin-left:30px;}
+.warrper .menu_box ul li a:link,
+.warrper .menu_box ul li a:visited,
+.warrper .menu_box ul li a:hover{color:#FFF;}
+
+
+.warrper .content{width:100%; float:left; background:#f5f5f5;}
+.warrper .content .path{width:100%; background:url(../../images/web_admin/path_bg.gif) repeat-x; line-height:31px; overflow:hidden;}
+.warrper .content .path strong{font-weight:normal; padding-left:10px;}
+.warrper .content .shop{border-bottom:1px solid #bfbfbf; border-top:1px solid #bfbfbf; width:100%; overflow:hidden; margin-bottom:1px;}
+.warrper .content .shop .shop_content{width:100%; background:#e6e6e6; border-top:1px solid #f5f5f5; border-bottom:1px solid #f5f5f5; overflow:hidden;}
+
+.warrper .content .shop .search_box{overflow:hidden; margin:10px;}
+.warrper .content .shop .search_box p{width:100%; overflow:hidden; font-size:14px;}
+.warrper .content .shop .search_box label,
+.warrper .content .shop .search_box input{float:left; margin-right:10px;}
+.warrper .content .shop .search_box input.txt{border:1px solid #a8a8a8; background:url(../../images/web_admin/input_txt.gif) no-repeat left top; width:200px; padding:3px 5px; height:20px; overflow:hidden;}
+.warrper .content .shop .search_box select.sel{padding: 4px 5px; border: 1px solid #CCCCCC; color: #333333;}
+.warrper .content .shop .search_box input.btn,
+.warrper .content .shop .search_box input.btn_on,
+.warrper .content .shop .search_box a.add{width:87px; height:28px; background:url(../../images/web_admin/btn_bg.gif) no-repeat -121px top; overflow:hidden; cursor:pointer; border:none; font-size:16px; font-weight:bold; color:#595959;}
+.warrper .content .shop .search_box input.btn_on{background-position:left top; color:#054372;}
+.warrper .content .shop .search_box a.add{float:right; margin-right:20px; text-align:center; line-height:28px;}
+.warrper .content .shop .search_box a.add:hover{background-position:left top; color:#054372;}
+
+.warrper .content .shop .search_box table tr td{line-height:30px; vertical-align:middle; height:30px; border:none; text-align:left;}
+.warrper .content .table_box{width:100%; overflow:hidden; background:url(../../images/web_admin/table_th.gif) repeat-x left top; margin-bottom:15px;}
+.warrper .content .table_box table{width:100%;}
+.warrper .content .table_box table tr th,
+.warrper .content .table_box table tr td{line-height:33px; text-align:center;}
+.warrper .content .table_box table tr th{color:#FFF;}
+.warrper .content .table_box table tr.bg td{background:#e6e6e6;}
+
+.warrper .content .shop strong{font-weight:normal;}
+
+
+.warrper .content .forms_box{width:100%; overflow:hidden; margin:10px 0px 0px;}
+.warrper .content .forms_box p{width:90%; padding:5px 0px 5px 15px; overflow:hidden;}
+.warrper .content .forms_box p label,
+.warrper .content .forms_box p input,
+.warrper .content .forms_box p textarea{float:left; vertical-align:middle; margin-right:5px;}
+.warrper .content .forms_box p label{width:70px;}
+.warrper .content .forms_box p input.txt{border:1px solid #a8a8a8; background:url(../../images/web_admin/input_txt.gif) no-repeat left top; width:200px; padding:3px 5px; height:18px; overflow:hidden;}
+.warrper .content .forms_box input.check{width:15px; height:15px; position:relative; top:4px;}
+.warrper .content .forms_box select{width:212px; padding:2px 1px; height:24px; border:1px solid #a8a8a8;}
+.warrper .content .forms_box p.shop{border:none; padding-left:90px; width:60%;}
+.warrper .content .forms_box input.btn,
+.warrper .content .forms_box input.btn_on{width:87px; height:28px; background:url(../../images/web_admin/btn_bg.gif) no-repeat -121px top; overflow:hidden; cursor:pointer; border:none; font-size:16px; font-weight:bold; color:#595959; margin-right:20px;}
+.warrper .content .forms_box input.btn_on{background-position:left top; color:#054372;}
+.warrper .content input.btn,
+.warrper .content input.btn_on{width:87px; height:28px; background:url(../../images/web_admin/btn_bg.gif) no-repeat -121px top; overflow:hidden; cursor:pointer; border:none; font-size:16px; font-weight:bold; color:#595959; margin-right:20px;}
+.warrper .content input.btn_on{background-position:left top; color:#054372;}
+.warrper .content .pager{text-align:right; overflow:hidden; width:100%;}
+.warrper .content .pager span.fun{float:right; padding:10px 5px 0px 0px; text-align:right;}
+.warrper .content .pager strong,
+.warrper .content .pager a{padding:0px 5px;}
+
+.warrper .content .forms_box table tr td{line-height:30px; vertical-align:middle; height:30px; border:none; padding:1px 0px 1px 15px; text-align:left;}
+.warrper .content .forms_box table tr td input.txt{border:1px solid #a8a8a8; background:url(../../images/web_admin/input_txt.gif) no-repeat left top; width:200px; padding:3px 5px; height:18px; overflow:hidden;}
+
+
+.login_holder{width:460px; margin:150px auto 0px; overflow:hidden;}
+.login_holder h3{width:90%; overflow:hidden; line-height:30px; color:#FFF; font-size:18px; padding-left:10px;}
+.login_box{width:350px; height:180px; padding:40px 55px;  overflow:hidden; background:url(../../images/web_admin/logo_box.gif) no-repeat;}
+.login_box p{width:100%; overflow:hidden; padding:6px 0px; line-height:26px;}
+.login_box p label,
+.login_box p input,
+.login_box p img,
+.login_box p a{float:left; font-size:14px;}
+.login_box p a{padding-left:10px;}
+.login_box p label{width:65px;}
+.login_box p input.txt,
+.login_box p input.valid{border:1px solid #94aab4; line-height:22px; height:22px; width:200px; padding:1px 5px; margin-right:10px;}
+.login_box p input.valid{width:60px;}
+.login_box p.offer{height:26px;}
+.login_box p input.btn,
+.login_box p input.btn_on{width:87px; height:30px; background:url(../../images/web_admin/btn_bg.gif) no-repeat -121px top; margin-left:65px; cursor:pointer; border:none; line-height:30px; color:#FFF; font-size:16px; font-weight:bold; color:#595959;}
+.login_box p input.btn_on{background-position:left top; color:#054372;}
+
+.footer{width:100%; text-align:center; color:#FFF; line-height:40px; height:40px; overflow:hidden; background:#175e94; position:absolute; bottom:0px;}
+.footer a:link,
+.footer a:visited,
+.footer a:hover{color:#FFF; text-decoration:underline;}
+
+.attr_table input.txt{
+    background: url("../../../static/images/web_admin/input_txt.gif") no-repeat scroll left top rgba(0, 0, 0, 0);
+    border: 1px solid #A8A8A8;
+    height: 24px;
+    overflow: hidden;
+    padding: 4px 5px;
+    width: 200px;
+}
+textarea{border:1px solid #b6b6b6; padding:2px 5px; width:500px; height:120px;}
+
+.item_list{position:relative;left:0;background:#fff;border:1px solid #e6eaed;overflow:hidden;padding:0;font-size:12px;z-index:99;color:#bfbfbf; max-height:220px; overflow-y:auto; display:none; width: 530px;}
+.item_list::-webkit-scrollbar { width:5px; }
+.item_list::-webkit-scrollbar-thumb { background:#3c6; }
+.item_list::-webkit-scrollbar-track-piece { background-color:#F8F8F8; }
+.item_list a {border-bottom:1px solid #e6eaed;border-top:1px solid #fff;cursor:pointer;display:block;min-height:22px;text-align:left;text-decoration:none;padding:10px 5px 10px 20px;overflow:hidden;white-space:nowrap; font:14px/22px microsoft yahei;}
+.item_list a:hover {color:#3c6;text-decoration:none;}
+.cur .item_list{ display:block}

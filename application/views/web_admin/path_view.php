@@ -1,0 +1,1 @@
+<div class="path"><strong>当前位置：<?php echo $navigation_path?></strong></div>

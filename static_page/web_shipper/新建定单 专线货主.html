@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新建运单-专线货主</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<LINK href="css/indexs.css" type=text/css rel=stylesheet>
+ <link rel="stylesheet" type="text/css" href="css/jquery-calendar.css" /> 
+<SCRIPT src="js/jquery.js" type=text/javascript></SCRIPT>
+<SCRIPT src="js/jQselect.js" type=text/javascript></SCRIPT>
+  <script type="text/javascript" src="js/jquery-calendar.js"></script> 
+<SCRIPT type=text/javascript>
+	$(document).ready(function() {
+		var count=$('select').size();
+		 for(var i=1;i<count+1;i++){
+			 $("#select"+i).selectbox()
+		 }
+		
+		$(".usermenu").click(function(){
+			$(".user_nav").toggle(200);
+		});
+   		$(".usermenu").blur(function(){
+			$(".user_nav").hide();
+		});	
+   			
+	});
+	
+</SCRIPT>
+</head>
+
+<body>
+<div class="head">
+	<div class="top">
+    	<div class="logo floatleft"><a href=""><img src="images/logo.png"></a></div>
+        <div class="signin floatleft">
+        	<a href=""><div class="message"><span>10</span></div></a>
+          	<a href=""><div class="set"> <span>10</span></div></a>
+           	<div class="user">
+            	<span class="username">
+                	<p>James wuzhe</p>
+                    <p>
+                    	<img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star2.png">
+                     </p>
+                  </span>
+                  <span class="userpic">
+                  	    <img src="images/rw.gif">
+                  </span>
+                  <span class="usermenu"></span>
+            </div>
+            <div class="user_nav">
+            	<ul>
+                	<li><a href="">修改个人资料</a></li>
+                    <li><a href="">退出登陆</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="nav">
+    	<ul>
+        <li><a href="">首页</a></li>
+        	<li><a href="">我的车队</a></li>
+            <li  class="current"><a href="">新建订单</a></li>
+            <li><a href="">待接订单</a></li>
+            <li><a href="">待运订单</a></li>
+            <li><a href="">在途订单</a></li>
+            <li ><a href="">历史订单</a></li>
+            <li><a href="">统计报表</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+<form name="myform" action="" method="post">
+	<div class="error"><span>缺货地点不能为空.....</span></div>
+	<div class="neworder">
+    	
+        <dl>
+            	<dt>货物名称</dt>
+                <dd><input name="fhname" type="text" class="input" value="请输入货物名称"  onfocus="this.value=''"/></dd>
+            </dl>
+            <dl>
+            	<dt>装货时间</dt>
+                <dd> <input name="fachedata" type="text" class="input" value="请选择装货时间"   onfocus="$(this).calendar()"/>
+                 </dd>
+            </dl>
+            <dl>
+            	<dt>货运路线</dt>
+                <dd>
+                	<div class="select w88">
+       					  <select  style="display:none" name="zhclass" id="select1">
+           					 <option selected>上海 —— 成都</option>
+           					 <option value=3>成都 —— 上海 </option>
+          					 <option value=4>上海 —— 重庆</option>
+           					 <option value=5>重庆 —— 上海</option>
+       					 </select>
+   					 </div>
+                 </dd>
+            </dl>
+            <dl>
+            	<dt>装货地点</dt>
+                <dd>
+                	<input name="add" type="text" class="input" value="请输入装货地点"  onfocus="this.value=''"/>
+                </dd>
+            </dl>
+             <dl>
+            	<dt>发货人</dt>
+                <dd><input name="user" type="text" class="input" value="请输入发货人"  onfocus="this.value=''"/></dd>
+            </dl>
+             <dl>
+            	<dt>发车时间</dt>
+                <dd>
+                	  <input name="fachedata" type="text" class="input" value="请选择发车时间"   onfocus="$(this).calendar()"/>
+                </dd>
+            </dl>
+             <dl>
+            	<dt>收货人</dt>
+                <dd><input name="shouhuo" type="text" class="input" value="请输入收货人"  onfocus="this.value=''"/></dd>
+            </dl>
+             <dl>
+            	<dt>卸货时间</dt>
+                <dd><div class="select w88">
+       					  <select  style="display:none" name="zhclass" id="select2">
+           					 <option selected>请选择卸货时间</option>
+           					 <option value=3>2</option>
+          					 <option value=4>3</option>
+           					 <option value=5>4</option>
+       					 </select>
+   					 </div>
+                </dd>
+            </dl>
+             <dl>
+            	<dt>订单编号</dt>
+                <dd><input name="code" type="text" class="xinput" value="点击生成订单编号"  onfocus="this.value=''"/><input name="" type="button" value="生成编号" class="creatbut"/></dd>
+            </dl>
+            
+              <dl>
+            	<dt>卸货地点</dt>
+                <dd><input name="shuser" type="text" class="input" value="请输入卸货地点"  onfocus="this.value=''"/></dd>
+              </dl>
+             <dl>
+            	<dt></dt>
+                <dd>
+                	
+                    
+                </dd>
+            </dl>
+             <dl>
+            	<dt>指定货车</dt>
+                <dd>
+                	<div class="select w88">
+       					  <select  style="display:none" name="zhclass" id="select3">
+           					 <option selected>系统派遣</option>
+           					 <option value=3>2</option>
+          					 <option value=4>3</option>
+           					 <option value=5>4</option>
+       					 </select>
+   					 </div>
+                    
+                </dd>
+            </dl>
+         
+       
+    </div>
+      <div class="operation">  <input type="submit" class="cancel" value="确定送出">  <input type="button" class="cancel" value="保存草稿"> <input type="button" class="cancel" value="删除重填"></div>
+       </form>
+</div>
+</body>
+</html>

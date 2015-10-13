@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+     <link href="css/style.css" rel="stylesheet" type="text/css" />
+          <SCRIPT src="js/jquery.js" type=text/javascript></SCRIPT>
+     <SCRIPT type=text/javascript>
+	$(document).ready(function() {
+		$(".usercenter").find("i").click(function(){
+			$(".usercenter").find("i").removeClass("on");
+			$(this).addClass("on");
+		});
+  
+	});
+</SCRIPT>
+<body>
+<div class="container">
+        <div class="usercenter">
+         <div class="regisererror" style="display:none;">新密码两次输入不一致</div>
+         <div class="regisersucess">已成功修改个人资料</div>
+        <h2>请选择货主注册类型</h2>
+        	<dl><dd><i class="on"><input name="aa" type="radio" value="1" class="radioclass" checked/></i></dd><dt>新注册用户</dt></dl>
+            <dl><dd><i><input name="aa" type="radio" value="2" class="radioclass"/></i></dd><dt>已注册公司用户</dt></dl>
+            <dl class="line"><dd>帐号</dd><dt><input name="password"  value="请输入手机号码" type="text"  class="input" onfocus="this.value=''"></dt></dl>
+            <dl><dd>验证码</dd><dt><input name="newpassword"  value="请输入验证码" type="text" class="inputcode" onfocus="this.value=''"><input name="submit" type="button" value="获取验证码" class="checkcode"> </dt></dl>
+            <dl><dd>设置密码</dd><dt><input name="newpassword" type="text" value="请输入6位或以上的数字或英文" class="input" onfocus="this.value=''"></dt></dl>
+            <dl><dd>确认密码</dd><dt><input name="confirmword" type="text" value="请再次输入新的密码" class="input" onfocus="this.value=''"></dt></dl>
+            <dl class="line"><dd>公司名称</dd><dt><input name="companyname" type="text" value="请输入公司名称" class="input" onfocus="this.value=''"></dt></dl>
+            <dl><dd>公司地址</dd><dt><input name="address" type="text" value="请输入公司地址" class="input" onfocus="this.value=''"></dt></dl>
+          <dl><dd></dd><dt><span style="font-size:16px;padding-left:60px;*padding-left:30px;"><input name="" type="checkbox" value="" checked/> 阅读并同意<span style="color:#007de0">《软件许可及服务协议》</span></span></dt></dl>
+           
+             <dl><dd></dd><dt style="*text-align:center;*padding-left:30px;"><input name="submit" type="submit" value="确定" class="refer"> </dt></dl>
+        </div>
+</div>        
+</body>
+</html>

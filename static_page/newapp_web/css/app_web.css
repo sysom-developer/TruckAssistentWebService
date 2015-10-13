@@ -1,0 +1,320 @@
+@charset "utf-8";
+/* CSS Document */
+body
+{
+    background:#f3f3f3;
+    font: normal 100% Helvetica, Arial, sans-serif；
+}
+body,html,table,tr,th,td,div,form,img,ul,ol,li,dl,dt,dd,p,fieldset,h1,h2,h3,h4,h5,h6 
+{
+    padding: 0;
+    border: 0;
+}
+ul,ol,li,dl,dt,dd 
+{
+    list-style: none;
+}
+li 
+{
+    list-style-type: none;
+}
+a 
+{
+    color: #333;
+    text-decoration: none;
+}
+a:hover 
+{
+    color: #EE5C58;
+}
+a 
+{
+    outline: none;
+    star: expression_r(this.onFocus=this.blur());
+}
+.body
+{
+    background:url(../app_web/images/app_bg.png);
+    width:100%;
+    height:50%;
+}
+.top
+{
+    width:100%;
+    height:72px;
+    background:#fff;    
+}
+.top_right
+{
+    float:right;    
+    width:200px;
+    height:72px;
+    margin-right:30px;
+}
+.top_right li
+{
+    float:right;
+    line-height: 72px;
+    min-width: 45px;
+}
+.top_right a
+{
+    font-size:1.25em;
+}
+.top_right img
+{
+    margin-top:25px;
+    margin-left:20px;
+}
+.content img
+{
+    width:100%;
+}
+.logo li
+{
+    width:115px;
+    height:150px;
+    position:absolute;
+    left:95px;
+    top:208px;
+}
+.logo a
+{
+    font-size:0.8em;
+    letter-spacing:2px;
+    position:relative;
+    top:-45px;
+    left:10px;
+    color:#fff;
+    display: block;
+    background-color:#EE5C58;
+    width:35%;
+    text-align: center;
+    border-radius:4px;
+    line-height: 25px;
+}
+.logo a:link,.logo a:visited
+{
+    text-decoration:none;
+}
+.logo a:hover,.logo a:active
+{
+    background-color:#ae4340;
+}
+.qrcode
+{
+    margin-top:5%;
+    text-align: center;
+}
+.qrcode li
+{
+	line-height:2.5em;
+}
+.qrcode img
+{
+    width:50%;
+}
+.qrcode p
+{
+    text-align: center;
+    margin-top:10px;
+    font-size:1em;
+}
+.bottom
+{
+    margin-top:5%;
+    text-align: center;
+    width:85%;
+    margin-left:7%;
+}
+.bottom img
+{
+    vertical-align: middle;
+    margin-right:20px;
+	width:25px;
+	height:29px;
+}
+.bottom a
+{
+    display: block;
+    background:#EE5C58;
+    line-height:2.8em;
+    border-radius:4px;
+    color:#fff;
+    font-size:1em;
+}
+/*#bottom_blue a
+{
+	display: block;
+	margin-top:10%;
+    background:#20aadd;
+    line-height:2.8em;
+    border-radius:4px;
+    color:#fff;
+    font-size:1em;
+}
+#bottom_blue a:hover,#bottom_blue a:active
+{
+	background:#157193;
+}*/
+.bottom a:hover,.bottom a:active
+{
+    background:#AE4340;
+}
+.arrow
+{
+	width:2.25em;
+	margin:1.5em auto;
+}
+.arrow img
+{
+	width:1.5em;
+}
+.mask
+{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 99998;
+	top: 0;
+}
+.mask img
+{
+width:100%;
+height:100%
+}
+.mask_arrow
+{
+	position:absolute;
+	top:5px;
+	right:-5px;
+}
+.mask_arrow img
+{
+	width:50%;
+	margin-top:1em;
+	margin-left:9em;
+}
+.mask_text
+{
+	position:absolute;
+	top:25%;
+	left:20%;
+}
+.mask_text p
+{
+	font-size:1.5em;
+	color:#fff;
+	text-align: center;
+	font-family: "微软雅黑";
+	line-height:2.5em;
+	margin-top:2em;
+}
+.theme
+{
+	width:90%;
+	margin:15px auto;
+}
+.theme h2
+{
+	color:#EE5C58;
+	font-size:1.5em;
+}
+.theme h3
+{
+	margin-top:15px;
+	font-size:1em;
+}
+.theme p
+{
+	margin-top:15px;
+	font-size:0.9em;
+	line-height:1.2em;
+}
+.main_two_img
+{
+	width:90%;
+	margin: 30px auto;
+}
+.main_two_img img
+{
+	width:100%;
+}
+.invitation img
+{
+	width:100%;
+}
+.inv_input
+{
+	position:absolute;
+	top:35%;
+	left:15%;
+	width:70%;
+	height:30%;
+}
+.inv_input input
+{
+	margin-bottom:4%;
+	width:100%;
+	height:3em;
+	border-radius:4px;
+	border: none;
+}
+.inv_line
+{
+	width:1%;
+	height:2em;
+	background:#b2b2b2;
+	position:absolute;
+	top:28%;
+	right:40%;
+}
+.inv_input a
+{
+	position:absolute;
+	top:32%;
+	right:5%;
+	
+}
+.inv_input a:link,.inv_input a:visited
+{
+	text-decoration:none;
+	color:#EE5C58;
+}
+.inv_input a:hover,.inv_input a:active
+{
+	color:#AE4340;
+}
+.inv_text 
+{
+	width:69%;
+	margin:0 auto;
+	position:absolute;
+	top:60%;
+	left:15%;
+}
+.inv_text p
+{
+	color:#f3a442;
+}
+.inv_text a
+{
+	font-size:1.3em;
+	display: block;
+	text-align: center;
+	background-color:#ffe27f;
+	height:2em;
+	line-height:2em;
+	margin-top:8%;
+	border-radius:4px;
+}
+.inv_text a:link,.inv_text a:visited
+{
+	text-decoration:none;
+	color:#EE5C58;
+}
+.inv_text a:hover,.inv_text a:active
+{
+	color:#fff;
+	background-color:#F3A442
+}

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>个人资料</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<SCRIPT src="js/jquery.js" type=text/javascript></SCRIPT>
+<SCRIPT type=text/javascript>
+	$(document).ready(function() {
+		$(".usermenu").click(function(){
+			$(".user_nav").toggle(200);
+		});
+   		$(".usermenu").blur(function(){
+			$(".user_nav").hide();
+		});	
+		
+		//上传头像
+		$("#uploadimg").click(function(){
+				$("#file").click(); 
+	   });	
+		
+	});
+</SCRIPT>
+</head>
+
+<body>
+<div class="head">
+	<div class="top">
+    	<div class="logo floatleft"><a href=""><img src="images/logo.png"></a></div>
+        <div class="signin floatleft">
+        	<a href=""><div class="message"><span>10</span></div></a>
+          	<a href=""><div class="set"> <span>10</span></div></a>
+           	<div class="user">
+            	<span class="username">
+                	<p>James wuzhe</p>
+                    <p>
+                    	<img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star2.png">
+                     </p>
+                  </span>
+                  <span class="userpic">
+                  	    <img src="images/rw.gif">
+                  </span>
+                  <span class="usermenu"></span>
+            </div>
+            <div class="user_nav">
+            	<ul>
+                 <li><a href="合同模板.html">修改合同模板</a></li>
+                	<li><a href="">修改个人资料</a></li>
+                    <li><a href="">退出登陆</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="nav">
+    	<ul>
+        <li><a href="">首页</a></li>
+        	<li><a href="">我的车队</a></li>
+            <li><a href="">新建订单</a></li>
+            <li><a href="">待接订单</a></li>
+            <li><a href="">待运订单</a></li>
+            <li><a href="">在途订单</a></li>
+            <li><a href="">历史订单</a></li>
+            <li><a href="">统计报表</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+		<div class="usercenter">
+			<div class="errormessage">新密码两次输入不一致</div>
+            <div class="sucessmessage">已成功修改个人资料</div>
+        	<dl><dd>个人昵称</dd><dt><input name="username" type="text" value="" class="input"></dt></dl>
+            <dl><dd>个人头像</dd><dt class="userpic"><span><img src="images/rw.gif"></span><span><input type="file" id="file"name="file" style="display:none"/><input name="upfile" type="button" value="上传头像" class="upfileimg" id="uploadimg"> </span></dt></dl>
+            <dl class="line"><dd>当前密码</dd><dt><input name="password" type="password" value="12345678" class="input" ></dt></dl>
+            <dl><dd>新密码</dd><dt><input name="newpassword" type="password" value="4444" class="input"></dt></dl>
+            <dl><dd>确认新密码</dd><dt><input name="confirmword" type="password" value="44444" class="input"></dt></dl>
+            <dl class="line"><dd>公司名称</dd><dt><input name="companyname" type="text" value="" class="input"></dt></dl>
+            <dl><dd>公司地址</dd><dt><input name="address" type="text" value="" class="input"></dt></dl>
+            <dl><dd>公司简介</dd><dt><input name="introduce" type="text" value="" class="input"></dt></dl>
+            <dl><dd></dd><dt><input name="submit" type="submit" value="保存" class="refer"> </dt></dl>
+         </div>
+</div>
+</body>
+</html>

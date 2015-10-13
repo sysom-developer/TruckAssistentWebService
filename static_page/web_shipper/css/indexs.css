@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* DIVCSS5 www.divcss5.com 整理 */
+
+
+
+.select{ float:left;display:inline; font-size:14px;text-align:left; overflow:hidden;width:310px;background:url(../images/icon.png) 290px no-repeat #e8e8e8;border-radius:2px;height:36px;*margin-left:20px;}
+
+.w85select{ float:left;display:inline; font-size:14px;text-align:left; overflow:hidden;width:308px;background:url(../images/icon.png) 120px no-repeat #e8e8e8;border-radius:2px;height:36px;*margin-left:20px;}
+.w86select{ float:left;display:inline; font-size:14px;text-align:left; overflow:hidden;background:url(../images/icon.png) 120px no-repeat #fff;border-radius:2px;height:36px;border:1px solid #e7e7e7;width:260px;*margin-left:20px;}
+#selectbg{background:url(../images/buttonbg.gif) repeat-x;height:38px;width:142px;*width:162px;overflow:hidden;}
+.w87select{ float:left;display:inline; font-size:14px;text-align:left; overflow:hidden;background:url(../images/icon.png) 120px no-repeat ;border-radius:2px;height:36px;border:1px solid #e7e7e7;*margin-left:20px;}
+.selectbox{ border:none;  DISPLAY: block; padding-left:8px; width: 302px; CURSOR: pointer;font-size:14px; HEIGHT:36px; line-height:36px; background:none;color:#999;}
+
+.w88{ width:308px;}
+.w88 .selectbox{width:288px; padding-right:22px; overflow:hidden}
+.w85{ width:140px !important;}
+.w85 .selectbox{width:122px; padding-right:22px; overflow:hidden}
+
+.w88 DIV.selectbox-wrapper{width:308px; float:left; font-size:14px;line-height:24px;POSITION: absolute;  background:#fff; border:1px solid #e7e7e7 ; border-top:0;border-bottom:0;border-radius:2px;margin-left:-1px;}
+.w85 DIV.selectbox-wrapper {width:138px; float:left; font-size:14px;line-height:24px;POSITION: absolute;  background:#fff; border:1px solid #e7e7e7 ; border-top:0;border-bottom:0;border-radius:2px;margin-left:-1px;}
+
+
+.w88 DIV.selectbox-wrapper UL LI.selected{ background:#228de8; font-weight:bold;width:293px;float:left;color:#fff;}
+.w85 DIV.selectbox-wrapper UL LI.selected {background:#228de8; font-weight:bold;width:123px;float:left;color:#fff;}
+.w88 DIV.selectbox-wrapper UL LI.current{COLOR: #fff; BACKGROUND-COLOR: #228de8;width:293px;float:left;}
+.w85 DIV.selectbox-wrapper UL LI.current {COLOR: #fff; BACKGROUND-COLOR: #228de8;width:124px;;float:left;}
+
+
+.w88 DIV.selectbox-wrapper UL LI {PADDING: 3px 8px; WIDTH:292px; height:24px; overflow:hidden; CURSOR: pointer; LINE-HEIGHT: 24px;float:left;border-bottom:1px solid #e7e7e7;background:#fff;}
+.w85 DIV.selectbox-wrapper UL LI {PADDING: 3px 8px; WIDTH:122px; height:24px; overflow:hidden; CURSOR: pointer; LINE-HEIGHT: 24px;float:left;border-bottom:1px solid #e7e7e7;background:#fff}
+
+
+.container .usercenter dt div{margin-bottom:30px;}
+.container .usercenter dt .select{float:left;display:inline; font-size:14px;text-align:left; overflow:hidden;background:url(../images/icon.png) 95% no-repeat #e8e8e8;border-radius:2px;height:36px;*margin-left:20px;width:100%;}
+.container .usercenter dt .w89{ width:71.6%;}
+.container .usercenter dt .w89 .selectbox{width:94%; padding-right:22px; overflow:hidden}
+.container .usercenter dt .w89 DIV.selectbox-wrapper{width:71.5%; float:left; font-size:14px;line-height:24px;POSITION: absolute;  background:#fff; border:1px solid #e7e7e7 ; border-top:0;border-bottom:0;border-radius:2px;margin-left:-1px;z-index:99999;}
+.container .usercenter dt .w89 DIV.selectbox-wrapper UL LI.selected{ background:#228de8; font-weight:bold;width:100%;float:left;color:#fff;}
+.container .usercenter dt .w89 DIV.selectbox-wrapper UL LI.current{COLOR: #fff; BACKGROUND-COLOR: #228de8;width:100%;float:left;}

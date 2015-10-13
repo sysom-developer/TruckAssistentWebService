@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>历史运单</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<LINK href="css/indexs.css" type=text/css rel=stylesheet>
+<SCRIPT src="js/jquery.js" type=text/javascript></SCRIPT>
+<SCRIPT src="js/jQselect.js" type=text/javascript></SCRIPT>
+<SCRIPT type=text/javascript>
+	function showorder(){
+		
+		$(".mask").show();
+		$(".comment").hide();
+		$(".editorcontent").show();
+		$(".order_detail").show();
+		$(".head").addClass("fixed");
+		$(".container").addClass("serachfixed");
+		
+	}
+	function del(a){
+		a.css("display","none");
+	}
+	function showcom(){
+		$(".mask").show();
+		$(".order_detail").hide();
+		$(".editorcontent").show();
+		$(".comment").show();
+		$(".head").addClass("fixed");
+		$(".container").addClass("serachfixed");
+	}
+	
+	
+	$(document).ready(function() {
+		
+   	    $(".usermenu").click(function(){
+			$(".user_nav").toggle(200);
+		});
+   		$(".usermenu").blur(function(){
+			$(".user_nav").hide();
+		});	
+		
+		$(".order>ul").each(function(){
+			 $(this).find("img:eq(1)").click(function(){
+				 $(this).next(".del_layer").show()
+			 });	
+		});
+		
+	
+			 $("#select").selectbox()
+		
+		
+		$(".close").click(function(){
+			
+			$(".editorcontent").hide();
+			$(".mask").hide();
+			$(".head").removeClass("fixed");
+			$(".container").removeClass("serachfixed");
+		})
+		
+	
+	 $(".star>span").toggle(
+            function(){
+                $(this).prevAll("span").addClass("nocheck");
+               
+            },
+            function(){
+                $(this).nextAll("span").removeClass("nocheck");
+               
+            }
+            )
+       
+	
+       $(".com>ul>li").toggle(
+            function(){
+                $(this).addClass("current");
+               
+            },
+            function(){
+                $(this).removeClass("current");
+               
+            }
+            )
+       
+	});
+</SCRIPT>
+</head>
+
+<body>
+<div class="head">
+	<div class="top">
+    	<div class="logo floatleft"><a href=""><img src="images/logo.png"></a></div>
+        <div class="signin floatleft">
+        	<a href=""><div class="message"><span>10</span></div></a>
+          	<a href=""><div class="set"> <span>10</span></div></a>
+           	<div class="user">
+            	<span class="username">
+                	<p>James wuzhe</p>
+                    <p>
+                    	<img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star1.png">
+                        <img src="images/user_star2.png">
+                     </p>
+                  </span>
+                  <span class="userpic">
+                  	    <img src="images/rw.gif">
+                  </span>
+                  <span class="usermenu"></span>
+            </div>
+            <div class="user_nav">
+            	<ul>
+                 <li><a href="合同模板.html">修改合同模板</a></li>
+                	<li><a href="">修改个人资料</a></li>
+                    <li><a href="">退出登陆</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="nav">
+    	<ul>
+        <li><a href="">首页</a></li>
+        	<li><a href="">我的车队</a></li>
+            <li><a href="">新建订单</a></li>
+            <li><a href="">待接订单</a></li>
+            <li><a href="">待运订单</a></li>
+            <li><a href="">在途订单</a></li>
+            <li  class="current"><a href="">历史订单</a></li>
+            <li><a href="">统计报表</a></li>
+        </ul>
+    </div>
+</div>
+<div class="editorcontent" style="display:none"> 
+
+	<!--订单跟踪详情开始-->
+    	<div class="order_detail"  style="display:none">
+       		 <div class="close"></div>
+        	
+          
+            <div class="pdinfo">
+            <h2>货物信息</h2>
+            	<div>
+            	<dl><dt>货物名称：</dt> <dd>百货</dd></dl>
+                <dl><dt>装货时间：</dt> <dd>2014-12-3 22;00</dd></dl>
+                <dl><dt>出发地：</dt> <dd>上海</dd></dl>
+                <dl><dt>装货地点：</dt> <dd>上海清缘街上海清缘街上海清缘街</dd></dl>
+                 <dl><dt>目的地：</dt> <dd>成都</dd></dl>
+                <dl><dt>发车时间：</dt> <dd>2015-04-12 10：00</dd></dl>
+                <dl><dt>发货人：</dt> <dd>张先生</dd></dl>
+                <dl><dt>发货时间：</dt> <dd>2015-04-12 10：00</dd></dl>
+                <dl><dt>收货人：</dt> <dd>张先生</dd></dl>
+                <dl><dt>收货地点：</dt> <dd>成都大街</dd></dl>
+                <dl><dt>运单编号：</dt> <dd>4031428301</dd></dl>
+                <dl><dt>指定货车：</dt> <dd>皖AAAAAA</dd></dl>
+                </div>
+            </div>
+            <br> <br>
+             <div class="pdinfo">
+              <h2>承接司机信息</h2>
+              <div>
+            	<dl><dt>司机姓名：</dt> <dd>王先生</dd></dl>
+                <dl><dt>联系方式：</dt> <dd>1234568908</dd></dl>
+                <dl><dt>取消时间：</dt> <dd>2015-04-12 10：00</dd></dl>
+                <dl><dt>车牌号码：</dt> <dd>A32444</dd></dl>
+                <dl><dt>车辆长度：</dt> <dd>23米</dd></dl>
+                <dl><dt>货车类型：</dt> <dd>平板</dd></dl>
+                </div>
+            </div>
+             <div class="savebut" style="width:940px;"> <input type="submit" class="cancel" value="订单跟踪">   <input type="submit" class="cancel" value="运输合同"> </div>
+    </div>
+    <!--订单详情结束-->
+  
+   
+</div>
+<div class="mask" style="display:none"></div>
+
+<div class="container" >
+	<div class="serach">
+    	<div class="serach_select">
+        	<DIV class="w86select w85" >
+       					 <SELECT  style="display: none" name="select" id="select">
+           					 <OPTION value=1>创建时间</OPTION>
+           					 <OPTION value=2>货物类型</OPTION>
+       					 </SELECT>
+   			 </DIV>
+             <div class="serach_order">
+             	<a href=""><span >已完成运单</span></a>
+                <a href=""><span class="current">已取消运单</span></a>
+             </div>
+        </div>
+        
+        <div class="serach_blank">
+        	<span><input name="serachcontent" type="text" value="请输入搜索内容..." class="so" onfocus="this.value=''"><input name="submit" type="button" class="serachin"/></span>
+        </div>
+    </div>
+
+	<div class="order cancelorder">
+      <!--确认订单开始-->
+    <div class="ordercomfirm">
+    	<p style="padding:10px;">确认订单已成功运送到卸货地点！</p>
+        <p style="border-top:1px solid #e7e7e7;text-align:center"><input type="submit" class="confirm" value="确定">  <input type="button" class="delcancel" value="取消"></p>
+    </div>
+    
+    <!--确认订单结束-->
+			<ul class="white listtitle"> 
+				<li>订单编号</li> 
+				<li>订单来源</li> 
+				<li>货物名称</li> 
+				<li>取消人</li> 
+                <li>取消原因 	</li> 
+                <li>取消时间	</li> 
+				<li id="oper_k" >操作</li> 
+           </ul>
+            <ul class="hui">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">等接运单</li> 
+				<li onclick="showorder()">百货</li> 
+				<li onclick="showorder()">货主</li> 
+                <li onclick="showorder()">删除</li> 
+				<li onclick="showorder()"> 4-18 15:00</li> 
+				<li id="oper_k"> <a href=""><img src="images/editor.png" /></a > <a href=""><img src="images/del.png" /></a></li> 
+            </ul> 
+             <ul class="white">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">等接运单</li> 
+				<li onclick="showorder()">百货</li> 
+				<li onclick="showorder()">货主</li> 
+                <li onclick="showorder()">删除</li> 
+				<li onclick="showorder()"> 4-18 15:00</li> 
+				<li id="oper_k"> <a href=""><img src="images/editor.png" /></a > <a href=""><img src="images/del.png" /></a></li> 
+            </ul> 
+             <ul class="hui">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">等接运单</li> 
+				<li onclick="showorder()">百货</li> 
+				<li onclick="showorder()">货主</li> 
+                <li onclick="showorder()">删除</li> 
+				<li onclick="showorder()"> 4-18 15:00</li> 
+				<li id="oper_k"> <a href=""><img src="images/editor.png" /></a > <a href=""><img src="images/del.png" /></a></li> 
+            </ul> 
+             <ul class="white">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">等接运单</li> 
+				<li onclick="showorder()">百货</li> 
+				<li onclick="showorder()">货主</li> 
+                <li onclick="showorder()">删除</li> 
+				<li onclick="showorder()"> 4-18 15:00</li> 
+				<li id="oper_k"> <a href=""><img src="images/editor.png" /></a > <a href=""><img src="images/del.png" /></a></li> 
+            </ul> 
+             <ul class="hui">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">等接运单</li> 
+				<li onclick="showorder()">百货</li> 
+				<li onclick="showorder()">货主</li> 
+                <li onclick="showorder()">删除</li> 
+				<li onclick="showorder()"> 4-18 15:00</li> 
+				<li id="oper_k"> <a href=""><img src="images/editor.png" /></a > <a href=""><img src="images/del.png" /></a></li> 
+            </ul> 
+             <ul class="white">
+				<li onclick="showorder()">201504152</li> 
+				<li onclick="showorder()">等接运单</li> 
+				<li onclick="showorder()">百货</li> 
+				<li onclick="showorder()">货主</li> 
+                <li onclick="showorder()">删除</li> 
+				<li onclick="showorder()"> 4-18 15:00</li> 
+				<li id="oper_k"> <a href=""><img src="images/editor.png" /></a > <a href=""><img src="images/del.png" /></a></li> 
+            </ul> 
+           
+</div> 
+  <div class="page"><a href=""><img src="images/prev.gif"></a><a href="" ><img src="images/preva.gif"></a><a href="" ><img src="images/nexta.gif"></a><a href=""><img src="images/next.gif"></a>共98条记录 显示1/12</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+﻿/* calendar styles */
+#calendar_div {
+	display: none;
+	border: 1px solid #777;
+	width:260px;
+	z-index: 10; 
+	font-size:14px;
+	padding: 0;
+	margin: 0;
+}
+#calendar_div a {
+	cursor: pointer;
+}
+button.calendar_trigger {
+	width: 25px;
+}
+img.calendar_trigger {
+	margin: 2px;
+	vertical-align: middle;
+}
+#calendar_control, #calendar_links, #calendar_header, #calendar, #calendar_time {
+	clear: both;
+	float: left;
+	width: 100%;
+	
+	color: #fff;
+}
+#calendar_control {
+	background-color: #400;
+}
+#calendar_links {
+	background-color: #dbdfe3;
+	height:20px;
+	*line-height:20px;
+}
+#calendar_control>a, #calendar_links>a {
+	font-weight: bold;
+	font-size: 12px;
+	letter-spacing: 1px;
+	color: #eee;
+	padding: 2px 5px;
+}
+#calendar_control>a:hover {
+	background-color: #fdd;
+	color: #333;
+}
+#calendar_links>a:hover, .calendar_titleRow a:hover {
+	background-color:  #fff;;
+	color: #333;
+}
+#calendar_clear, #calendar_prev {
+	float: left;
+}
+#calendar_current {
+	float: left;
+	width: 35%;
+	margin-left:10px;
+	text-align: center;
+}
+#calendar_close, #calendar_next {
+	float: right;
+}
+#calendar_header, #calendar_time {
+	background-color: #dbdfe3;
+	text-align: center;
+	font-weight: bold;
+	height:30px;
+	width:100%;
+	margin:0;padding:0
+}
+#calendar{
+	background: #ccc;
+	text-align: center;
+	font-size: 100%;
+	border-collapse: separate;
+    border-width:0px;
+}
+#calendar td{
+    padding:0px;
+    font:normal 12px 宋体;
+    text-align: center; 
+}
+#calendar a {
+	width: 100%;
+	display: block;
+}
+#calendar a:hover {
+	color: #eee;
+}
+#calendar .calendar_titleRow {
+	background: #dbdfe3;
+    border-color:#dbdfe3;
+	height:30px;
+}
+#calendar .calendar_titleRow > td{
+	color:#333;
+	height:30px;
+	width:30px;
+	background: #dbdfe3;
+
+}
+#calendar .calendar_titleRow a {
+	color: #eee;
+}
+#calendar .calendar_titleRow a:hover {
+	color: #000;
+}
+#calendar .calendar_daysRow {
+	background: #fff;
+	color: #666;
+	height:30px;
+	
+}
+#calendar .calendar_daysCell {
+	width:30px;
+	border: 1px solid  #ddd;
+	
+}
+#calendar .calendar_daysCell a {
+	color: #000;
+	width: 100%;
+}
+#calendar .calendar_daysCell a:hover {
+	background: none;
+}
+#calendar .calendar_weekEndCell {
+	background:  #fff;
+	
+}
+#calendar .calendar_daysCellOver {
+	background-color: #41b6eb;
+	color:#fff;
+	font-size:14px;
+}
+#calendar .calendar_unselectable {
+	color: #888;
+}
+#calendar_today {
+	background: #fff !important;
+	
+}
+#calendar_currentDay {
+	
+	background: #41b6eb;
+	color:#fff !important;
+	font-size:14px;
+}
+#calendar_currentDay a{
+	color:#fff !important;;
+	font-size:14px;
+}
+#calendar_cover {
+    display: none; /*sorry for IE5*/
+    display/**/: block; /*sorry for IE5*/
+    position: absolute; /*must have*/
+    z-index: -1; /*must have*/
+    filter: mask(); /*must have*/
+    top: -1px; /*must have*/
+    left: -1px; /*must have*/
+    width: 300px; /*must have to match width and borders*/
+    height: 300px; /*must have to match maximum height*/ 
+}
+#CLD_OK{
+    margin:auto;
+    float:right;
+    margin-right:15px;
+    width:45px;
+    height:18px;
+    line-height:18px;
+    cursor:pointer;
+    display:inline;
+}
+.btOK_out{
+    margin:auto;
+    float:left;
+    font-weight:normal;
+    margin-right:15px;
+    width:45px;
+    background: #666;
+    margin-top:2px;
+    height:18px;
+    line-height:18px;
+    cursor:pointer;
+    color:#EEE;
+}
+.btOK_over{
+    margin:auto;
+    float:left;
+    font-weight:normal;
+    margin-right:15px;
+    width:45px;
+    background: #fff;
+    margin-top:2px;
+    height:18px;
+    line-height:18px;
+    cursor:pointer;
+    color:#333;
+}
+.select_429{
+	float:left;
+	padding:0;
+	margin:0;
+	overflow:hidden;
+	height:15px;
+	border:1px solid #333;
+}
+.select_429 > select {
+    font-size:14px;
+	float:left;
+	width:100px;
+	margin-top:-1px;
+	*margin-top:-2px;
+	margin-left:-1px;
+	border-style: none;
+    border: 0px;
+	background-color: #b7c0c7;
+	*background-color: #FFF;
+	color:#fff;
+	*color:#333;	
+}
+.select_429 > select > option{
+	background-color: #dbdfe3;
+	*background-color: #FFF;
+	border-width:0px;
+	color:#333;
+	*color:#333;	
+}
+
