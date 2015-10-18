@@ -58,7 +58,8 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('sms', 'service');
+
 
 /*
 | -------------------------------------------------------------------
@@ -83,7 +84,8 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array();
+$autoload['helper'] = array('url', 'file', 'security', 'cookie', 'random', 'random_number', 'rand_uniqid_helper', 'greeting', 'cut_str', 'chang_image_size', 'log', 'delete_html', 'get_lang_type_helper', 'upload_img_file', 'static_url', 'words_filter', 'move_upload_file', 'get_order_sn', 'get_location_by_lat_lng', 'get_stay_time', 'json_en', 'multi_array_sort', 'get_week', 'push_xingeapp', 'tran_time', 'get_residual_mileage', 'get_lat_lng_by_location', 'string_secret', 'secret_string', 'get_first_charter');
+
 
 /*
 | -------------------------------------------------------------------
@@ -126,4 +128,10 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array();
+$autoload['model'] = array('common_model');
+
+
+
+$driver_service = array('driver/driver_service');
+$common_service = array('attachment_service');
+$autoload['service'] = array_merge($common_service, $driver_service);
