@@ -33,7 +33,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/seccode/get_sms_seccode" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">1. 注册 － 获取验证码</td>
+            <td width="300">1. 注册 － 获取验证码－－已完成</td>
             <td><?php echo $domain?>/seccode/get_sms_seccode</td>
         </tr>
         <tr>
@@ -61,7 +61,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/register" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">2. 注册</td>
+            <td width="300">2. 注册－－已完成</td>
             <td><?php echo $domain?>/register</td>
         </tr>
         <tr>
@@ -145,7 +145,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/vehicle/get_vehicle_type" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">4. 获取车辆类型</td>
+            <td width="300">4. 获取车辆类型－－已完成（采用配置文件）</td>
             <td><?php echo $domain?>/vehicle/get_vehicle_type</td>
         </tr>
         <tr>
@@ -160,7 +160,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/vehicle/get_vehicle_load" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">5. 获取车辆载重</td>
+            <td width="300">5. 获取车辆载重－－已完成（采用配置文件）</td>
             <td><?php echo $domain?>/vehicle/get_vehicle_load</td>
         </tr>
         <tr>
@@ -175,7 +175,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/vehicle/get_vehicle_length" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">6. 获取车辆长度</td>
+            <td width="300">6. 获取车辆长度－－已完成（采用配置文件）</td>
             <td><?php echo $domain?>/vehicle/get_vehicle_length</td>
         </tr>
         <tr>
@@ -186,6 +186,10 @@ switch (ENVIRONMENT) {
         </tr>
     </table>
 </form>
+
+<br/><br/><br/>
+<p>－－－登录注册接口结束－－－</p>
+<br/><br/><br/>
 
 <form action="<?php echo $domain?>/member/update_info" method="post" enctype="multipart/form-data">
     <table style="margin-left: 30px;" width="100%">

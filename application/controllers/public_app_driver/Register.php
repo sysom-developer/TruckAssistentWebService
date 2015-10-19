@@ -33,40 +33,43 @@ class Register extends Public_Android_Controller {
         $time = time();
 
         //验证验证码
-//        if ($seccode != '88888') {
-//            $where = array(
-//                'mobile_phone' => $mobile_phone,
-//                'seccode' => $seccode,
-//            );
-//            $driver_register_seccode_log_data = $this->common_model->get_data('driver_register_seccode_log', $where, 1, 0, 'id', 'DESC')->row_array();
-//            if (empty($driver_register_seccode_log_data)) {
-//                $this->app_error_func(998, '验证码不存在');
-//                exit;
-//            }
-//            if ($time > $driver_register_seccode_log_data['invalid_time']) {
-//                $this->app_error_func(997, '验证码失效，请重新获取');
-//                exit;
-//            }
-//        }
+        if ($seccode != '88888') {
+            $where = array(
+                'mobile_phone' => $mobile_phone,
+                'seccode' => $seccode,
+                'is_deleted' => '0',
+            );
+            $driver_register_seccode_log_data = $this->common_model->get_data('driver_register_seccode_log', $where, 1, 0, 'id', 'DESC')->row_array();
+            if (empty($driver_register_seccode_log_data)) {
+                $this->app_error_func(998, '验证码不存在');
+                exit;
+            }
+            if ($time > $driver_register_seccode_log_data['invalid_time']) {
+                $this->app_error_func(997, '验证码失效，请重新获取');
+                exit;
+            }
+        }
 
         //验证手机号码
-//        $pattern = '#^1([3578][0-9]|45|47)[0-9]{8}$#';
-//        if (!preg_match($pattern, $mobile_phone)) {
-//            $this->app_error_func(996, '请正确输入手机号码');
-//            exit;
-//        }
+        $pattern = '#^1([3578][0-9]|45|47)[0-9]{8}$#';
+        if (!preg_match($pattern, $mobile_phone)) {
+            $this->app_error_func(996, '请正确输入手机号码');
+            exit;
+        }
 
         //验证密码
-//        if (strlen($password) < 6) {
-//            $this->app_error_func(994, '请输入6位或以上的密码');
-//            exit;
-//        }
+        if (strlen($password) < 6) {
+            $this->app_error_func(994, '请输入6位或以上的密码');
+            exit;
+        }
 
         //验证设备号
-//        if (empty($device)) {
-//            $this->app_error_func(993, '请重新操作');
-//            exit;
-//        }
+        if (empty($device)) {
+            $this->app_error_func(993, '请重新操作');
+            exit;
+        }
+
+
 
         //开始事务
         $this->common_model->trans_begin();
@@ -117,7 +120,7 @@ class Register extends Public_Android_Controller {
             'mobile_phone' => $mobile_phone,
             'seccode' => $seccode,
         );
-        $this->common_model->delete('driver_register_seccode_log', $where);
+        $this->common_model->update('driver_register_seccode_log', array('is_deleted' => 1), $where);
 
         if ($this->common_model->trans_status() === FALSE) {
             $this->common_model->trans_rollback();
@@ -126,6 +129,8 @@ class Register extends Public_Android_Controller {
             exit;
         }
         $this->common_model->trans_commit();
+
+
 
         echo json_en($this->data['error']);
         exit;

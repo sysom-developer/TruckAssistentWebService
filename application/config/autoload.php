@@ -99,7 +99,7 @@ $autoload['helper'] = array('url', 'file', 'security', 'cookie', 'random', 'rand
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array();
+$autoload['config'] = array('conf/vehicle');
 
 /*
 | -------------------------------------------------------------------
@@ -135,3 +135,7 @@ $autoload['model'] = array('common_model');
 $driver_service = array('driver/driver_service');
 $common_service = array('attachment_service');
 $autoload['service'] = array_merge($common_service, $driver_service);
+
+
+$autoload['conf'] = array('vehicle');
+

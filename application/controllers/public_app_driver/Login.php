@@ -29,6 +29,7 @@ class Login extends Public_Android_Controller {
         $model = trim($this->input->get_post('model', TRUE));
         $version = trim($this->input->get_post('version', TRUE));
 
+
         $pattern = '#^1([3578][0-9]|45|47)[0-9]{8}$#';
         if (!preg_match($pattern, $mobile_phone)) {
             $this->app_error_func(998, '请正确输入手机号码');
@@ -43,6 +44,8 @@ class Login extends Public_Android_Controller {
         $this->common_model->trans_begin();
 
         $time = time();
+
+
 
         //校验手机
         $where = array(
@@ -65,28 +68,8 @@ class Login extends Public_Android_Controller {
             exit;
         }
 
-        // 参数 device 非空 和 数据库 device 非 才验证
-        $is_write_device_history = TRUE;
-        $driver_data['is_match'] = 1;
-        if (!empty($device) && !empty($driver_data['device'])) {
-            if (empty($driver_data['device'])) {
-                // 更新设备号
-                $data = array(
-                    'device' => $device,
-                );
-                $where = array(
-                    'driver_id' => $driver_data['driver_id'],
-                );
-                $this->common_model->update('driver', $data, $where);
-            } else {
-                if ($device != $driver_data['device']) {
-                    $is_write_device_history = FALSE;
-                    $driver_data['is_match'] = 0 ;
-                }
-            }
-        }
-
-        //司机使用历史登录使用手机
+        $is_write_device_history = ($device == $driver_data['device']) ? FALSE : TRUE;
+        //司机历史登录使用手机
         if ($is_write_device_history === TRUE) {
             $data = array(
                 'driver_id' => $driver_data['driver_id'],
@@ -106,6 +89,8 @@ class Login extends Public_Android_Controller {
         }
         $this->common_model->trans_commit();
 
+
+        //成功登陆返回司机信息
         $attachment_data = $this->attachment_service->get_attachment_by_id($driver_data['driver_head_icon']);
         $driver_data['driver_head_icon'] = $attachment_data['http_file'];
 
