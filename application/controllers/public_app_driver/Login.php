@@ -79,6 +79,16 @@ class Login extends Public_Android_Controller {
                 'cretime' => $time,
             );
             $this->common_model->insert('device_history', $data);
+
+            // 更新最新设备号
+            unset($data);
+            $data = array(
+                'device' => $device,
+            );
+            $where = array(
+                'driver_id' => $driver_data['driver_id'],
+            );
+            $this->common_model->update('driver', $data, $where);
         }
 
         if ($this->common_model->trans_status() === FALSE) {
