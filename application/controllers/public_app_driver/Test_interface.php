@@ -9,4 +9,10 @@ class Test_interface extends Public_Android_Controller {
 
         $this->load->view($this->appfolder.'/test_interface_view', $this->data);
     }
+
+    public function login(){
+        $this->data['title'] = '登录注册模块，公版APP接口测试';
+
+        $this->load->view($this->appfolder.'/test_login', $this->data);
+    }
 }

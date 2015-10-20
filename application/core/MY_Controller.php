@@ -43,22 +43,22 @@ class Public_Android_Controller extends CI_Controller {
         //如果是已登陆，获取司机信息
         $this->data['driver_id'] = $this->input->get_post('driver_id', TRUE);
 
-        if (is_numeric($this->data['driver_id']) && $this->data['driver_id'] > 0) {
+//        if (is_numeric($this->data['driver_id']) && $this->data['driver_id'] > 0) {
             // 司机信息
-            $where = array(
-                'driver_id' => $this->data['driver_id'],
-            );
-            $this->data['driver_data'] = $this->driver_service->get_driver_data($where);
+//            $where = array(
+//                'driver_id' => $this->data['driver_id'],
+//            );
+//            $this->data['driver_data'] = $this->driver_service->get_driver_data($where);
 
             // 司机所属货运公司
-            $where = array(
-                'driver_id' => $this->data['driver_id'],
-            );
-            $this->data['shipper_driver_data'] = $this->shipper_driver_service->get_shipper_driver_data($where);
+//            $where = array(
+//                'driver_id' => $this->data['driver_id'],
+//            );
+//            $this->data['shipper_driver_data'] = $this->shipper_driver_service->get_shipper_driver_data($where);
 
             // 司机所属货运公司信息
-            $this->data['shipper_company_data'] = $this->shipper_company_service->get_shipper_company_by_id($this->data['shipper_driver_data']['shipper_company_id']);
-        }
+//            $this->data['shipper_company_data'] = $this->shipper_company_service->get_shipper_company_by_id($this->data['shipper_driver_data']['shipper_company_id']);
+//        }
 
         return TRUE;
     }

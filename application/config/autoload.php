@@ -133,8 +133,10 @@ $autoload['model'] = array('common_model');
 
 
 $driver_service = array('driver/driver_service');
+$vehicle_service = array('vehicle/vehicle_service');
+$obd_service = array('obd/obd_device_service');
 $common_service = array('attachment_service');
-$autoload['service'] = array_merge($common_service, $driver_service);
+$autoload['service'] = array_merge($common_service, $driver_service, $vehicle_service, $obd_service);
 
 
 $autoload['conf'] = array('vehicle');

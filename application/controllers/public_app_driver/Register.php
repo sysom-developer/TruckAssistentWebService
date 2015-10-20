@@ -11,7 +11,7 @@ class Register extends Public_Android_Controller {
             'application' => array(
                 'head' => array(
                     'code' => 'E000000000',
-                    'description' => '',
+                    'description' => 'success',
                 ),
             ),
             'body' => array(),

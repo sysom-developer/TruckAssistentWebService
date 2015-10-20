@@ -11,7 +11,7 @@ class Login extends Public_Android_Controller {
             'application' => array(
                 'head' => array(
                     'code' => 'E000000000',
-                    'description' => '',
+                    'description' => 'success',
                 ),
             ),
             'body' => array(),
@@ -64,7 +64,7 @@ class Login extends Public_Android_Controller {
         );
         $driver_data = $this->driver_service->get_driver_data($where);
         if (empty($driver_data)) {
-            $this->app_error_func(996, '密码输入错误');
+            $this->app_error_func(995, '密码输入错误');
             exit;
         }
 
