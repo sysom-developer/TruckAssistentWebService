@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '123456',
-	'database' => 'thy_public_app',
+	'hostname' => 'appdbofsysom.mysql.rds.aliyuncs.com',
+	'username' => 'sysom_v4',
+	'password' => 'sysom-23',
+	'database' => 'thy_v4_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'thy_',
 	'pconnect' => FALSE,
