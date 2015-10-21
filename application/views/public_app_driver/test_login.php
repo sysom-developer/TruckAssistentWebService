@@ -71,11 +71,11 @@ switch (ENVIRONMENT) {
             <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"998",&nbsp;&nbsp; "description":"手机号码输入错误"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1099",&nbsp;&nbsp; "description":"手机号码输入错误"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
 
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"997",&nbsp;&nbsp; "description":"验证码发送失败"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1098",&nbsp;&nbsp; "description":"验证码发送失败"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
 
 
@@ -135,32 +135,32 @@ switch (ENVIRONMENT) {
             <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"998",&nbsp;&nbsp; "description":"验证码不存在"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1199",&nbsp;&nbsp; "description":"验证码不存在"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
 
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"997",&nbsp;&nbsp; "description":"验证码失效"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1198",&nbsp;&nbsp; "description":"验证码失效"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"996",&nbsp;&nbsp; "description":"请正确输入手机号码"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1197",&nbsp;&nbsp; "description":"请正确输入手机号码"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"994",&nbsp;&nbsp; "description":"请输入6位或以上的密码"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1196",&nbsp;&nbsp; "description":"请输入6位或以上的密码"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"993",&nbsp;&nbsp; "description":"device为空请重新操作"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1195",&nbsp;&nbsp; "description":"请重新操作"}},&nbsp;&nbsp; "body":[]}device为空</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"992",&nbsp;&nbsp; "description":"手机号码已经存在"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1194",&nbsp;&nbsp; "description":"手机号码已经存在"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"991",&nbsp;&nbsp; "description":"司机信息写入失败"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1193",&nbsp;&nbsp; "description":"司机信息写入失败"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"990",&nbsp;&nbsp; "description":"车辆信息写入失败"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1192",&nbsp;&nbsp; "description":"车辆信息写入失败"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"999",&nbsp;&nbsp; "description":"数据库错误，操作失败"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1191",&nbsp;&nbsp; "description":"操作失败"}},&nbsp;&nbsp; "body":[]}数据库错误</td>
         </tr>
 
 
@@ -250,21 +250,21 @@ switch (ENVIRONMENT) {
             </td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"998",&nbsp;&nbsp; "description":"请正确输入手机号码"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1299",&nbsp;&nbsp; "description":"请正确输入手机号码"}},&nbsp;&nbsp; "body":[]}手机号码格式错误</td>
         </tr>
 
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"997",&nbsp;&nbsp; "description":"请输入6位或以上的密码"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1298",&nbsp;&nbsp; "description":"请输入6位或以上的密码"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"996",&nbsp;&nbsp; "description":"手机号码输入错误"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1297",&nbsp;&nbsp; "description":"手机号码输入错误"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"995",&nbsp;&nbsp; "description":"密码输入错误"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1296",&nbsp;&nbsp; "description":"密码输入错误"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
 
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"999",&nbsp;&nbsp; "description":"数据库错误，操作失败"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1295",&nbsp;&nbsp; "description":"操作失败"}},&nbsp;&nbsp; "body":[]}数据库错误</td>
         </tr>
 
 
@@ -397,21 +397,21 @@ switch (ENVIRONMENT) {
             <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"998",&nbsp;&nbsp; "description":"driver_id 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1399",&nbsp;&nbsp; "description":"driver_id 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
 
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"997",&nbsp;&nbsp; "description":"请输入车牌号码"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1398",&nbsp;&nbsp; "description":"请输入车牌号码"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"996",&nbsp;&nbsp; "description":"请选择车辆类型"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1397",&nbsp;&nbsp; "description":"请选择车辆类型"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"995",&nbsp;&nbsp; "description":"请选择车辆载重"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1396",&nbsp;&nbsp; "description":"请选择车辆载重"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
 
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"994",&nbsp;&nbsp; "description":"请选择车辆长度"}},&nbsp;&nbsp; "body":[]}</td>
+            <td colspan="2">{"application":{"head":{{"code":"1395",&nbsp;&nbsp; "description":"请选择车辆长度"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
 
         <tr>

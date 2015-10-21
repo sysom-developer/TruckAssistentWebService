@@ -32,12 +32,12 @@ class Login extends Public_Android_Controller {
 
         $pattern = '#^1([3578][0-9]|45|47)[0-9]{8}$#';
         if (!preg_match($pattern, $mobile_phone)) {
-            $this->app_error_func(998, '请正确输入手机号码');
+            $this->app_error_func(1299, '请正确输入手机号码');
             exit;
         }
 
         if (strlen($password) < 6) {
-            $this->app_error_func(997, '请输入6位或以上的密码');
+            $this->app_error_func(1298, '请输入6位或以上的密码');
             exit;
         }
 
@@ -53,7 +53,7 @@ class Login extends Public_Android_Controller {
         );
         $driver_data = $this->driver_service->get_driver_data($where);
         if (empty($driver_data)) {
-            $this->app_error_func(996, '手机号码输入错误');
+            $this->app_error_func(1297, '手机号码输入错误');
             exit;
         }
 
@@ -64,7 +64,7 @@ class Login extends Public_Android_Controller {
         );
         $driver_data = $this->driver_service->get_driver_data($where);
         if (empty($driver_data)) {
-            $this->app_error_func(995, '密码输入错误');
+            $this->app_error_func(1296, '密码输入错误');
             exit;
         }
 
@@ -94,7 +94,7 @@ class Login extends Public_Android_Controller {
         if ($this->common_model->trans_status() === FALSE) {
             $this->common_model->trans_rollback();
 
-            $this->app_error_func(999, '操作失败');
+            $this->app_error_func(1295, '操作失败');
             exit;
         }
         $this->common_model->trans_commit();

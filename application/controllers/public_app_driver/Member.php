@@ -32,27 +32,27 @@ class Member extends Public_Android_Controller {
         $obd_device_no = trim($this->input->get_post('obd_device_no', TRUE));
 
         if (empty($this->data['driver_id'])) {
-            $this->app_error_func(998, 'driver_id 参数错误');
+            $this->app_error_func(1399, 'driver_id 参数错误');
             exit;
         }
 
         if (empty($vehicle_card_num)) {
-            $this->app_error_func(997, '请输入车牌号码');
+            $this->app_error_func(1398, '请输入车牌号码');
             exit;
         }
 
         if (empty($vehicle_type)) {
-            $this->app_error_func(996, '请选择车辆类型');
+            $this->app_error_func(1397, '请选择车辆类型');
             exit;
         }
 
         if (empty($vehicle_load)) {
-            $this->app_error_func(995, '请选择车辆载重');
+            $this->app_error_func(1396, '请选择车辆载重');
             exit;
         }
 
         if (empty($vehicle_length)) {
-            $this->app_error_func(994, '请选择车辆长度');
+            $this->app_error_func(1395, '请选择车辆长度');
             exit;
         }
 
@@ -138,7 +138,7 @@ class Member extends Public_Android_Controller {
         if ($this->common_model->trans_status() === FALSE) {
             $this->common_model->trans_rollback();
 
-            $this->app_error_func(999, '操作失败');
+            $this->app_error_func(1394, '操作失败');
             exit;
         }
         $this->common_model->trans_commit();

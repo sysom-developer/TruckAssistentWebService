@@ -35,7 +35,7 @@ class Seccode extends Public_Android_Controller {
         //验证手机号码
         $pattern = '#^1([3578][0-9]|45|47)[0-9]{8}$#';
         if (!preg_match($pattern, $mobile_phone)) {
-            $this->app_error_func(998, '请正确输入手机号码');
+            $this->app_error_func(1099, '请正确输入手机号码');
             exit;
         }
 
@@ -44,7 +44,7 @@ class Seccode extends Public_Android_Controller {
         $content = $this->sms->buildAuthCodeMessage($seccode, 1);
         $sms_rtn = $this->sms->sendSms($mobile_phone, $content);
         if (!$sms_rtn) {
-            $this->app_error_func(997, '验证码发送失败');
+            $this->app_error_func(1098, '验证码发送失败');
             exit;
         }
 

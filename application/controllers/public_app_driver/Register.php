@@ -41,11 +41,11 @@ class Register extends Public_Android_Controller {
             );
             $driver_register_seccode_log_data = $this->common_model->get_data('driver_register_seccode_log', $where, 1, 0, 'id', 'DESC')->row_array();
             if (empty($driver_register_seccode_log_data)) {
-                $this->app_error_func(998, '验证码不存在');
+                $this->app_error_func(1199, '验证码不存在');
                 exit;
             }
             if ($time > $driver_register_seccode_log_data['invalid_time']) {
-                $this->app_error_func(997, '验证码失效，请重新获取');
+                $this->app_error_func(1198, '验证码失效，请重新获取');
                 exit;
             }
         }
@@ -53,19 +53,19 @@ class Register extends Public_Android_Controller {
         //验证手机号码
         $pattern = '#^1([3578][0-9]|45|47)[0-9]{8}$#';
         if (!preg_match($pattern, $mobile_phone)) {
-            $this->app_error_func(996, '请正确输入手机号码');
+            $this->app_error_func(1197, '请正确输入手机号码');
             exit;
         }
 
         //验证密码
         if (strlen($password) < 6) {
-            $this->app_error_func(994, '请输入6位或以上的密码');
+            $this->app_error_func(1196, '请输入6位或以上的密码');
             exit;
         }
 
         //验证设备号
         if (empty($device)) {
-            $this->app_error_func(993, '请重新操作');
+            $this->app_error_func(1195, '请重新操作');
             exit;
         }
 
@@ -81,7 +81,7 @@ class Register extends Public_Android_Controller {
         //判断是否已存在
         $driver_data = $this->driver_service->get_driver_data($where);
         if (!empty($driver_data)) {
-            $this->app_error_func(992, '手机号码已经存在');
+            $this->app_error_func(1194, '手机号码已经存在');
             exit;
         }
 
@@ -98,7 +98,7 @@ class Register extends Public_Android_Controller {
         if ($driver_id == 0) {//写入失败，回滚
             $this->common_model->trans_rollback();
 
-            $this->app_error_func(991, '司机信息写入失败');
+            $this->app_error_func(1193, '司机信息写入失败');
             exit;
         }
 
@@ -111,7 +111,7 @@ class Register extends Public_Android_Controller {
         if ($vehicle_id == 0) {
             $this->common_model->trans_rollback();
 
-            $this->app_error_func(990, '车辆信息写入失败');
+            $this->app_error_func(1192, '车辆信息写入失败');
             exit;
         }
 
@@ -125,7 +125,7 @@ class Register extends Public_Android_Controller {
         if ($this->common_model->trans_status() === FALSE) {
             $this->common_model->trans_rollback();
 
-            $this->app_error_func(999, '操作失败');
+            $this->app_error_func(1191, '操作失败');
             exit;
         }
         $this->common_model->trans_commit();

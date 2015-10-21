@@ -74,7 +74,8 @@ class Vehicle extends Public_Android_Controller {
      */
     public function get_vehicle_type()
     {
-        $this->data['error']['body']['data_list'] = $this->config->item('type', 'vehicle');
+        $data = $this->config->item('type', 'vehicle');;
+        $this->data['error']['body']['data_list'] = array_values($data);
 
         echo json_en($this->data['error']);
         exit;
@@ -85,7 +86,8 @@ class Vehicle extends Public_Android_Controller {
      */
     public function get_vehicle_load()
     {
-        $this->data['error']['body']['data_list'] = $this->config->item('load', 'vehicle');
+        $data = $this->config->item('load', 'vehicle');
+        $this->data['error']['body']['data_list'] = array_values($data);
 
         echo json_en($this->data['error']);
         exit;
@@ -96,7 +98,8 @@ class Vehicle extends Public_Android_Controller {
      */
     public function get_vehicle_length()
     {
-        $this->data['error']['body']['data_list'] = $this->config->item('length', 'vehicle');
+        $data = $this->config->item('length', 'vehicle');
+        $this->data['error']['body']['data_list'] =  array_values($data);
 
         echo json_en($this->data['error']);
         exit;
