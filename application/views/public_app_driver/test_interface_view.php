@@ -19,7 +19,7 @@
 
 <body>
 <?php
-var_dump(ENVIRONMENT);
+
 switch (ENVIRONMENT) {
     case 'development':
         $domain = 'http://local.newtuhaoyun.com/'.$this->appfolder;
