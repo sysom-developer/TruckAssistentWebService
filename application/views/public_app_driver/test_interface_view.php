@@ -19,12 +19,16 @@
 
 <body>
 <?php
+var_dump(ENVIRONMENT);
 switch (ENVIRONMENT) {
     case 'development':
         $domain = 'http://local.newtuhaoyun.com/'.$this->appfolder;
         break;
+    case 'testing':
+        $domain = 'http://local.newtuhaoyun.com/'.$this->appfolder;
+        break;
     case 'production':
-        $domain = 'http://www.thy56.com/'.$this->appfolder;
+        $domain = 'http://www.tuhaoyun.com.cn/'.$this->appfolder;
         break;
     default:
         exit('999');
