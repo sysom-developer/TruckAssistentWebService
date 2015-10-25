@@ -152,4 +152,26 @@ class Common_model extends CI_Model{
 	{
 	    $this->db->trans_status();
 	}
+
+	/** 查询过滤字段
+	 * @param string $select
+	 * @param null $escape
+	 * @return $this
+	 */
+	public function select($select = '*', $escape = NULL)
+	{
+		$this->db->select($select, $escape);
+		return $this;
+	}
+
+	/**
+	 * 查询分组
+	 * @param $by
+	 * @param null $escape
+	 */
+	public function group_by($by, $escape = NULL){
+		$this->db->group_by($by, $escape);
+		return $this;
+	}
+
 }

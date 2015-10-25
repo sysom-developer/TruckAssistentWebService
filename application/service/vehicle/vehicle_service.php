@@ -39,12 +39,6 @@ class Vehicle_service extends Service {
 
 
 
-
-
-
-
-
-
     public function get_vehicle_data_list($where = array(), $limit = '', $offset = 0, $order = 'vehicle_id', $by = 'ASC') {
         $where['vehicle_status'] = 1;
         $data = $this->common_model->get_data('vehicle', $where, $limit, $offset, $order, $by)->result_array();

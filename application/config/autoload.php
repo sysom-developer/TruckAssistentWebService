@@ -99,7 +99,7 @@ $autoload['helper'] = array('url', 'file', 'security', 'cookie', 'random', 'rand
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('conf/vehicle');
+$autoload['config'] = array('conf/vehicle', 'conf/city');
 
 /*
 | -------------------------------------------------------------------
@@ -133,10 +133,13 @@ $autoload['model'] = array('common_model');
 
 
 $driver_service = array('driver/driver_service');
+$waybill_service = array('waybill/waybill_service');
+$node_service = array('node/node_service');
 $vehicle_service = array('vehicle/vehicle_service');
 $obd_service = array('obd/obd_device_service');
-$common_service = array('attachment_service');
-$autoload['service'] = array_merge($common_service, $driver_service, $vehicle_service, $obd_service);
+$common_service = array('attachment_service', 'city_service');
+
+$autoload['service'] = array_merge($common_service, $driver_service, $vehicle_service, $obd_service, $waybill_service, $node_service);
 
 
 $autoload['conf'] = array('vehicle');

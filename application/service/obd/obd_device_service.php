@@ -8,7 +8,6 @@ class Obd_device_service extends Service {
     }
 
 
-
     /**
      * 根据条件获取obd设备列表信息
      * @param $where

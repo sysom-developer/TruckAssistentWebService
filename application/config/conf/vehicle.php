@@ -8,9 +8,6 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
-
-
 //车辆类型
 $type = [
     ['vehicle_type_id'=>'1', 'vehicle_type_value' => '平板车'],
