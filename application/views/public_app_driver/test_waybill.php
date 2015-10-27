@@ -34,6 +34,15 @@ switch (ENVIRONMENT) {
 }
 ?>
 
+<p>
+    <a href="<?php echo $domain;?>/test_interface">主菜单</a>
+</p>
+
+<p>
+    <a href="<?php echo $domain;?>/test_interface/login">登录模块接口</a>
+</p>
+
+<br/><br/>
 <form action="<?php echo $domain?>/waybill/get_waybill_list" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">

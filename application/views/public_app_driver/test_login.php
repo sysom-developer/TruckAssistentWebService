@@ -18,6 +18,8 @@
 </head>
 
 <body>
+
+
 <?php
 switch (ENVIRONMENT) {
     case 'development':
@@ -33,6 +35,15 @@ switch (ENVIRONMENT) {
         exit('999');
 }
 ?>
+
+<p>
+    <a href="<?php echo $domain;?>/test_interface">主菜单</a>
+</p>
+
+<p>
+    <a href="<?php echo $domain;?>/test_interface/waybill">运单模块接口</a>
+</p>
+<br/><br/>
 
 <form action="<?php echo $domain?>/seccode/get_sms_seccode" method="get">
     <table style="margin-left: 30px;" width="100%">
