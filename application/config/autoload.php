@@ -142,5 +142,5 @@ $common_service = array('attachment_service', 'city_service');
 $autoload['service'] = array_merge($common_service, $driver_service, $vehicle_service, $obd_service, $waybill_service, $node_service);
 
 
-$autoload['conf'] = array('vehicle');
+//$autoload['conf'] = array('vehicle');
 

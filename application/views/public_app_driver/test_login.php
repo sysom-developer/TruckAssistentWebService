@@ -333,11 +333,28 @@ switch (ENVIRONMENT) {
 </form>
 
 
+<form action="<?php echo $domain?>/vehicle/get_vehicle_rear_axle_ratio" method="get">
+    <table style="margin-left: 30px;" width="100%">
+        <tr style="font-weight: bold; font-size: 14px;">
+            <td width="300">7. 获取车辆后桥速比－－采用配置文件</td>
+            <td><?php echo $domain?>/vehicle/get_vehicle_rear_axle_ratio</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提 交"></td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">直接点击提交查看</td>
+        </tr>
+        <tr>
+            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
+        </tr>
+    </table>
+</form>
 
 <form action="<?php echo $domain?>/member/update_info" method="post" enctype="multipart/form-data">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">7. 完善资料（post）</td>
+            <td width="300">8. 完善资料（post）</td>
             <td><?php echo $domain?>/member/update_info</td>
         </tr>
         <tr>

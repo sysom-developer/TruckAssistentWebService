@@ -105,6 +105,18 @@ class Vehicle extends Public_Android_Controller {
         exit;
     }
 
+    /**
+     * 车辆后桥速比
+     */
+    public function get_vehicle_rear_axle_ratio()
+    {
+        $data = $this->config->item('rear_axle_ratio', 'vehicle');
+        $this->data['error']['body']['data_list'] =  array_values($data);
+
+        echo json_en($this->data['error']);
+        exit;
+    }
+
     public function index()
     {
     }
