@@ -71,12 +71,12 @@ $length = [
 
 $rear_axle_ratio = [
     ['rear_axle_ratio_id'=>'1', 'rear_axle_ratio_value' => '4.2'],
-    ['rear_axle_ratio_id'=>'1', 'rear_axle_ratio_value' => '4.3'],
-    ['rear_axle_ratio_id'=>'1', 'rear_axle_ratio_value' => '4.4'],
-    ['rear_axle_ratio_id'=>'1', 'rear_axle_ratio_value' => '4.5'],
-    ['rear_axle_ratio_id'=>'1', 'rear_axle_ratio_value' => '4.6'],
-    ['rear_axle_ratio_id'=>'1', 'rear_axle_ratio_value' => '4.3'],
-    ['rear_axle_ratio_id'=>'1', 'rear_axle_ratio_value' => '4.4'],
+    ['rear_axle_ratio_id'=>'2', 'rear_axle_ratio_value' => '4.3'],
+    ['rear_axle_ratio_id'=>'3', 'rear_axle_ratio_value' => '4.4'],
+    ['rear_axle_ratio_id'=>'4', 'rear_axle_ratio_value' => '4.5'],
+    ['rear_axle_ratio_id'=>'5', 'rear_axle_ratio_value' => '4.6'],
+    ['rear_axle_ratio_id'=>'6', 'rear_axle_ratio_value' => '4.3'],
+    ['rear_axle_ratio_id'=>'7', 'rear_axle_ratio_value' => '4.4'],
 ];
 $config['vehicle'] = [
             'type' => $type,
