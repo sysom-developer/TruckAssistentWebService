@@ -101,20 +101,20 @@ class Login extends Public_Android_Controller {
 
 
         //成功登陆返回司机信息
-        $attachment_data = $this->attachment_service->get_attachment_by_id($driver_data['driver_head_icon']);
-        $driver_data['driver_head_icon'] = $attachment_data['http_file'];
+        $attachment_data_http_file = $this->attachment_service->get_attachment_by_id($driver_data['driver_head_icon']);
+        $driver_data['driver_head_icon'] = $attachment_data_http_file;
 
-        $attachment_data = $this->attachment_service->get_attachment_by_id($driver_data['driver_card_icon']);
-        $driver_data['driver_card_icon'] = $attachment_data['http_file'];
+        $attachment_data_http_file = $this->attachment_service->get_attachment_by_id($driver_data['driver_card_icon']);
+        $driver_data['driver_card_icon'] = $attachment_data_http_file;
 
-        $attachment_data = $this->attachment_service->get_attachment_by_id($driver_data['driver_license_icon']);
-        $driver_data['driver_license_icon'] = $attachment_data['http_file'];
+        $attachment_data_http_file = $this->attachment_service->get_attachment_by_id($driver_data['driver_license_icon']);
+        $driver_data['driver_license_icon'] = $attachment_data_http_file;
 
-        $attachment_data = $this->attachment_service->get_attachment_by_id($driver_data['driver_vehicle_license_icon']);
-        $driver_data['driver_vehicle_license_icon'] = $attachment_data['http_file'];
+        $attachment_data_http_file = $this->attachment_service->get_attachment_by_id($driver_data['driver_vehicle_license_icon']);
+        $driver_data['driver_vehicle_license_icon'] = $attachment_data_http_file;
 
-        $attachment_data = $this->attachment_service->get_attachment_by_id($driver_data['driver_pic']);
-        $driver_data['driver_pic'] = $attachment_data['http_file'];
+        $attachment_data_http_file = $this->attachment_service->get_attachment_by_id($driver_data['driver_pic']);
+        $driver_data['driver_pic'] = $attachment_data_http_file;
         
         $driver_data['driver_name'] = $driver_data['login_name'];
         $driver_data['driver_nick_name'] = $driver_data['login_name'];

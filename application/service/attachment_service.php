@@ -18,7 +18,8 @@ class Attachment_service extends Service {
         $data = $this->common_model->get_data('attachment', $where)->row_array();
         $data['http_file'] = static_url($data['filepath'].$data['filename']);
 
-        return $data['filepath'];
+        $result = empty($data['http_file'])? '':$data['http_file'];
+        return $result;
     }
 
     public function get_attachment_tmp_by_id($id) {

@@ -22,6 +22,7 @@ if ( ! function_exists('upload_img_file'))
         $upload_conf = $CI->upload_conf->upload_img_file($upload_path);
         $CI->upload->initialize($upload_conf);
 
+        //上传失败
         if (!$CI->upload->do_upload($file_id)) {
             $errors = $CI->upload->display_errors('','');
 

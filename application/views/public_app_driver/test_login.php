@@ -365,7 +365,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/member/update_info" method="post" enctype="multipart/form-data">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">8. 完善资料（post）</td>
+            <td width="300">8. 更新车辆资料</td>
             <td><?php echo $domain?>/member/update_info</td>
         </tr>
         <tr>
@@ -451,6 +451,77 @@ switch (ENVIRONMENT) {
     </table>
 </form>
 
+
+<form action="<?php echo $domain?>/member/update_personal_info" method="post" enctype="multipart/form-data">
+    <table style="margin-left: 30px;" width="100%">
+        <tr style="font-weight: bold; font-size: 14px;">
+            <td width="300">9. 更新个人资料</td>
+            <td><?php echo $domain?>/member/update_personal_info</td>
+        </tr>
+        <tr>
+            <td>司机ID（driver_id）</td>
+            <td><input type="text" name="driver_id" value="49"></td>
+        </tr>
+        <tr>
+            <td>头像（driver_head_icon）</td>
+            <td><input type="file" id="driver_head_icon" name="driver_head_icon"></td>
+        </tr>
+        <tr>
+            <td>名字（driver_name）</td>
+            <td><input type="text" name="driver_name" value="张三"></td>
+        </tr>
+        <tr>
+            <td>省份ID（driver_province）</td>
+            <td><input type="text" name="driver_province" value="3"></td>
+        </tr>
+        <tr>
+            <td>城市ID（driver_city）</td>
+            <td><input type="text" name="driver_city" value="49"></td>
+        </tr>
+        <tr>
+            <td>性别（driver_sex）</td>
+            <td>
+                <select name="driver_sex">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                查看json结果：
+                <select name="n">
+                    <option value="2">否</option>
+                    <option value="1">是</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提 交"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
+        </tr>
+
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"1899",&nbsp;&nbsp; "description":"driver_id 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"1898",&nbsp;&nbsp; "description":"名字不可为空"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"1897",&nbsp;&nbsp; "description":"性别错误"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"1396",&nbsp;&nbsp; "description":"操作失败"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+
+    </table>
+</form>
 
 </body>
 </html>

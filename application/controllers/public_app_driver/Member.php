@@ -23,6 +23,73 @@ class Member extends Public_Android_Controller {
         
     }
 
+
+    public function update_personal_info()
+    {
+        $driver_name = trim($this->input->get_post('driver_name', TRUE));
+        $driver_sex = trim($this->input->get_post('driver_sex', TRUE));
+        $driver_province = intval($this->input->get_post('driver_province', TRUE));
+        $driver_city = intval($this->input->get_post('driver_city', TRUE));
+
+        if (empty($this->data['driver_id'])) {
+            $this->app_error_func(1899, 'driver_id 参数错误');
+            exit;
+        }
+
+        if (empty($driver_name)) {
+            $this->app_error_func(1898, '名字不可为空');
+            exit;
+        }
+
+        if (!in_array($driver_sex, array('男', '女'))) {
+            $this->app_error_func(1897, '性别错误');
+            exit;
+        }
+
+        $this->common_model->trans_begin();
+
+        $time = time();
+
+        $data = array(
+            'driver_name' => $driver_name,
+            'driver_sex' => $driver_sex,
+            'driver_province' => $driver_province,
+            'driver_city' => $driver_city,
+        );
+
+        $driver_head_icon_attachment_id = '';
+        $driver_head_icon_upload_data = upload_img_file('driver_head_icon', 'driver_head_icon_img');
+        if ($driver_head_icon_upload_data['status'] != -1) {
+            $filepath = substr($driver_head_icon_upload_data['data']['file_path'], stripos($driver_head_icon_upload_data['data']['file_path'], "data_tmp"));
+            $attachment_data = array(
+                'filetype' => $driver_head_icon_upload_data['data']['file_type'],
+                'filename' => $driver_head_icon_upload_data['data']['file_name'],
+                'filesize' => $driver_head_icon_upload_data['data']['file_size'],
+                'filepath' => $filepath,
+            );
+            $driver_head_icon_img_attachment_id = $this->common_model->insert('attachment_tmp', $attachment_data);
+            $driver_head_icon_attachment_id = move_upload_file($driver_head_icon_img_attachment_id);
+            $data['driver_head_icon'] = $driver_head_icon_attachment_id;
+        }
+
+        $where = array(
+            'driver_id' => $this->data['driver_id'],
+        );
+        $this->common_model->update('driver', $data, $where);
+
+        if ($this->common_model->trans_status() === FALSE) {
+            $this->common_model->trans_rollback();
+
+            $this->app_error_func(1896, '操作失败');
+            exit;
+        }
+        $this->common_model->trans_commit();
+
+        echo json_en($this->data['error']);
+        exit;
+    }
+
+
     public function update_info()
     {
         $vehicle_card_num = trim($this->input->get_post('vehicle_card_num', TRUE));
