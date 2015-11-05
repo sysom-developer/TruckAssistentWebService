@@ -59,7 +59,7 @@ switch (ENVIRONMENT) {
         </tr>
         <tr>
             <td> 起始（offset）</td>
-            <td><input type="text" name="offset" value="2"></td>
+            <td><input type="text" name="offset" value="0"></td>
         </tr>
         <tr>
             <td> 查询数量（limit）</td>
@@ -173,7 +173,7 @@ switch (ENVIRONMENT) {
         </tr>
         <tr>
             <td> 起始（offset）</td>
-            <td><input type="text" name="offset" value="2"></td>
+            <td><input type="text" name="offset" value="0"></td>
         </tr>
         <tr>
             <td> 查询数量（limit）</td>
