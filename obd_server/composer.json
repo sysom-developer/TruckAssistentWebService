@@ -1,0 +1,11 @@
+{
+    "name":             "andy0010/ODB_server",
+    "description":      "ODB_server",
+    "time":             "2015-10-31",
+
+    "require": {
+        "workerman/workerman": "~3.2",
+        "catfan/Medoo": "~1.0"
+    }
+
+}
