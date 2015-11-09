@@ -29,6 +29,8 @@ $tcp_worker->onConnect = function($connection)
 $tcp_worker->onMessage = function($connection, $data)
 {
 
+    var_dump($data);
+
     global $error_code;
     $socket_data = '4C534A41313645395841474131343731031C32CE10010000';
 
