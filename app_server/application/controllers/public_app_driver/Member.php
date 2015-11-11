@@ -97,6 +97,8 @@ class Member extends Public_Android_Controller {
         $vehicle_load = intval($this->input->get_post('vehicle_load', TRUE));
         $vehicle_length = intval($this->input->get_post('vehicle_length', TRUE));
         $obd_device_no = trim($this->input->get_post('obd_device_no', TRUE));
+        //后桥速比
+        $rear_axle_ratio = trim($this->input->get_post('rear_axle_ratio', TRUE));
 
         if (empty($this->data['driver_id'])) {
             $this->app_error_func(1399, 'driver_id 参数错误');
@@ -120,6 +122,15 @@ class Member extends Public_Android_Controller {
 
         if (empty($vehicle_length)) {
             $this->app_error_func(1395, '请选择车辆长度');
+            exit;
+        }
+        if (empty($vehicle_length)) {
+            $this->app_error_func(1395, '请选择车辆长度');
+            exit;
+        }
+
+        if (empty($rear_axle_ratio)) {
+            $this->app_error_func(1394, '请选择车辆后桥速比');
             exit;
         }
 
@@ -155,14 +166,14 @@ class Member extends Public_Android_Controller {
 
         $time = time();
 
-        $where = array(
+        $where = [
             'driver_id' => $this->data['driver_id']
-        );
+        ];
 
         // 更新司机信息
-        $data = array(
+        $data = [
             'is_vehicle_perfect' => 1,
-        );
+        ];
 //        if (!empty($driver_license_icon_attachment_id)) {
 //            $data['driver_license_icon'] = $driver_license_icon_attachment_id;
 //        }
@@ -173,12 +184,13 @@ class Member extends Public_Android_Controller {
 
         //车辆记录是否存在
         $vehicle_data = $this->vehicle_service->get_vehicle_data($where);
-        $data = array(
+        $data = [
             'vehicle_card_num' => $vehicle_card_num,
             'vehicle_type' => $vehicle_type,
             'vehicle_load' => $vehicle_load,
             'vehicle_length' => $vehicle_length,
-        );
+            'rear_axle_ratio' => $rear_axle_ratio
+        ];
         if ($vehicle_data) {
             $this->common_model->update('vehicle', $data, $where);
         } else {

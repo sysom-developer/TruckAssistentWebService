@@ -80,7 +80,7 @@ $rear_axle_ratio = [
 ];
 $config['vehicle'] = [
             'type' => $type,
-            'load'=> $load,
+            'load' => $load,
             'length' => $length,
             'rear_axle_ratio' => $rear_axle_ratio,
         ];

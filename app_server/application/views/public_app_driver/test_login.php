@@ -389,6 +389,10 @@ switch (ENVIRONMENT) {
             <td><input type="text" name="vehicle_length" value="3"></td>
         </tr>
         <tr>
+            <td>后桥速比（rear_axle_ratio）</td>
+            <td><input type="text" name="rear_axle_ratio" value="3"></td>
+        </tr>
+        <tr>
             <td>odb设备号（obd_device_no）</td>
             <td><input type="text" name="obd_device_no" value="3fdslkfdsfhk"></td>
         </tr>
@@ -443,6 +447,10 @@ switch (ENVIRONMENT) {
 
         <tr bgcolor="#ffe4c4">
             <td colspan="2">{"application":{"head":{{"code":"1395",&nbsp;&nbsp; "description":"请选择车辆长度"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"1394",&nbsp;&nbsp; "description":"请选择车辆后桥速比"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
 
         <tr>
