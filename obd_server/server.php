@@ -29,15 +29,25 @@ $tcp_worker->onConnect = function($connection)
 $tcp_worker->onMessage = function($connection, $data)
 {
 
-    var_dump($data);
+    $base = '/var/obd_logs/';
+    $str_time=date('Y-m-d',time());
+    $path = $base. str_replace('-', '/', $str_time);
+    if (!is_dir($path)){
+        mkdir(iconv("UTF-8", "GBK", $path), 0777, true);
+    }
+    $log_name = $path.'/' . 'log'.time();
+    file_put_contents ( $log_name, $data );
+
+
+
 
     global $error_code;
     $socket_data = '4C534A41313645395841474131343731031C32CE10010000';
-
-    if($socket_data != $error_code['SEP']){
-        $result = Handler::exe($socket_data);
-        $connection->send($result. "\n");
-    }
+    $connection->send($data);
+//    if($socket_data != $error_code['SEP']){
+//        $result = Handler::exe($socket_data);
+//        $connection->send($result. "\n");
+//    }
 
 };
 
