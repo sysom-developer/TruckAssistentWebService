@@ -43,7 +43,7 @@ switch (ENVIRONMENT) {
 </p>
 
 <p>
-    <a href="<?php echo $domain;?>/test_interface/obd_server">obd_server模块接口</a>
+<!--    <a href="--><?php //echo $domain;?><!--/test_interface/obd_server">obd_server模块接口</a>-->
 </p>
 
 </body>
