@@ -86,32 +86,19 @@ class Register extends Public_Android_Controller {
         }
 
         // 写入司机信息
-        $data = array(
+        $data = [
             'driver_name' => $mobile_phone,
             'login_name' => $mobile_phone,
             'login_pwd' => $password,   // do_hash($password, 'md5'),
             'driver_mobile' => $mobile_phone,
             'device' => $device,
             'create_time' => $time,
-        );
+        ];
         $driver_id = $this->common_model->insert('driver', $data);
         if ($driver_id == 0) {//写入失败，回滚
             $this->common_model->trans_rollback();
 
             $this->app_error_func(1193, '司机信息写入失败');
-            exit;
-        }
-
-        // 写入车辆信息
-        $data = array(
-            'driver_id' => $driver_id,
-            'create_time' => date('Y-m-d H:i:s', $time),
-        );
-        $vehicle_id = $this->common_model->insert('vehicle', $data);
-        if ($vehicle_id == 0) {
-            $this->common_model->trans_rollback();
-
-            $this->app_error_func(1192, '车辆信息写入失败');
             exit;
         }
 
@@ -129,7 +116,6 @@ class Register extends Public_Android_Controller {
             exit;
         }
         $this->common_model->trans_commit();
-
 
 
         echo json_en($this->data['error']);

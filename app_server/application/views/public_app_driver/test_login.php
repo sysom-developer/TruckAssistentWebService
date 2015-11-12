@@ -436,9 +436,6 @@ switch (ENVIRONMENT) {
         </tr>
 
         <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"1398",&nbsp;&nbsp; "description":"请输入车牌号码"}},&nbsp;&nbsp; "body":[]}</td>
-        </tr>
-        <tr bgcolor="#ffe4c4">
             <td colspan="2">{"application":{"head":{{"code":"1397",&nbsp;&nbsp; "description":"请选择车辆类型"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
         <tr bgcolor="#ffe4c4">

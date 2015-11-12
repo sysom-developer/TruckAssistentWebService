@@ -105,11 +105,6 @@ class Member extends Public_Android_Controller {
             exit;
         }
 
-        if (empty($vehicle_card_num)) {
-            $this->app_error_func(1398, '请输入车牌号码');
-            exit;
-        }
-
         if (empty($vehicle_type)) {
             $this->app_error_func(1397, '请选择车辆类型');
             exit;
@@ -134,34 +129,6 @@ class Member extends Public_Android_Controller {
             exit;
         }
 
-//        $driver_license_icon_attachment_id = '';
-//        $driver_license_icon_upload_data = upload_img_file('driver_license_icon', 'driver_license_icon_img');
-//        if ($driver_license_icon_upload_data['status'] != -1) {
-//            $filepath = substr($driver_license_icon_upload_data['data']['file_path'], stripos($driver_license_icon_upload_data['data']['file_path'], "data_tmp"));
-//            $data = array(
-//                'filetype' => $driver_license_icon_upload_data['data']['file_type'],
-//                'filename' => $driver_license_icon_upload_data['data']['file_name'],
-//                'filesize' => $driver_license_icon_upload_data['data']['file_size'],
-//                'filepath' => $filepath,
-//            );
-//            $driver_license_icon_img_attachment_id = $this->common_model->insert('attachment_tmp', $data);
-//            $driver_license_icon_attachment_id = move_upload_file($driver_license_icon_img_attachment_id);
-//        }
-//
-//        $driver_vehicle_license_icon_attachment_id = '';
-//        $driver_vehicle_license_icon_upload_data = upload_img_file('driver_vehicle_license_icon', 'driver_vehicle_license_icon_img');
-//        if ($driver_vehicle_license_icon_upload_data['status'] != -1) {
-//            $filepath = substr($driver_vehicle_license_icon_upload_data['data']['file_path'], stripos($driver_vehicle_license_icon_upload_data['data']['file_path'], "data_tmp"));
-//            $data = array(
-//                'filetype' => $driver_vehicle_license_icon_upload_data['data']['file_type'],
-//                'filename' => $driver_vehicle_license_icon_upload_data['data']['file_name'],
-//                'filesize' => $driver_vehicle_license_icon_upload_data['data']['file_size'],
-//                'filepath' => $filepath,
-//            );
-//            $driver_vehicle_license_icon_img_attachment_id = $this->common_model->insert('attachment_tmp', $data);
-//            $driver_vehicle_license_icon_attachment_id = move_upload_file($driver_vehicle_license_icon_img_attachment_id);
-//        }
-
         $this->common_model->trans_begin();
 
         $time = time();
@@ -174,23 +141,21 @@ class Member extends Public_Android_Controller {
         $data = [
             'is_vehicle_perfect' => 1,
         ];
-//        if (!empty($driver_license_icon_attachment_id)) {
-//            $data['driver_license_icon'] = $driver_license_icon_attachment_id;
-//        }
-//        if (!empty($driver_vehicle_license_icon_attachment_id)) {
-//            $data['driver_vehicle_license_icon'] = $driver_vehicle_license_icon_attachment_id;
-//        }
         $this->common_model->update('driver', $data, $where);
+
 
         //车辆记录是否存在
         $vehicle_data = $this->vehicle_service->get_vehicle_data($where);
         $data = [
-            'vehicle_card_num' => $vehicle_card_num,
             'vehicle_type' => $vehicle_type,
             'vehicle_load' => $vehicle_load,
             'vehicle_length' => $vehicle_length,
             'rear_axle_ratio' => $rear_axle_ratio
         ];
+        if (!empty($vehicle_card_num)) {
+            $data['vehicle_card_num'] = $vehicle_card_num;
+        }
+
         if ($vehicle_data) {
             $this->common_model->update('vehicle', $data, $where);
         } else {
@@ -200,18 +165,22 @@ class Member extends Public_Android_Controller {
             $this->common_model->insert('vehicle', $data);
         }
 
-        //obd设备记录是否存在
-        $odb_device_data = $this->obd_device_service->get_obd_device_data($where);
-        $data = array(
-            'obd_device_no' => $obd_device_no,
-        );
-        if ($odb_device_data) {
-            $this->common_model->update('obd_device', $data, $where);
-        } else {
-            $data['driver_id'] = $this->data['driver_id'];
-            $data['create_time'] = date('Y-m-d H:i:s', $time);
-            $this->common_model->insert('obd_device', $data);
+
+        if(!empty($obd_device_no)){
+            //obd设备记录是否存在
+            $odb_device_data = $this->obd_device_service->get_obd_device_data($where);
+            $data = [
+                'obd_device_no' => $obd_device_no,
+            ];
+            if ($odb_device_data) {
+                $this->common_model->update('obd_device', $data, $where);
+            } else {
+                $data['driver_id'] = $this->data['driver_id'];
+                $data['create_time'] = date('Y-m-d H:i:s', $time);
+                $this->common_model->insert('obd_device', $data);
+            }
         }
+
 
 
         if ($this->common_model->trans_status() === FALSE) {
