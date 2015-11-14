@@ -2,6 +2,7 @@
 
 use Workerman\Worker;
 use comm\Handler;
+use comm\Byte;
 
 require_once __DIR__ . '/autoload.php';
 
@@ -10,12 +11,15 @@ require_once __DIR__ . '/autoload.php';
 $tcp_worker = new Worker("tcp://0.0.0.0:2346");
 
 // 启动4个进程对外提供服务
-$tcp_worker->count = 4;
+$tcp_worker->count = 1;
 
 
 $tcp_worker->onWorkerStart = function($worker)
 {
     echo "Worker starting...\n";
+//    $socket_data = file_get_contents('log38');
+//    Handler::exe($socket_data);
+
 };
 
 $tcp_worker->onConnect = function($connection)
@@ -38,12 +42,12 @@ $tcp_worker->onMessage = function($connection, $data)
     $log_name = $path.'/' . 'log'.time();
     file_put_contents ( $log_name, $data );
 
-
-
-
+    $socket_data  = $data;
+//    $socket_data = file_get_contents('log39');
+    $result = Handler::exe($socket_data);
     global $error_code;
-    $socket_data = '4C534A41313645395841474131343731031C32CE10010000';
-    $connection->send($data);
+
+    $connection->send($result);
 //    if($socket_data != $error_code['SEP']){
 //        $result = Handler::exe($socket_data);
 //        $connection->send($result. "\n");

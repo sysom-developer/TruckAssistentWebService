@@ -82,9 +82,16 @@ class Packet
 
     private function init_protocol_version($data)
     {
+        /**
+         * 获取版本号的数据
+         */
         $origin_version = substr($data,$this->_PROTOCOL_VERSION_OFFSET, $this->_PROTOCOL_VERSION_LENGTH);
 
+        /**
+         * 分割成3个数组，每个数组2byte
+         */
         $origin_version_arr = str_split($origin_version, 2);
+        $origin_version_arr = array_slice($origin_version_arr, 0, 2);
 
         array_walk($origin_version_arr, function(&$v){
             $v = hexdec($v);

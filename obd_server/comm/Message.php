@@ -43,7 +43,7 @@ class Message
     function __construct($message_str){
 
         $this->_MSG_ID_LENGTH = 1 * 2;
-        $this->_DATA_SIZE_LENGTH = 1 * 2;
+        $this->_DATA_SIZE_LENGTH = 2 * 2;
         $this->_CHECKSUM_LENGTH = 2 * 2;
 
 
@@ -56,7 +56,6 @@ class Message
         $this->_DATA_SIZE_OFFSET = $this->_MSG_ID_OFFSET + $this->_MSG_ID_LENGTH;
 
         $this->_DATA_OFFSET = $this->_DATA_SIZE_OFFSET + $this->_DATA_SIZE_LENGTH;
-        $this->_DATA_FACT_LENGTH = $this->_DATA_SIZE * 2;
 
 
 
@@ -65,8 +64,16 @@ class Message
         $this->_MSG_ID = substr($message_str, $this->_MSG_ID_OFFSET, $this->_MSG_ID_LENGTH);
 
         //设置消息长度
-        $this->_DATA_SIZE = substr($message_str, $this->_DATA_SIZE_OFFSET, $this->_DATA_SIZE_LENGTH);
+        $tmp = substr($message_str, $this->_DATA_SIZE_OFFSET, $this->_DATA_SIZE_LENGTH);
+        /**
+         * 分割成2个数组，每个数组2byte
+         */
+        $tmp_arr = str_split($tmp, 2);
+        $tmp_arr = array_reverse($tmp_arr);
+        $tmp = implode('', $tmp_arr);
+        $this->_DATA_SIZE = $tmp;
         $data_size = hexdec($this->_DATA_SIZE);
+
         $buma = $data_size % 8;
 
         $this->_DATA_FACT_LENGTH = $data_size;
@@ -80,6 +87,13 @@ class Message
 
 
         $this->_TOTAL_LENGTH = $this->_MSG_ID_LENGTH + $this->_DATA_SIZE_LENGTH + $this->_DATA_LENGTH + $this->_CHECKSUM_LENGTH;
+
+    }
+
+    /**
+     * 检查校验码
+     */
+    private function checkout_sum(){
 
     }
 
