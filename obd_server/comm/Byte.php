@@ -15,7 +15,7 @@ class Byte{
         for ($i = 0; $i < strlen($string); $i++) {
             $hex = dechex(ord($string[$i]));
             if (strlen($hex) == 1) {
-                $hex = $hex . '0';
+                $hex = '0'.$hex;
             }
             $hex_string = $hex_string . $hex;
         }

@@ -68,8 +68,11 @@ class Packet
 
         $this->_DEV_ID = substr($data, $this->_DEV_ID_OFFSET, $this->_DEV_ID_LENGTH);
 
-        $this->_FID = substr($data, $this->_FID_OFFSET, $this->_FID_LENGTH);
 
+//        echo 'fid_start'.PHP_EOL;
+        $this->_FID = substr($data, $this->_FID_OFFSET, $this->_FID_LENGTH);
+//        var_dump($this->_FID);
+//        echo 'fid_end'.PHP_EOL;
         $this->_TIME = substr($data, $this->_TIME_OFFSET, $this->_TIME_LENGTH);
 
         $this->init_protocol_version($data);

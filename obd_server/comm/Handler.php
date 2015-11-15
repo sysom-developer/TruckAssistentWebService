@@ -69,9 +69,10 @@ class Handler {
 
     static function echo_packet_messages($packet){
         $message_arr = $packet->_message_arr->arr;
-        $i = 1;
+        $i = 0;
         $echo_messages = '';
         array_walk($message_arr, function($message) use (&$i, &$echo_messages){
+            $i++;
 
             $msg_id = '0x' .$message->_MSG_ID;
             $data_size = $message->_DATA_SIZE;
@@ -83,7 +84,7 @@ class Handler {
             echo '    DATA:' . $data. "\n";
             echo '    CHECKSUM:' . $checksum. "\n";
             echo "\n";
-            $i++;
+
 
             $echo_messages .= 'message' . $i . ':'. "\n";
             $echo_messages .= '    MSG_ID:' . $msg_id. "\n";

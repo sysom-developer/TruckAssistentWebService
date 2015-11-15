@@ -17,13 +17,15 @@ $tcp_worker->count = 1;
 $tcp_worker->onWorkerStart = function($worker)
 {
     echo "Worker starting...\n";
-//    $socket_data = file_get_contents('log38');
-//    Handler::exe($socket_data);
+//    $socket_data = file_get_contents('../logs/log1447569527');
+//    $result = Handler::exe($socket_data);
+//    var_dump($result);
 
 };
 
 $tcp_worker->onConnect = function($connection)
 {
+
     echo "New connection...". "\n";
     $connection->send('hello connected..' . "\n");
 
@@ -34,8 +36,8 @@ $tcp_worker->onMessage = function($connection, $data)
 {
 
 
-    $socket_data  = $data;
-
+//    $socket_data  = $data;
+    $socket_data = file_get_contents('../logs/log1447569527');
     $result = Handler::exe($socket_data);
 
 

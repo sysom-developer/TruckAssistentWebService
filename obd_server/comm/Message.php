@@ -49,7 +49,6 @@ class Message
 
 
 
-
         //定义各个偏移量
         $this->_MSG_ID_OFFSET = 0;
 
@@ -73,20 +72,36 @@ class Message
         $tmp = implode('', $tmp_arr);
         $this->_DATA_SIZE = $tmp;
         $data_size = hexdec($this->_DATA_SIZE);
-
+        unset($tmp);
+        unset($tmp_arr);
+//        echo "data_size:";
+//        var_dump($data_size);
+//        echo PHP_EOL;
         $buma = $data_size % 8;
 
-        $this->_DATA_FACT_LENGTH = $data_size;
+        $this->_DATA_FACT_LENGTH = $data_size * 2;
         $this->_DATA_LENGTH = $this->_DATA_FACT_LENGTH + $buma * 2;
+
+
 
         $this->_DATA = substr($message_str, $this->_DATA_OFFSET, $this->_DATA_FACT_LENGTH);
 
+//        echo "data_end:";
+//        var_dump($this->_DATA);
+//        echo PHP_EOL;
 
         $this->_CHECKSUM_OFFSET = $this->_DATA_OFFSET + $this->_DATA_LENGTH;
-        $this->_CHECKSUM = substr($message_str, $this->_CHECKSUM_OFFSET, $this->_CHECKSUM_LENGTH);
+        $tmp = substr($message_str, $this->_CHECKSUM_OFFSET, $this->_CHECKSUM_LENGTH);
+        $tmp_arr = str_split($tmp, 2);
+        $tmp_arr = array_reverse($tmp_arr);
+        $tmp = implode('', $tmp_arr);
+        $this->_CHECKSUM = $tmp;
 
 
         $this->_TOTAL_LENGTH = $this->_MSG_ID_LENGTH + $this->_DATA_SIZE_LENGTH + $this->_DATA_LENGTH + $this->_CHECKSUM_LENGTH;
+//        echo "total_length:";
+//        var_dump($this->_TOTAL_LENGTH);
+//        echo PHP_EOL;
 
     }
 
