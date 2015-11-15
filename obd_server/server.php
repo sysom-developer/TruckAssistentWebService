@@ -36,8 +36,7 @@ $tcp_worker->onMessage = function($connection, $data)
 {
 
 
-//    $socket_data  = $data;
-    $socket_data = file_get_contents('../logs/log1447569527');
+    $socket_data  = $data;
     $result = Handler::exe($socket_data);
 
 
