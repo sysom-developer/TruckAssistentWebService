@@ -33,6 +33,13 @@ $tcp_worker->onConnect = function($connection)
 $tcp_worker->onMessage = function($connection, $data)
 {
 
+
+    $socket_data  = $data;
+
+    $result = Handler::exe($socket_data);
+
+
+
     $base = '/var/obd_logs/';
     $str_time=date('Y-m-d',time());
     $path = $base. str_replace('-', '/', $str_time);
@@ -42,16 +49,12 @@ $tcp_worker->onMessage = function($connection, $data)
     $log_name = $path.'/' . 'log'.time();
     file_put_contents ( $log_name, $data );
 
-    $socket_data  = $data;
-//    $socket_data = file_get_contents('log39');
-    $result = Handler::exe($socket_data);
-    global $error_code;
+    $data_file_name = $log_name. '_data';
+    file_put_contents($data_file_name,$result);
+
 
     $connection->send($result);
-//    if($socket_data != $error_code['SEP']){
-//        $result = Handler::exe($socket_data);
-//        $connection->send($result. "\n");
-//    }
+
 
 };
 
