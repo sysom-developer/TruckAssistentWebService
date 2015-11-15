@@ -71,29 +71,34 @@ class Handler {
         $message_arr = $packet->_message_arr->arr;
         $i = 0;
         $echo_messages = '';
-        array_walk($message_arr, function($message) use (&$i, &$echo_messages){
-            $i++;
+        if(is_array($message_arr)){
+            array_walk($message_arr, function($message) use (&$i, &$echo_messages){
+                $i++;
 
-            $msg_id = '0x' .$message->_MSG_ID;
-            $data_size = $message->_DATA_SIZE;
-            $data = $message->_DATA;
-            $checksum = $message->_CHECKSUM;
-            echo 'message' . $i . ':'. "\n";
-            echo '    MSG_ID:' . $msg_id. "\n";
-            echo '    DATA_SIZE:' . $data_size. "\n";
-            echo '    DATA:' . $data. "\n";
-            echo '    CHECKSUM:' . $checksum. "\n";
-            echo "\n";
+                $msg_id = '0x' .$message->_MSG_ID;
+                $data_size = $message->_DATA_SIZE;
+                $data = $message->_DATA;
+                $checksum = $message->_CHECKSUM;
+                echo 'message' . $i . ':'. "\n";
+                echo '    MSG_ID:' . $msg_id. "\n";
+                echo '    DATA_SIZE:' . $data_size. "\n";
+                echo '    DATA:' . $data. "\n";
+                echo '    CHECKSUM:' . $checksum. "\n";
+                echo "\n";
 
 
-            $echo_messages .= 'message' . $i . ':'. "\n";
-            $echo_messages .= '    MSG_ID:' . $msg_id. "\n";
-            $echo_messages .= '    DATA_SIZE:' . $data_size. "\n";
-            $echo_messages .= '    DATA:' . $data. "\n";
-            $echo_messages .= '    CHECKSUM:' . $checksum. "\n";
-            $echo_messages .= "\n";
-        });
+                $echo_messages .= 'message' . $i . ':'. "\n";
+                $echo_messages .= '    MSG_ID:' . $msg_id. "\n";
+                $echo_messages .= '    DATA_SIZE:' . $data_size. "\n";
+                $echo_messages .= '    DATA:' . $data. "\n";
+                $echo_messages .= '    CHECKSUM:' . $checksum. "\n";
+                $echo_messages .= "\n";
+            });
+            return $echo_messages;
+        }
 
-        return $echo_messages;
+        return "not message".PHP_EOL;
+
+
     }
 }

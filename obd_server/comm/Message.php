@@ -37,6 +37,12 @@ class Message
     private $_CHECKSUM_OFFSET;
     private $_CHECKSUM_LENGTH;
 
+    /**
+     * 校验结果
+     * @var int
+     */
+    public $_CHECKSUM_RESULT = false;
+
     public $_TOTAL_LENGTH;
 
 
@@ -102,14 +108,27 @@ class Message
 //        echo "total_length:";
 //        var_dump($this->_TOTAL_LENGTH);
 //        echo PHP_EOL;
-
+        $this->check_sum();
     }
 
     /**
      * 检查校验码
      */
-    private function checkout_sum(){
-
+    private  function check_sum(){
+        $tmp = 0;
+        $data_str_arr = str_split($this->_DATA, 2);
+        array_walk($data_str_arr, function($v) use(&$tmp){
+            $tmp += hexdec($v);
+        });
+        $tmp = dechex($tmp);
+        $checksum = (string)$tmp;
+        $diff = 4 - strlen($checksum);
+        for($i = $diff; $i >0 ;$i--){
+            $checksum = '0'.$checksum;
+        }
+        if($checksum == $this->_CHECKSUM){
+            $this->_CHECKSUM_RESULT =  true;
+        }
     }
 
 }
