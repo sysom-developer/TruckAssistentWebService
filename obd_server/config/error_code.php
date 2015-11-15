@@ -39,10 +39,10 @@ return [
     ],//消息处理
 
     'STATE' => [
-        'STATE_RECV_OK' => '30',
-        'STATE_RECV_NG' => '31',
-        'STATE_EXEC_OK' => '32',
-        'STATE_EXEC_NG' => '33',
+        'STATE_RECV_OK' => 0x30,//返回给客户端接收成功
+        'STATE_RECV_NG' => 0x31,
+        'STATE_EXEC_OK' => 0x32,
+        'STATE_EXEC_NG' => 0x33,
 
         '30' => 'STATE_RECV_OK',
         '31' => 'STATE_RECV_NG',

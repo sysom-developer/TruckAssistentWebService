@@ -7,7 +7,7 @@ use comm\Packet;
 use comm\Byte;
 
 class Handler {
-    public static function exe($data)
+    public static function exe($data, $data_file_name)
     {
         global $error_code, $command_table;
         $data = Byte::String2Hex($data);
@@ -22,15 +22,18 @@ class Handler {
         $echo_messages = self::echo_packet_messages($packet);
 
 
-//        $result = self::message_handler($packet);
-//
-        return $echo_header.$echo_messages;
+        $unpack_data = $echo_header.$echo_messages;
+        file_put_contents($data_file_name, $unpack_data);
+
+        $result = self::message_handler($packet);
+
+        return $result;
     }
 
     static function message_handler($packet)
     {
         global $error_code, $command_table;
-        array_walk($packet->_message_arr, function($message) use ($packet, $error_code, $command_table){
+        array_walk($packet->_message_arr->arr, function($message) use ($packet, $error_code, $command_table){
 //            $fun_code = $error_code['MSG_ID'][$message->_MSG_ID];
 //            var_dump($message->_MSG_ID);
             $fun_code = 'OTA_UPDATE_QUERY';
@@ -40,7 +43,9 @@ class Handler {
 
         $state = $error_code['STATE']['STATE_RECV_OK'];
         $fid_ack = new FID_ACK($packet->_FID, $state);
-        return $fid_ack->get_content();
+        $result = $fid_ack->get_bytes();
+
+        return $result;
     }
 
     static function echo_packet_header($packet){

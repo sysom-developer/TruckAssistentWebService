@@ -18,7 +18,7 @@ $tcp_worker->onWorkerStart = function($worker)
 {
     echo "Worker starting...\n";
 //    $socket_data = file_get_contents('../logs/log1447569527');
-//    $result = Handler::exe($socket_data);
+//    $result = Handler::exe($socket_data, '00');
 //    var_dump($result);
 
 };
@@ -37,10 +37,10 @@ $tcp_worker->onMessage = function($connection, $data)
 
 
     $socket_data  = $data;
-    $result = Handler::exe($socket_data);
 
 
 
+    //接受的二进制数据存入文件
     $base = '/var/obd_logs/';
     $str_time=date('Y-m-d',time());
     $path = $base. str_replace('-', '/', $str_time);
@@ -50,11 +50,21 @@ $tcp_worker->onMessage = function($connection, $data)
     $log_name = $path.'/' . 'log'.time();
     file_put_contents ( $log_name, $data );
 
+
+    //解析后的结果存入文件
     $data_file_name = $log_name. '_data';
-    file_put_contents($data_file_name,$result);
+    $result = Handler::exe($socket_data, $data_file_name);
 
 
+
+
+    //ack存入文件
+    $fid_ack_file_name = $log_name. '_fid_ack';
+    file_put_contents($fid_ack_file_name, $result);
     $connection->send($result);
+
+
+
 
 
 };
