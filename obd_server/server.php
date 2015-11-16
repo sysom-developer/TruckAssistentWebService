@@ -17,9 +17,9 @@ $tcp_worker->count = 1;
 $tcp_worker->onWorkerStart = function($worker)
 {
     echo "Worker starting...\n";
-//    $socket_data = file_get_contents('../logs/log1447569527');
-//    $result = Handler::exe($socket_data, '00');
-//    var_dump($result);
+    $socket_data = file_get_contents('../logs/16/log1447641247');
+    $result = Handler::exe($socket_data, '00');
+    var_dump($result);
 
 };
 
@@ -55,17 +55,13 @@ $tcp_worker->onMessage = function($connection, $data)
     $data_file_name = $log_name. '_data';
     $result = Handler::exe($socket_data, $data_file_name);
 
+    if($result != false){
+        //ack存入文件
+        $fid_ack_file_name = $log_name. '_fid_ack';
+        file_put_contents($fid_ack_file_name, $result);
+        $connection->send($result);
 
-
-
-    //ack存入文件
-    $fid_ack_file_name = $log_name. '_fid_ack';
-    file_put_contents($fid_ack_file_name, $result);
-    $connection->send($result);
-
-
-
-
+    }
 
 };
 

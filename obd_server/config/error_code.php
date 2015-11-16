@@ -23,7 +23,7 @@ return [
         '29' => 'OTA',//升级
         '37' => 'AGPS',//发送星历数据
 
-        '2a' => 'OTA_UPDATE_QUERY',//升级查询请求
+
         '2b' => 'CRASH',//车辆碰撞
         '2c' => 'BASE_INFO',
         '2e' => 'VERSION_INFO',
@@ -35,7 +35,13 @@ return [
         '36' => 'GSM',//获取APGS信息
         '38' => 'MILEAGE_INFO',
         '26' => 'VOLTAGE',// 电压
-        '3a' => 'POWER'//断电恢复信息
+        '3a' => 'POWER',//断电恢复信息
+
+
+        '21' => 'Truck_Information',
+        '22' => 'Event_Report',
+        '40' => 'GSM_Location',
+        '2a' => 'OTA_UPDATE_QUERY',//升级查询请求
     ],//消息处理
 
     'STATE' => [

@@ -20,4 +20,10 @@ return [
 
     'VOLTAGE' => require_once __DIR__ . '/command/VOLTAGE.php',//$func_voltage,
     'POWER' => require_once __DIR__ . '/command/POWER.php',//$func_power,
+
+
+
+    'Truck_Information' => require_once __DIR__ . '/command/Truck_Information.php',
+    'Event_Report' => require_once __DIR__ . '/command/Event_Report.php',
+    'GSM_Location' => require_once __DIR__ . '/command/GSM_Location.php',
 ];

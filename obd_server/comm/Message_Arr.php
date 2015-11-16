@@ -19,7 +19,7 @@ class Message_Arr
 //        var_dump($message_str);
         echo PHP_EOL;
         for(;$message_str != false;){
-//            var_dump($message_str);
+
             $message = new Message($message_str);
             if($message->_CHECKSUM_RESULT){
                 $this->arr[] = $message;
