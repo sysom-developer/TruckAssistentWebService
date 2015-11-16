@@ -42,9 +42,7 @@ class Packet
      */
     public $_message_arr;
     private $_MESSAGE;
-    private$_MESSAGE_OFFSET;
-
-
+    private $_MESSAGE_OFFSET;
 
 
     function __construct($data)
@@ -54,8 +52,6 @@ class Packet
         $this->_FID_LENGTH = 1 * 2;
         $this->_TIME_LENGTH = 4 * 2;
         $this->_PROTOCOL_VERSION_LENGTH = 3 * 2;
-
-
 
 
         //定义各个偏移量
@@ -73,14 +69,21 @@ class Packet
         $this->_FID = substr($data, $this->_FID_OFFSET, $this->_FID_LENGTH);
 //        var_dump($this->_FID);
 //        echo 'fid_end'.PHP_EOL;
-        $this->_TIME = substr($data, $this->_TIME_OFFSET, $this->_TIME_LENGTH);
+
+        $this->init_time($data);
 
         $this->init_protocol_version($data);
 
         $this->init_message($data);
 
 
+    }
 
+    private function init_time($data){
+        $tmp = substr($data, $this->_TIME_OFFSET, $this->_TIME_LENGTH);
+        $time_arr = str_split($tmp, 2);
+        $time_arr = array_reverse($time_arr);
+        $this->_TIME = implode('', $time_arr);
     }
 
     private function init_protocol_version($data)
@@ -88,7 +91,7 @@ class Packet
         /**
          * 获取版本号的数据
          */
-        $origin_version = substr($data,$this->_PROTOCOL_VERSION_OFFSET, $this->_PROTOCOL_VERSION_LENGTH);
+        $origin_version = substr($data, $this->_PROTOCOL_VERSION_OFFSET, $this->_PROTOCOL_VERSION_LENGTH);
 
         /**
          * 分割成3个数组，每个数组2byte
@@ -96,7 +99,7 @@ class Packet
         $origin_version_arr = str_split($origin_version, 2);
         $origin_version_arr = array_slice($origin_version_arr, 0, 2);
 
-        array_walk($origin_version_arr, function(&$v){
+        array_walk($origin_version_arr, function (&$v) {
             $v = hexdec($v);
         });
         $version = implode('.', $origin_version_arr);
@@ -111,7 +114,4 @@ class Packet
 
         $this->_message_arr = new Message_Arr($this->_MESSAGE);
     }
-
-
-
 }
