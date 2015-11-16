@@ -21,9 +21,9 @@ class Message_Arr
         for(;$message_str != false;){
 
             $message = new Message($message_str);
-            if($message->_CHECKSUM_RESULT){
+//            if($message->_CHECKSUM_RESULT){
                 $this->arr[] = $message;
-            }
+//            }
             $message_str = substr($message_str, $message->_TOTAL_LENGTH + 2);
         }
 
