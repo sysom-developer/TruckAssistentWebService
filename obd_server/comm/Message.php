@@ -83,11 +83,13 @@ class Message
 //        echo "data_size:";
 //        var_dump($data_size);
 //        echo PHP_EOL;
-        $buma = $data_size % 8;
+        $buma = 8 - $data_size % 8;
 
         $this->_DATA_FACT_LENGTH = $data_size * 2;
         $this->_DATA_LENGTH = $this->_DATA_FACT_LENGTH + $buma * 2;
-
+//echo 'data_size: ' .$data_size. PHP_EOL;
+//        echo 'buma:' .$buma;
+//        echo PHP_EOL;
 
 
         $this->_DATA = substr($message_str, $this->_DATA_OFFSET, $this->_DATA_FACT_LENGTH);
