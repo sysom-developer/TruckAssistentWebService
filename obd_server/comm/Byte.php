@@ -37,5 +37,17 @@ class Byte{
         return $string;
     }
 
+    /**
+     * 转换字节序
+     * @param $str
+     * @return string
+     */
+    public static function ByteConvert($str){
+        $str_arr = str_split($str, 2);
+        $str_arr = array_reverse($str_arr);
+        $new_str = implode('', $str_arr);
+        return $new_str;
+    }
+
 
 }

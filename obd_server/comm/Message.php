@@ -113,18 +113,20 @@ class Message
 //        echo "total_length:";
 //        var_dump($this->_TOTAL_LENGTH);
 //        echo PHP_EOL;
-        $this->check_sum();
+        $this->check_sum($message_str);
     }
 
     /**
      * 检查校验码
      */
-    private  function check_sum(){
+    private  function check_sum($message_str){
+        $data_checksum = substr($message_str, $this->_DATA_OFFSET, $this->_DATA_LENGTH);
         $tmp = 0;
-        $data_str_arr = str_split($this->_DATA, 2);
+        $data_str_arr = str_split($data_checksum, 2);
         array_walk($data_str_arr, function($v) use(&$tmp){
             $tmp += hexdec($v);
         });
+
         $tmp = dechex($tmp);
         $checksum = (string)$tmp;
         $diff = 4 - strlen($checksum);

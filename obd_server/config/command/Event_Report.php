@@ -1,4 +1,5 @@
 <?php
+use comm\Byte;
 $func_event_report = function($packet, $message,$data_file_name) {
     $data = $message->_DATA;
     $engine_status = substr($data, 0, 1*2);
@@ -6,8 +7,8 @@ $func_event_report = function($packet, $message,$data_file_name) {
     $cruise_control_status = substr($data, 2*2, 1*2);
 
     $car_battery_value = substr($data, 3*2, 2*2);
-    $car_battery_value_arr = str_split($car_battery_value, 2);
-    $car_battery_value = implode('', array_reverse($car_battery_value_arr));
+    $car_battery_value = Byte::ByteConvert($car_battery_value);
+
     $car_battery = substr($data, 5*2, 1*2);
     $longitude = substr($data, 6*2, 4*2);
     $ew_indicator = substr($data, 10*2, 1*2);
@@ -19,8 +20,7 @@ $func_event_report = function($packet, $message,$data_file_name) {
     $engine_speed = substr($data, 17*2, 2*2);
 
     $unix_time = substr($data, 19*2, 4*2);
-    $unix_time_arr = str_split($unix_time, 2);
-    $unix_time = implode('', array_reverse($unix_time_arr));
+    $unix_time = Byte::ByteConvert($unix_time);
 
     $data_str = 'engine_status:' .$engine_status ."\n".
         'parking_brake_status:' .$parking_brake_status."\n".
