@@ -42,6 +42,9 @@ return [
         '22' => 'Event_Report',
         '40' => 'GSM_Location',
         '2a' => 'OTA_UPDATE_QUERY',//升级查询请求
+        '20' => '',
+        '24' => 'Sleep_Voltage_Record',
+        '02' => 'Device_Information',
     ],//消息处理
 
     'STATE' => [

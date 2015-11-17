@@ -17,7 +17,7 @@ $tcp_worker->count = 1;
 $tcp_worker->onWorkerStart = function($worker)
 {
     echo "Worker starting...\n";
-    $socket_data = file_get_contents('../logs/16/log1447641247');
+    $socket_data = file_get_contents('../logs/16/log1447658787');
     $result = Handler::exe($socket_data, '00');
     var_dump($result);
 

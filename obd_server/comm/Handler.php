@@ -28,23 +28,23 @@ class Handler {
         $unpack_data = $echo_header.$echo_messages;
         file_put_contents($data_file_name, $unpack_data);
 
-        $result = self::message_handler($packet);
+        $result = self::message_handler($packet, $data_file_name);
 
         return $result;
     }
 
-    static function message_handler($packet)
+    static function message_handler($packet, $data_file_name)
     {
         $result_set = [];
         global $error_code, $command_table;
         if(is_array($packet->_message_arr->arr)){
-            array_walk($packet->_message_arr->arr, function($message) use ($packet, $error_code, $command_table, &$result_set){
+            array_walk($packet->_message_arr->arr, function($message) use ($packet, $error_code, $command_table, &$result_set, $data_file_name){
                 $fun_code = $error_code['MSG_ID'][$message->_MSG_ID];
-                var_dump($message->_MSG_ID);
-                var_dump($fun_code);
+//                var_dump($message->_MSG_ID);
+//                var_dump($fun_code);
 //            $fun_code = 'OTA_UPDATE_QUERY';
-//            $fun = $command_table[$fun_code];
-//            $fun_result = $fun($packet, $message);
+            $fun = $command_table[$fun_code];
+            $fun_result = $fun($packet, $message, $data_file_name);
 //            $result_set[] = $fun_result;
             });
         }
