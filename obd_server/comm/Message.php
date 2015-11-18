@@ -42,6 +42,7 @@ class Message
      * @var int
      */
     public $_CHECKSUM_RESULT = false;
+    public $_CALCULATE_CHECKSUM;
 
     public $_TOTAL_LENGTH;
 
@@ -133,6 +134,7 @@ class Message
         for($i = $diff; $i >0 ;$i--){
             $checksum = '0'.$checksum;
         }
+        $this->_CALCULATE_CHECKSUM = $checksum;
         if($checksum == $this->_CHECKSUM){
             $this->_CHECKSUM_RESULT =  true;
         }

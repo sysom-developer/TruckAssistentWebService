@@ -28,4 +28,6 @@ return [
     'GSM_Location' => require_once __DIR__ . '/command/GSM_Location.php',
     'Device_Information' => require_once __DIR__ . '/command/Device_Information.php',
     'Sleep_Voltage_Record' => require_once __DIR__ . '/command/Sleep_Voltage_Record.php',
+    'Truck_Acceleration_Information' => require_once __DIR__ . '/command/Truck_Acceleration_Information.php',
+
 ];

@@ -1,17 +1,51 @@
 <?php
 use comm\Byte;
+//引擎状态
+$engine_status_conf = [
+    '00' => 'off',//熄火
+    '01' => 'on',//点火
+    '02' => 'off to on event',//熄火变成点火
+    '03' => 'sleeping'//睡眠
+];
+
+//手刹状态
+$parking_brake_status_conf = [
+    '00' => 'no set',//手刹拉上
+    '01' => 'set',//手刹未拉
+];
+
+//定速巡航状态
+$engine_status_conf = [
+    '00' => 'off',//
+    '01' => 'hold',//
+    '02' => 'accelerate',//
+    '03' => 'decelerate',//
+    '04' => 'resume',
+    '05' => 'set',
+    '06' => 'accelerate override',
+    '07' => 'not available',
+];
+
+
+
 $func_event_report = function($packet, $message,$data_file_name) {
     $data = $message->_DATA;
-    $engine_status = substr($data, 0, 1*2);
-    $parking_brake_status = substr($data, 1*2, 1*2);
-    $cruise_control_status = substr($data, 2*2, 1*2);
 
+    //引擎状态
+    $engine_status = substr($data, 0, 1*2);
+    //手刹状态
+    $parking_brake_status = substr($data, 1*2, 1*2);
+    //定速巡航状态
+    $cruise_control_status = substr($data, 2*2, 1*2);
+    //车辆电瓶电压值
     $car_battery_value = substr($data, 3*2, 2*2);
     $car_battery_value = Byte::ByteConvert($car_battery_value);
-
+    //车辆电瓶电压状态
     $car_battery = substr($data, 5*2, 1*2);
+
     $longitude = substr($data, 6*2, 4*2);
     $ew_indicator = substr($data, 10*2, 1*2);
+
     $latitude = substr($data, 11*2, 4*2);
     $ns_indicator = substr($data, 15*2, 1*2);
 
