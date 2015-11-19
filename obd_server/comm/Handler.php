@@ -35,8 +35,10 @@ class Handler {
 
     static function message_handler($packet, $data_file_name)
     {
-        $result_set = [];
         global $error_code, $command_table;
+
+        $result_set = [];
+
         if(is_array($packet->_message_arr->arr)){
             array_walk($packet->_message_arr->arr, function($message) use ($packet, $error_code, $command_table, &$result_set, $data_file_name){
                 $fun_code = $error_code['MSG_ID'][$message->_MSG_ID];
@@ -49,16 +51,13 @@ class Handler {
             });
         }
 
-        $pid = pcntl_fork();
+        $state = $error_code['STATE']['STATE_RECV_OK'];
+        $fid_ack = new FID_ACK($packet->_FID, $state);
+        $ack = $fid_ack->get_bytes();
+        $result_set[] = $ack;
 
-        if($pid == 0){//父进程返回接收码
-            $state = $error_code['STATE']['STATE_RECV_OK'];
-            $fid_ack = new FID_ACK($packet->_FID, $state);
-            $result = $fid_ack->get_bytes();
-            return $result;
-        }else{
+        return $result_set;
 
-        }
 
     }
 

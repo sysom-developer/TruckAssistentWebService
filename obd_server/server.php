@@ -53,13 +53,15 @@ $tcp_worker->onMessage = function($connection, $data)
 
     //解析后的结果存入文件
     $data_file_name = $log_name. '_data';
-    $result = Handler::exe($socket_data, $data_file_name);
+    $result_set = Handler::exe($socket_data, $data_file_name);
 
-    if($result != false){
-        //ack存入文件
-        $fid_ack_file_name = $log_name. '_fid_ack';
-        file_put_contents($fid_ack_file_name, $result);
-        $connection->send($result);
+    if($result_set != false){
+        array_walk($result_set, function($v) use($log_name, $connection){
+            //ack存入文件
+            $fid_ack_file_name = $log_name. '_fid_ack';
+            file_put_contents($fid_ack_file_name, $v);
+            $connection->send($v);
+        });
 
     }
 
