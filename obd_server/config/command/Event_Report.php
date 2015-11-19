@@ -67,7 +67,7 @@ $func_event_report = function($packet, $message,$data_file_name) {
         'ns_indicator:' .$ns_indicator ."\n" .
         'gps_vehicle_speed'. $gps_vehicle_speed ."\n".
         'engine_speed:' .$engine_speed ."\n" .
-        'unix_time' .$unix_time ."\n";
+        'unix_time:' .$unix_time ."\n";
 
     file_put_contents($data_file_name .'MSG_' .$message->_MSG_ID, $data_str);
 

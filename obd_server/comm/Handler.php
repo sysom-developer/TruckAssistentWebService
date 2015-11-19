@@ -42,12 +42,9 @@ class Handler {
         if(is_array($packet->_message_arr->arr)){
             array_walk($packet->_message_arr->arr, function($message) use ($packet, $error_code, $command_table, &$result_set, $data_file_name){
                 $fun_code = $error_code['MSG_ID'][$message->_MSG_ID];
-//                var_dump($message->_MSG_ID);
-//                var_dump($fun_code);
-//            $fun_code = 'OTA_UPDATE_QUERY';
-            $fun = $command_table[$fun_code];
-            $fun_result = $fun($packet, $message, $data_file_name);
-//            $result_set[] = $fun_result;
+                $fun = $command_table[$fun_code];
+                $fun_result = $fun($packet, $message, $data_file_name);
+                $result_set[] = $fun_result;
             });
         }
 
