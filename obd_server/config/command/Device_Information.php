@@ -4,6 +4,8 @@ use comm\Model\DeviceInformation;
 $func_device_information= function($packet, $message, $data_file_name) {
     $data = $message->_DATA;
     $device_information_model = new DeviceInformation($packet, $data);
+    $device_information_model->save();
+
     $data = $device_information_model::$data;
 
 

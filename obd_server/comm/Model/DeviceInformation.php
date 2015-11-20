@@ -52,6 +52,7 @@ class DeviceInformation extends Model{
 
 
     function save(){
+        var_dump(self::$data);
         self::$_db->insert($this->table, self::$data);
 
     }
