@@ -38,12 +38,13 @@ return [
 
 
 
+        '02' => 'Device_Information',
+        '20' => 'Truck_Acceleration_Information',
         '21' => 'Truck_Information',
         '22' => 'Event_Report',
         '40' => 'GSM_Location',
-        '02' => 'Device_Information',
+
         '24' => 'Sleep_Voltage_Record',
-        '20' => 'Truck_Acceleration_Information',
         '2a' => 'OTA_UPDATE_QUERY',//升级查询请求
     ],//消息处理
 
