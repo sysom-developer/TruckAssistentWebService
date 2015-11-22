@@ -2,6 +2,7 @@
 
 namespace comm\Model;
 
+use comm\Cache\MyRedis;
 use \comm\Model\BaseModel as Model;
 use comm\Byte;
 
@@ -9,10 +10,15 @@ use comm\Byte;
 class EventReport extends Model{
 
     protected $table = 'event_report';
-
     public static $data = [];
+    private static $_instance;
 
-
+    public static function getInstance($packet, $data){
+        if(!(self::$_instance instanceof self)) {
+            self::$_instance = new EventReport($packet, $data);
+        }
+        return self::$_instance;
+    }
 
     function __construct($packet, $data){
 
@@ -74,9 +80,39 @@ class EventReport extends Model{
 
 
     function save(){
+
         self::$_db->insert($this->table, self::$data);
 
+    }
 
+    function cached(){
+        $my_redis = MyRedis::getInstance();
+
+        $data = self::$data;
+        $s_key = 'DevId_:'.$data['device_id'];
+        $h_key = 'EventReport:'.$data['create_time'];
+
+        $my_redis->sadd($s_key, $h_key);
+        $my_redis->hMset($h_key, $data);
+    }
+
+    public function echo_log($data_file_name, $_MSG_ID){
+        $data = self::$data;
+
+        $data_str = 'engine_status:' .$data['engine_status'] ."\n".
+            'parking_brake_status:' .$data['parking_brake_status']."\n".
+            'cruise_control_status:' .$data['cruise_control_status']."\n" .
+            'car_battery_value:'.$data['car_battery_value']."\n".
+            'car_battery:'.$data['car_battery']."\n".
+            'longitude :'.$data['longitude']."\n" .
+            'ew_indicator:' .$data['ew_indicator'] ."\n".
+            'latitude:'.$data['latitude'] ."\n".
+            'ns_indicator:' .$data['ns_indicator'] ."\n" .
+            'gps_vehicle_speed'. $data['gps_vehicle_speed'] ."\n".
+            'engine_speed:' .$data['engine_speed'] ."\n" .
+            'unix_time:' .$data['unix_time'] ."\n";
+
+        file_put_contents($data_file_name .'MSG_' .$_MSG_ID, $data_str);
 
     }
 

@@ -81,6 +81,10 @@ class MyRedis {
         return self::$redis->hget($tableName,$field);
     }
 
+    public function hMset($key, $hashKeys){
+        return self::$redis->hMset($key, $hashKeys);
+    }
+
 
     /**
      * @param $keyArray
