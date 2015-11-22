@@ -89,8 +89,8 @@ class EventReport extends Model{
         $my_redis = MyRedis::getInstance();
 
         $data = self::$data;
-        $s_key = 'DevId_:'.$data['device_id'];
-        $h_key = 'EventReport:'.$data['create_time'];
+        $s_key = 'DevId:'.$data['device_id'];
+        $h_key = 'Event_Report:'.$data['create_time'];
 
         $my_redis->sadd($s_key, $h_key);
         $my_redis->hMset($h_key, $data);
