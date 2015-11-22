@@ -15,7 +15,7 @@ class MyRedis {
         $redis_conf = require_once __DIR__ .'/../../config/redis.php';
         self::$redis = new \Redis();
         self::$redis->connect($redis_conf['host'], $redis_conf['port']);
-//        self::$redis->auth($redis_conf['instanceID'].':'.$redis_conf['password']);
+        self::$redis->auth($redis_conf['instanceID'].':'.$redis_conf['password']);
     }
 
     /**
