@@ -2,6 +2,7 @@
 
 namespace comm\Model;
 
+use comm\Cache\MyRedis;
 use \comm\Model\BaseModel as Model;
 use comm\Byte;
 
@@ -11,7 +12,15 @@ class DeviceInformation extends Model{
     protected $table = 'device_information';
 
     public static $data = [];
+    private static $_instance;
 
+    public static function getInstance($packet, $data){
+
+        if(!(self::$_instance instanceof self)) {
+            self::$_instance = new DeviceInformation($packet, $data);
+        }
+        return self::$_instance;
+    }
 
     function __construct($packet, $data){
 
@@ -52,9 +61,20 @@ class DeviceInformation extends Model{
 
 
     function save(){
-        var_dump(self::$data);
+
         self::$_db->insert($this->table, self::$data);
 
+    }
+
+    function cached(){
+        $my_redis = MyRedis::getInstance();
+
+        $data = self::$data;
+        $s_key = 'DevId:'.$data['device_id'];
+        $h_key = 'Device_Information:'.$data['create_time'];
+
+        $my_redis->sadd($s_key, $h_key);
+        $my_redis->hMset($h_key, $data);
     }
 
 }

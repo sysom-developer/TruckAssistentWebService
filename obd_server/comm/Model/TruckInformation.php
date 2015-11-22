@@ -17,7 +17,7 @@ class TrunckInformation extends Model{
     public static function getInstance($packet, $data){
 
         if(!(self::$_instance instanceof self)) {
-            self::$_instance = new EventReport($packet, $data);
+            self::$_instance = new TrunckInformation($packet, $data);
         }
         return self::$_instance;
     }

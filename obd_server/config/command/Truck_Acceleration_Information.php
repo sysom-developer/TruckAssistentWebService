@@ -4,7 +4,7 @@ use comm\Model\TrunckAccelerationInformation;
 $func_truck_acceleration_information = function($packet, $message) {
     $data = $message->_DATA;
 
-    $trunck_acceleration_information_model = new TrunckAccelerationInformation($packet, $data);
+    $trunck_acceleration_information_model = TrunckAccelerationInformation::getInstance($packet, $data);
     $data = $trunck_acceleration_information_model::$data;
 
 

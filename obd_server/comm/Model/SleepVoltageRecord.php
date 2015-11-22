@@ -2,6 +2,7 @@
 
 namespace comm\Model;
 
+use comm\Cache\MyRedis;
 use \comm\Model\BaseModel as Model;
 use comm\Byte;
 
@@ -11,9 +12,18 @@ class SleepVoltageRecord extends Model{
     protected $table = 'sleep_voltage_record';
 
     private static $data = [];
+    private static $_instance;
+
+    public static function getInstance($packet, $data){
+
+        if(!(self::$_instance instanceof self)) {
+            self::$_instance = new SleepVoltageRecord($packet, $data);
+        }
+        return self::$_instance;
+    }
 
 
-    function __construct($packet, $data, $data_file_name){
+    function __construct($packet, $data){
 
         $this->init($packet, $data);
         parent::__construct();
@@ -54,6 +64,20 @@ class SleepVoltageRecord extends Model{
         });
     }
 
+    function cached(){
+        $my_redis = MyRedis::getInstance();
+        $data = self::$data;
+
+        array_walk($data, function($v) use ($my_redis){
+            $s_key = 'DevId:'.$v['device_id'];
+            $h_key = 'Sleep_Voltage_Record:'.$v['create_time'];
+
+            $my_redis->sadd($s_key, $h_key);
+            $my_redis->hMset($h_key, $v);
+        });
+
+
+    }
 //    function echo_log($data_file_name){
 //        $data_str = 'valid_flag:' .$valid_flag ."\n".
 //            'timestamp_1:' .$timestamp_1."\n".

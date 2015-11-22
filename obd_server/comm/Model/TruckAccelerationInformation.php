@@ -11,6 +11,15 @@ class TrunckAccelerationInformation extends Model{
     protected $table = 'trunck_acceleration_information';
 
     public static $data = [];
+    private static $_instance;
+
+    public static function getInstance($packet, $data){
+
+        if(!(self::$_instance instanceof self)) {
+            self::$_instance = new TrunckAccelerationInformation($packet, $data);
+        }
+        return self::$_instance;
+    }
 
     function __construct($packet, $data){
 

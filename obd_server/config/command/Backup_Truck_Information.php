@@ -9,6 +9,8 @@ $func_backup_truck_information = function($packet, $message, $data_file_name) {
 
     $trunck_information_model->save();
 
+    $trunck_information_model->cached();
+
     $trunck_information_model->echo_log($data_file_name, $message->_MSG_ID);
 
 
