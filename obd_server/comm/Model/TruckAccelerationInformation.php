@@ -15,9 +15,8 @@ class TrunckAccelerationInformation extends Model{
 
     public static function getInstance($packet, $data){
 
-        if(!(self::$_instance instanceof self)) {
-            self::$_instance = new TrunckAccelerationInformation($packet, $data);
-        }
+        self::$_instance = new TrunckAccelerationInformation($packet, $data);
+
         return self::$_instance;
     }
 

@@ -71,12 +71,12 @@ class Handler {
         $echo_header .= "    version:" . $version . "\n";
         $echo_header .= "\n";
 
-        echo 'header'. "\n";
-        echo "    dev_id: " . $dev_id . "\n";
-        echo "    fid: " . $fid . "\n";
-        echo "    time:" . $time . "\n";
-        echo "    version:" . $version . "\n";
-        echo "\n";
+//        echo 'header'. "\n";
+//        echo "    dev_id: " . $dev_id . "\n";
+//        echo "    fid: " . $fid . "\n";
+//        echo "    time:" . $time . "\n";
+//        echo "    version:" . $version . "\n";
+//        echo "\n";
 
         return $echo_header;
 
@@ -94,12 +94,12 @@ class Handler {
                 $data_size = $message->_DATA_SIZE;
                 $data = $message->_DATA;
                 $checksum = $message->_CHECKSUM;
-                echo 'message' . $i . ':'. "\n";
-                echo '    MSG_ID:' . $msg_id. "\n";
-                echo '    DATA_SIZE:' . $data_size. "\n";
-                echo '    DATA:' . $data. "\n";
-                echo '    CHECKSUM:' . $checksum. "\n";
-                echo "\n";
+//                echo 'message' . $i . ':'. "\n";
+//                echo '    MSG_ID:' . $msg_id. "\n";
+//                echo '    DATA_SIZE:' . $data_size. "\n";
+//                echo '    DATA:' . $data. "\n";
+//                echo '    CHECKSUM:' . $checksum. "\n";
+//                echo "\n";
 
 
                 $echo_messages .= 'message' . $i . ':'. "\n";

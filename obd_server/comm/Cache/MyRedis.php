@@ -22,7 +22,7 @@ class MyRedis {
      * @return MyRedis
      */
     public static function getInstance(){
-        if(empty(self::$my_redis)){
+        if(!(self::$my_redis instanceof self)){
             self::$my_redis = new MyRedis();
         }
         return self::$my_redis;

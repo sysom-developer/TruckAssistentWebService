@@ -16,9 +16,8 @@ class SleepVoltageRecord extends Model{
 
     public static function getInstance($packet, $data){
 
-        if(!(self::$_instance instanceof self)) {
-            self::$_instance = new SleepVoltageRecord($packet, $data);
-        }
+        self::$_instance = new SleepVoltageRecord($packet, $data);
+
         return self::$_instance;
     }
 

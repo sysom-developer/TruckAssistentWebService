@@ -8,7 +8,9 @@ class BaseModel{
 
     function __construct(){
 
-        self::$_db = new \medoo( require_once __DIR__ .'/../../config/database.php' );
+        if(!(self::$_db instanceof \medoo)) {
+            self::$_db = new \medoo( require_once __DIR__ .'/../../config/database.php' );
+        }
 
     }
 

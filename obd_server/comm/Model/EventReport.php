@@ -14,9 +14,9 @@ class EventReport extends Model{
     private static $_instance;
 
     public static function getInstance($packet, $data){
-        if(!(self::$_instance instanceof self)) {
-            self::$_instance = new EventReport($packet, $data);
-        }
+
+        self::$_instance = new EventReport($packet, $data);
+
         return self::$_instance;
     }
 
@@ -52,6 +52,7 @@ class EventReport extends Model{
 
         $unix_time = substr($data, 19*2, 4*2);
         $unix_time = Byte::ByteConvert($unix_time);
+
 
         self::$data = [
             'engine_status' => $engine_status,
@@ -92,8 +93,12 @@ class EventReport extends Model{
         $s_key = 'DevId:'.$data['device_id'];
         $h_key = 'Event_Report:'.$data['create_time'];
 
-        $my_redis->sadd($s_key, $h_key);
-        $my_redis->hMset($h_key, $data);
+        $result1 = $my_redis->sadd($s_key, $h_key);
+        $result2 = $my_redis->hMset($h_key, $data);
+
+//        var_dump($result1);
+//        var_dump($h_key);
+//        var_dump($result2);/
     }
 
     public function echo_log($data_file_name, $_MSG_ID){
