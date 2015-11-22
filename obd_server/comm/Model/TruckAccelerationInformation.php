@@ -2,6 +2,7 @@
 
 namespace comm\Model;
 
+use comm\Cache\MyRedis;
 use \comm\Model\BaseModel as Model;
 use comm\Byte;
 
@@ -32,30 +33,47 @@ class TrunckAccelerationInformation extends Model{
 
         $num = substr($data, 0, 1*2);
 
-        $axis_data = substr($data, 1*2);
+        $axis_data = substr($data, 1*2,6*32*2);
         $axis_origin_data = str_split($axis_data, 6*2);
-        array_walk($axis_origin_data, function($v) use (&$axis_arr){
+        $unix_time = substr($data, 193*2,4*2);
+        $unix_time = Byte::ByteConvert($unix_time);
+        array_walk($axis_origin_data, function($v) use (&$axis_arr, $unix_time, $packet){
             $tmp = [
                 'x_axis' => Byte::ByteConvert(substr($v, 0, 2*2)),
                 'y_axis' => Byte::ByteConvert(substr($v, 2*2, 2*2)),
                 'z_axis' => Byte::ByteConvert(substr($v, 4*2, 2*2)),
+                'unix_time' => $unix_time,
+
+                'device_id' => Byte::Hex2String($packet->_DEV_ID),
+                'create_time' => time(),
+
             ];
             $axis_arr[] = $tmp;
 
         });
 
-
-        self::$data = [
-
-            'device_id' => Byte::Hex2String($packet->_DEV_ID),
-            'create_time' => time()
-        ];
+        self::$data = $axis_arr;
 
     }
 
 
     function save(){
-//        self::$_db->insert($this->table, self::$data);
+        array_walk(self::$data, function($v){
+            self::$_db->insert($this->table, $v);
+        });
+    }
+
+    function cached(){
+        $my_redis = MyRedis::getInstance();
+        $data = self::$data;
+
+        array_walk($data, function($v) use ($my_redis){
+            $s_key = 'DevId:'.$v['device_id'];
+            $h_key = 'Trunck_Acceleration_Information:'.$v['create_time'];
+
+            $my_redis->sadd($s_key, $h_key);
+            $my_redis->hMset($h_key, $v);
+        });
     }
 
 }

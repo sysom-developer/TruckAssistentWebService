@@ -75,7 +75,6 @@ class SleepVoltageRecord extends Model{
             $my_redis->hMset($h_key, $v);
         });
 
-
     }
 //    function echo_log($data_file_name){
 //        $data_str = 'valid_flag:' .$valid_flag ."\n".
