@@ -71,4 +71,19 @@ class GsmLocation extends Model{
         $my_redis->hMset($h_key, $data);
     }
 
+    public function echo_log($data_file_name, $_MSG_ID){
+        $data = self::$data;
+
+        $data_str = 'longitude:' .$data['longitude'] ."\n".
+            'ew_indicator:' .$data['ew_indicator']."\n".
+            'latitude:' .$data['latitude']."\n" .
+            'ns_indicator:'.$data['ns_indicator']."\n".
+            'gps_data_status:'.$data['gps_data_status']."\n".
+            'unix_time :'.$data['unix_time']."\n" .
+            'device_id:' .$data['device_id'] ."\n";
+
+        file_put_contents($data_file_name .'MSG_' .$_MSG_ID, $data_str);
+
+    }
+
 }

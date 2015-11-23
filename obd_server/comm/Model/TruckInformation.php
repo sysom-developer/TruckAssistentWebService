@@ -7,7 +7,7 @@ use \comm\Model\BaseModel as Model;
 use comm\Byte;
 
 
-class TrunckInformation extends Model{
+class TruckInformation extends Model{
 
     protected $table = 'trunck_information';
 
@@ -16,7 +16,7 @@ class TrunckInformation extends Model{
 
     public static function getInstance($packet, $data){
 
-        self::$_instance = new TrunckInformation($packet, $data);
+        self::$_instance = new TruckInformation($packet, $data);
 
         return self::$_instance;
     }
@@ -133,7 +133,7 @@ class TrunckInformation extends Model{
     public function echo_log($data_file_name, $_MSG_ID){
         $data = self::$data;
 
-        $data_str = '$longitude:' .$data['longitude'] ."\n".
+        $data_str = 'longitude:' .$data['longitude'] ."\n".
             'ew_indicator:' .$data['ew_indicator']."\n".
             'latitude:' .$data['latitude']."\n" .
             'ns_indicator:'.$data['ns_indicator']."\n".
@@ -144,7 +144,7 @@ class TrunckInformation extends Model{
             'gps_data_status:' .$data['gps_data_status'] ."\n".
             'percent_torque:' .$data['percent_torque'] ."\n".
             'engine_percent_load:' .$data['engine_percent_load'] ."\n".
-            'accelerator:' .$data['$accelerator'] ."\n".
+            'accelerator:' .$data['accelerator'] ."\n".
             'brake_pedal_position:' .$data['brake_pedal_position'] ."\n".
             'fuel_rate:' .$data['fuel_rate'] ."\n".
             'engine_coolant_temperature:' .$data['engine_coolant_temperature'] ."\n".
