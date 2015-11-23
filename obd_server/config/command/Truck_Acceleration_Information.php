@@ -5,6 +5,11 @@ $func_truck_acceleration_information = function($packet, $message) {
     $data = $message->_DATA;
 
     $trunck_acceleration_information_model = TrunckAccelerationInformation::getInstance($packet, $data);
+
+    $trunck_acceleration_information_model->save();
+
+    $trunck_acceleration_information_model->cached();
+
     $data = $trunck_acceleration_information_model::$data;
 
 
