@@ -76,4 +76,20 @@ class DeviceInformation extends Model{
         $my_redis->hMset($h_key, $data);
     }
 
+
+    public function echo_log($data_file_name, $_MSG_ID){
+        $data = self::$data;
+
+        $data_str = 'VIN_code:' .$data['VIN_code'] ."\n".
+            'hardware_version:' .$data['hardware_version']."\n".
+            'software_version:' .$data['software_version']."\n" .
+            'is_activated:'.$data['is_activated']."\n".
+            'wake_soure:'.$data['wake_soure']."\n".
+            'obd_conf_version :'.$data['obd_conf_version']."\n" .
+            'device_id:' .$data['device_id'] ."\n";
+
+        file_put_contents($data_file_name .'MSG_' .$_MSG_ID, $data_str);
+
+    }
+
 }
