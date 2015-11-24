@@ -7,7 +7,7 @@ use \comm\Model\BaseModel as Model;
 use comm\Byte;
 
 
-class TrunckAccelerationInformation extends Model{
+class TruckAccelerationInformation extends Model{
 
     protected $table = 'trunck_acceleration_information';
 
@@ -16,7 +16,7 @@ class TrunckAccelerationInformation extends Model{
 
     public static function getInstance($packet, $data){
 
-        self::$_instance = new TrunckAccelerationInformation($packet, $data);
+        self::$_instance = new TruckAccelerationInformation($packet, $data);
 
         return self::$_instance;
     }
@@ -69,11 +69,28 @@ class TrunckAccelerationInformation extends Model{
 
         array_walk($data, function($v) use ($my_redis){
             $s_key = 'DevId:'.$v['device_id'];
-            $h_key = 'Trunck_Acceleration_Information:'.$v['create_time'];
+            $h_key = 'Truck_Acceleration_Information:'.$v['create_time'];
 
             $my_redis->sadd($s_key, $h_key);
             $my_redis->hMset($h_key, $v);
         });
+    }
+
+    public function echo_log($data_file_name, $_MSG_ID){
+        $data = self::$data;
+        $data_str = '';
+
+        array_walk($data, function($v) use (&$data_str){
+            $data_str .= 'x_axis:' .$v['x_axis'] ."\n".
+                'y_axis:' .$v['y_axis']."\n".
+                'z_axis:' .$v['z_axis']."\n" .
+                'unix_time:'.$v['unix_time']."\n".
+                'device_id:'.$v['device_id']."\n".
+                'create_time :'.$v['create_time']."\n";
+        });
+
+        file_put_contents($data_file_name .'MSG_' .$_MSG_ID, $data_str);
+
     }
 
 }
