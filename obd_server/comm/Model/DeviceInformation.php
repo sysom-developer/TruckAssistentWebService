@@ -66,14 +66,14 @@ class DeviceInformation extends Model{
     }
 
     function cached(){
-        $my_redis = MyRedis::getInstance();
-
-        $data = self::$data;
-        $s_key = 'DevId:'.$data['device_id'];
-        $h_key = 'Device_Information:'.$data['create_time'];
-
-        $my_redis->sadd($s_key, $h_key);
-        $my_redis->hMset($h_key, $data);
+//        $my_redis = MyRedis::getInstance();
+//
+//        $data = self::$data;
+//        $s_key = 'DevId:'.$data['device_id'];
+//        $h_key = 'Device_Information:'.$data['create_time'];
+//
+//        $my_redis->sadd($s_key, $h_key);
+//        $my_redis->hMset($h_key, $data);
     }
 
 

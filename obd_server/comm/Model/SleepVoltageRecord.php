@@ -64,16 +64,16 @@ class SleepVoltageRecord extends Model{
     }
 
     function cached(){
-        $my_redis = MyRedis::getInstance();
-        $data = self::$data;
-
-        array_walk($data, function($v) use ($my_redis){
-            $s_key = 'DevId:'.$v['device_id'];
-            $h_key = 'Sleep_Voltage_Record:'.$v['create_time'];
-
-            $my_redis->sadd($s_key, $h_key);
-            $my_redis->hMset($h_key, $v);
-        });
+//        $my_redis = MyRedis::getInstance();
+//        $data = self::$data;
+//
+//        array_walk($data, function($v) use ($my_redis){
+//            $s_key = 'DevId:'.$v['device_id'];
+//            $h_key = 'Sleep_Voltage_Record:'.$v['create_time'];
+//
+//            $my_redis->sadd($s_key, $h_key);
+//            $my_redis->hMset($h_key, $v);
+//        });
 
     }
 //    function echo_log($data_file_name){

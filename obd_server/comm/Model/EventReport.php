@@ -10,6 +10,8 @@ use comm\Byte;
 class EventReport extends Model{
 
     protected $table = 'event_report';
+    private static $redis_counter = 'counter:Event_Report_List';
+
     public static $data = [];
     private static $_instance;
 
@@ -86,19 +88,41 @@ class EventReport extends Model{
 
     }
 
-    function cached(){
+    function get_redis_list_count(){
         $my_redis = MyRedis::getInstance();
 
+        //获取计数器最高值
+        $count =  $my_redis->hget(self::$redis_counter, self::$data['device_id']);
+        if($count === false){
+            $my_redis->hset(self::$redis_counter, self::$data['device_id'], 0);
+            $count = 0;
+        }
+        $count++;
+        $my_redis->hIncrBy(self::$redis_counter, self::$data['device_id'], 1);
+        return $count;
+
+    }
+
+    function cached(){
         $data = self::$data;
-        $s_key = 'DevId:'.$data['device_id'];
-        $h_key = 'Event_Report:'.$data['create_time'];
+        $my_redis = MyRedis::getInstance();
 
-        $result1 = $my_redis->sadd($s_key, $h_key);
-        $result2 = $my_redis->hMset($h_key, $data);
+        $count = $this->get_redis_list_count();
 
-//        var_dump($result1);
-//        var_dump($h_key);
-//        var_dump($result2);/
+        $set_key = 'DevId:'.$data['device_id'];
+        $list_key = $data['device_id'] . ':' . 'Event_Report';
+        $hash_key = $list_key. ':' . $count;
+        $hash_value = $data;
+
+        //设备id键集合添加元素
+        $result1 = $my_redis->sadd($set_key, $list_key);
+
+        //事件列表添加值
+        $result = $my_redis->rPush($list_key, $hash_key);
+
+        //列表值指向hash
+        $result3 = $my_redis->hMset($hash_key, $hash_value);
+
     }
 
     public function echo_log($data_file_name, $_MSG_ID){

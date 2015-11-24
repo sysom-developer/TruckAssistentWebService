@@ -8,7 +8,7 @@ $func_sleep_voltage_record = function($packet, $message,$data_file_name) {
     $sleepVoltageRecord_model = SleepVoltageRecord::getInstance($packet, $data);
     $sleepVoltageRecord_model->save();
 
-    $sleepVoltageRecord_model->cached();
+//    $sleepVoltageRecord_model->cached();
 
 
 };

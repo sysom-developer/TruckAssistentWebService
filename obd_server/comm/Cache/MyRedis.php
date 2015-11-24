@@ -152,4 +152,12 @@ class MyRedis {
         return self::$redis->type($key);
     }
 
+    public function rPush($key, $value){
+        return self::$redis->rPush($key, $value);
+    }
+
+    public function hIncrBy( $key, $hashKey, $value ) {
+        return self::$redis->hIncrBy( $key, $hashKey, $value );
+    }
+
 }

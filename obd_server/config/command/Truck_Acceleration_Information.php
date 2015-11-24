@@ -8,7 +8,7 @@ $func_truck_acceleration_information = function($packet, $message, $data_file_na
 
     $truck_acceleration_information_model->save();
 
-    $truck_acceleration_information_model->cached();
+//    $truck_acceleration_information_model->cached();
 
 
     $truck_acceleration_information_model->echo_log($data_file_name, $message->_MSG_ID);

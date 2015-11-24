@@ -9,7 +9,9 @@ use comm\Byte;
 
 class TruckInformation extends Model{
 
-    protected $table = 'trunck_information';
+    protected $table = 'truck_information';
+
+    private static $redis_counter = 'counter:Truck_Information_List';
 
     public static $data = [];
     private static $_instance;
@@ -117,16 +119,40 @@ class TruckInformation extends Model{
         self::$_db->insert($this->table, self::$data);
     }
 
+    function get_redis_list_count(){
+        $my_redis = MyRedis::getInstance();
+
+        //获取计数器最高值
+        $count =  $my_redis->hget(self::$redis_counter, self::$data['device_id']);
+        if($count === false){
+            $my_redis->hset(self::$redis_counter, self::$data['device_id'], 0);
+            $count = 0;
+        }
+        $count++;
+        $my_redis->hIncrBy(self::$redis_counter, self::$data['device_id'], 1);
+        return $count;
+
+    }
 
     function cached(){
         $my_redis = MyRedis::getInstance();
 
-        $data = self::$data;
-        $s_key = 'DevId:'.$data['device_id'];
-        $h_key = 'Trunck_Information:'.$data['create_time'];
+        $count = $this->get_redis_list_count();
 
-        $my_redis->sadd($s_key, $h_key);
-        $my_redis->hMset($h_key, $data);
+        $data = self::$data;
+        $set_key = 'DevId:'.$data['device_id'];
+        $list_key = $data['device_id'] . ':' . 'Truck_Information';
+        $hash_key = $list_key. ':' . $count;
+        $hash_value = $data;
+
+        //设备id键集合添加元素
+        $result1 = $my_redis->sadd($set_key, $list_key);
+
+        //事件列表添加值
+        $result = $my_redis->rPush($list_key, $hash_key);
+
+        //列表值指向hash
+        $result3 = $my_redis->hMset($hash_key, $hash_value);
     }
 
 

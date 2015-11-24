@@ -61,14 +61,14 @@ class GsmLocation extends Model{
     }
 
     function cached(){
-        $my_redis = MyRedis::getInstance();
-
-        $data = self::$data;
-        $s_key = 'DevId:'.$data['device_id'];
-        $h_key = 'Gsm_Location:'.$data['create_time'];
-
-        $my_redis->sadd($s_key, $h_key);
-        $my_redis->hMset($h_key, $data);
+//        $my_redis = MyRedis::getInstance();
+//
+//        $data = self::$data;
+//        $s_key = 'DevId:'.$data['device_id'];
+//        $h_key = 'Gsm_Location:'.$data['create_time'];
+//
+//        $my_redis->sadd($s_key, $h_key);
+//        $my_redis->hMset($h_key, $data);
     }
 
     public function echo_log($data_file_name, $_MSG_ID){

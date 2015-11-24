@@ -6,7 +6,7 @@ $func_device_information= function($packet, $message, $data_file_name) {
     $device_information_model = DeviceInformation::getInstance($packet, $data);
     $device_information_model->save();
 
-    $device_information_model->cached();
+//    $device_information_model->cached();
 
     $device_information_model->echo_log($data_file_name, $message->_MSG_ID);
 
