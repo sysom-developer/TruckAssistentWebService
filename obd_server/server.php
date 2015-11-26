@@ -2,7 +2,7 @@
 
 use Workerman\Worker;
 use comm\Handler;
-use comm\Byte;
+use comm\Response_Message;
 
 require_once __DIR__ . '/autoload.php';
 
@@ -17,6 +17,8 @@ $tcp_worker->count = 1;
 $tcp_worker->onWorkerStart = function($worker)
 {
     echo "Worker starting...\n";
+//    $response_message = new Response_Message(0x01, 0x55);
+//    $result = $response_message->getResponse();
 //    $socket_data = file_get_contents('../logs/20/log1447953550');
 //    $result = Handler::exe($socket_data, '00');
 //    var_dump($result);
@@ -51,7 +53,6 @@ $tcp_worker->onMessage = function($connection, $data)
 
     //解析后的结果存入文件
     $data_file_name = $log_name. '_data';
-
 
 
     $result_set = Handler::exe($socket_data, $data_file_name);

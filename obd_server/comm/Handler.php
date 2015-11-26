@@ -50,7 +50,10 @@ class Handler {
                 $fun_code = $error_code['MSG_ID'][$message->_MSG_ID];
                 $fun = $command_table[$fun_code];
                 $fun_result = $fun($packet, $message, $data_file_name);
-                $result_set[] = $fun_result;
+                if(!empty($fun_result)){
+                    $result_set[] = $fun_result;
+                }
+
             });
         }
 
@@ -58,6 +61,7 @@ class Handler {
         $fid_ack = new FID_ACK($packet->_FID, $state);
         $ack = $fid_ack->get_bytes();
         $result_set[] = $ack;
+
 
         return $result_set;
 
