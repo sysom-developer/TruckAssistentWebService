@@ -19,6 +19,12 @@ class Handler {
             return false;
         }
 
+
+        /**
+         * 转义
+         */
+        $data = Byte::Escape($data);
+
         $packet = new Packet($data);
 
         $echo_header = self::echo_packet_header($packet);

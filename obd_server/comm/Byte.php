@@ -49,5 +49,22 @@ class Byte{
         return $new_str;
     }
 
+    /**
+     * 转义
+     * @param $str
+     * @return string
+     */
+    public static function Escape($str){
+        $escape_arr = [
+            '1B' => '1b1d',
+            '1C' => '1b1e'
+        ];
+        array_walk($escape_arr, function($v, $k) use (&$str){
+            $str = str_replace($v, $k, $str);
+        });
+        $str = strtolower($str);
+        return $str;
+    }
+
 
 }
