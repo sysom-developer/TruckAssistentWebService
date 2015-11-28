@@ -5,7 +5,8 @@
 
     "require": {
         "workerman/workerman": "~3.2",
-        "catfan/Medoo": "~1.0"
+        "catfan/Medoo": "~1.0",
+        "rmccue/requests": ">=1.0"
     }
 
 }

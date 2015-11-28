@@ -2,6 +2,8 @@
 use comm\Model\DeviceInformation;
 use comm\Response_Message;
 
+
+
 $func_device_information= function($packet, $message, $data_file_name) {
     $data = $message->_DATA;
     $device_information_model = DeviceInformation::getInstance($packet, $data);
@@ -12,6 +14,11 @@ $func_device_information= function($packet, $message, $data_file_name) {
     $device_information_model->echo_log($data_file_name, $message->_MSG_ID);
 
     $is_activated = intval($device_information_model::$data['is_activated']);
+
+
+    $request = Requests::post('http://httpbin.org/post', array(), array('mydata' => 'something'));
+    var_dump($request);
+
     if(!empty($is_activated)){//已激活
         $response_message = new Response_Message(0x01, 0x55);
         $result = $response_message->getResponse();
