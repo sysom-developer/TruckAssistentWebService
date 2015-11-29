@@ -16,16 +16,18 @@ $func_device_information= function($packet, $message, $data_file_name) {
     $is_activated = intval($device_information_model::$data['is_activated']);
 
 
-    $request = Requests::post('http://httpbin.org/post', array(), array('mydata' => 'something'));
-    var_dump($request);
+//    $request = Requests::post('http://httpbin.org/post', array(), array('mydata' => 'something'));
+//    var_dump($request);
 
     if(!empty($is_activated)){//已激活
         $response_message = new Response_Message(0x01, 0x55);
         $result = $response_message->getResponse();
+        file_put_contents($data_file_name. 'MSG_01', $result);
         return $result;
     }else{//未激活，发送激活
         $response_message = new Response_Message(0x01, 0x00);
         $result = $response_message->getResponse();
+        file_put_contents($data_file_name. 'MSG_01', $result);
         return $result;
     }
 
