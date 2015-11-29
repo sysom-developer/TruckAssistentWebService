@@ -111,7 +111,7 @@ class Mileage extends Public_Android_Controller {
         $speed_ratio= [
             ['economic_speed' => '60-80', 'ratio' => 0.75],
             ['high_speed' => '80-', 'ratio' => 0.1],
-            ['slow_speed' => '75-85', 'ratio' => 0.15],
+            ['slow_speed' => '-60', 'ratio' => 0.15],
         ];
 
         $this->data['error']['body']['tracking'] =  $speed_ratio;
