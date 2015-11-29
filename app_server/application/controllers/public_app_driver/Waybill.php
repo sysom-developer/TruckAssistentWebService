@@ -188,4 +188,68 @@ class Waybill extends Public_Android_Controller {
     public function index()
     {
     }
+
+    /**
+     * 运单详情
+     */
+    public function detail(){
+        $waybill_id = trim($this->input->get_post('waybill_id', true));
+        if (empty($waybill_id) || !is_numeric($waybill_id) ) {
+            $this->app_error_func(1899, 'waybill_id 参数错误');
+            exit;
+        }
+
+        $base = [
+            'waybill_id' => 2,
+            'start_city' => '北京',
+            'end_city' => '上海',
+            'start_time' => 1448557261,
+            'end_time'=>1448564461,
+            'status' => '0',//状态0-运单进行中，1-运单已结束
+            'total_mileage' => 300,//总里程
+            'driving_time'  => 20,//驾驶时间
+            'estimate_consumption' => 200,//预估油耗
+            'average_velocity' => 30,//平均速度
+            'save_consumption' => 10,//节省油费
+        ];
+
+        $speed_ratio = [
+            ['speed_range' => '0-40', 'ratio' => 0.3],
+            ['speed_range' => '40-75', 'ratio' => 0.2],
+            ['speed_range' => '75-85', 'ratio' => 0.34],
+            ['speed_range' => '85-', 'ratio' => 0.16]
+        ];
+
+        $service_area = [
+            ['id' => 1, 'name' => 'xxx服务区', 'address' => 'xxx地址', 'start_time' => 1448557261, 'end_time'=>1448568061],
+            ['id' => 2, 'name' => '2bx服务区', 'address' => 'xxx地址', 'start_time' => 1448575261, 'end_time'=>1448578861],
+            ['id' => 3, 'name' => '001服务区', 'address' => 'xxx地址', 'start_time' => 1448611261, 'end_time'=>1448614861],
+        ];//服务区
+
+        $toll_station = [
+            ['id' => 4, 'name' => 'xxx收费站', 'address' => 'xxx地址', 'start_time' => 1448571661, 'end_time'=>1448575261, 'fee' => 200],
+            ['id' => 5, 'name' => '2bx收费站', 'address' => 'xxx地址','start_time' => 1448582461, 'end_time'=>1448586061, 'fee' => 100],
+            ['id' => 6, 'name' => '001收费站', 'start_time' => 1448589661, 'end_time'=>1448591401, 'fee' => 50],
+        ];//收费站
+
+        $petrol_station = [
+            ['id' => 7, 'name' => 'xxx加油站', 'address' => 'xxx地址', 'start_time' => 1448571661, 'end_time'=>1448575261, 'fee' => 50],
+            ['id' => 8, 'name' => '2bx加油站', 'address' => 'xxx地址','start_time' => 1448582461, 'end_time'=>1448586061, 'fee' => 100],
+            ['id' => 9, 'name' => '001加油站', 'address' => 'xxx地址','start_time' => 1448589661, 'end_time'=>1448591401, 'fee' => 200],
+        ];//加油站
+
+        $waybill = [
+            'base' => $base,
+            'speed_ratio' => $speed_ratio,
+            'service_area' => $service_area,
+            'toll_station' => $toll_station,
+            'petrol_station' => $petrol_station
+        ];
+
+        $this->data['error']['body']['waybill'] =  $waybill;
+
+        echo json_en($this->data['error']);
+        exit;
+
+    }
 }
