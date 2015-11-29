@@ -6,7 +6,7 @@
  * Time: 下午4:33
  */
 
-namespace comm;
+namespace comm\Protocol;
 
 
 class Message_Arr

@@ -12,6 +12,7 @@
 	},
 	"require": {
 		"php": ">=5.2.4",
+	  	"catfan/Medoo": "~1.0",
 		"league/monga": "~1.2"
 	},
 	"require-dev": {

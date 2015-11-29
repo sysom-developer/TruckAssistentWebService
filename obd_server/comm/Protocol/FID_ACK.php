@@ -1,7 +1,7 @@
 <?php
 
 
-namespace comm;
+namespace comm\Protocol;
 
 
 class FID_ACK

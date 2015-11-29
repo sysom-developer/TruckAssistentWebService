@@ -2,9 +2,9 @@
 
 namespace comm;
 
-use comm\FID_ACK;
-use comm\Packet;
-use comm\Byte;
+use comm\Protocol\FID_ACK;
+use comm\Protocol\Packet;
+use comm\Protocol\Byte;
 
 class Handler {
     public static function exe($data, $data_file_name)

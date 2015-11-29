@@ -1,6 +1,6 @@
 <?php
 use comm\Model\DeviceInformation;
-use comm\Response_Message;
+use comm\Protocol\Response_Message;
 
 
 

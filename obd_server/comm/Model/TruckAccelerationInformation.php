@@ -4,7 +4,7 @@ namespace comm\Model;
 
 use comm\Cache\MyRedis;
 use \comm\Model\BaseModel as Model;
-use comm\Byte;
+use comm\Protocol\Byte;
 
 
 class TruckAccelerationInformation extends Model{

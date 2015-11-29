@@ -1,6 +1,6 @@
 <?php
 
-namespace comm;
+namespace comm\Protocol;
 
 class Byte{
 
