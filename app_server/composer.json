@@ -13,7 +13,8 @@
 	"require": {
 		"php": ">=5.2.4",
 	  	"catfan/Medoo": "~1.0",
-		"league/monga": "~1.2"
+		"league/monga": "~1.2",
+		"league/container": "~2.0"
 	},
 	"require-dev": {
 		"mikey179/vfsStream": "1.1.*"

@@ -46,10 +46,10 @@ class Waybill extends Public_Android_Controller {
             exit;
         }
 
-        if(!in_array($by, array('desc', 'asc'))){
-            $this->app_error_func(1496, 'by 参数错误');
-            exit;
-        }
+//        if(!in_array($by, array('desc', 'asc'))){
+//            $this->app_error_func(1496, 'by 参数错误');
+//            exit;
+//        }
 
         if(!in_array($type, array('1', '2'))){
             $this->app_error_func(1495, 'type 参数错误');

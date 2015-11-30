@@ -17,7 +17,7 @@ class Waybill_service extends Service {
      * @param string $by
      * @return mixed
      */
-    public function get_waybill_data_list($where = array(), $limit = '', $offset = 0, $order = 'waybill_id', $by = 'ASC') {
+    public function get_waybill_data_list($where = array(), $limit = '', $offset = 0, $order = 'waybill_id', $by = 'desc') {
         $data = $this->common_model->get_data('waybill', $where, $limit, $offset, $order, $by)->result_array();
 
         return $data;

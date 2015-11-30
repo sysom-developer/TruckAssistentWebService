@@ -6,7 +6,8 @@
     "require": {
         "workerman/workerman": "~3.2",
         "catfan/Medoo": "~1.0",
-        "rmccue/requests": ">=1.0"
+        "rmccue/requests": ">=1.0",
+        "league/container": "~2.0"
     }
 
 }
