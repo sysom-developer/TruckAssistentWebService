@@ -22,6 +22,14 @@ class Test_interface extends Public_Android_Controller {
         $this->load->view($this->appfolder.'/test_waybill', $this->data);
     }
 
+    public function ranking(){
+        $this->data['title'] = '排行榜模块，公版APP接口测试';
+
+        $this->load->view($this->appfolder.'/test_ranking', $this->data);
+    }
+
+
+
     public function obd_server(){
         $this->data['title'] = 'RTOS模块，公版APP接口测试';
         $this->load->view($this->appfolder.'/test_obd_server', $this->data);

@@ -34,12 +34,21 @@ switch (ENVIRONMENT) {
         exit('999');
 }
 ?>
+
+<p>
+    <a href="<?php echo $domain;?>/test_interface">主菜单</a>
+</p>
 <p>
     <a href="<?php echo $domain;?>/test_interface/login">登录模块接口</a>
 </p>
 
 <p>
     <a href="<?php echo $domain;?>/test_interface/waybill">运单模块接口</a>
+</p>
+
+
+<p>
+    <a href="<?php echo $domain;?>/test_interface/ranking">排行榜模块接口</a>
 </p>
 
 <p>
