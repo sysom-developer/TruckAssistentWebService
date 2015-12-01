@@ -2,7 +2,7 @@
 
 use Workerman\Worker;
 use comm\Handler;
-use comm\Response_Message;
+use comm\Protocol\Response_Message;
 
 require_once __DIR__ . '/autoload.php';
 
@@ -19,7 +19,7 @@ $tcp_worker->onWorkerStart = function($worker)
     echo "Worker starting...\n";
 //    $response_message = new Response_Message(0x01, 0x55);
 //    $result = $response_message->getResponse();
-//    $socket_data = file_get_contents('../logs/20/log1447953550');
+//    $socket_data = file_get_contents('../logs/20/log1447953552');
 //    $result = Handler::exe($socket_data, '00');
 //    var_dump($result);
 
