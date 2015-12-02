@@ -18,11 +18,7 @@ class Mileage extends Public_Android_Controller {
         );
     }
 
-
-    /**
-     * 行程概览
-     */
-    public function detail(){
+    public function index(){
         $mileage_id = trim($this->input->get_post('mileage_id', true));
 
         if (empty($mileage_id) || !is_numeric($mileage_id) ) {
@@ -42,47 +38,12 @@ class Mileage extends Public_Android_Controller {
             'average_consumption' => 37,//平均油耗
         ];
 
-        $consumption = [
-            'estimate_consumption' => 200,//预估油耗
-            'average_consumption' => 180,//平均油耗
-            'current_consumption' => 210,//当前油耗
+
+        $speed_ratio= [
+            ['economic_speed' => '60-80', 'ratio' => 0.75],
+            ['high_speed' => '80-', 'ratio' => 0.1],
+            ['slow_speed' => '-60', 'ratio' => 0.15],
         ];
-
-        $economic_speed = [
-            'economic_mileage' => 290,//经济里程
-            'longest_time' => 40,//最长时间
-            'economic_time' => 40,//经济时间
-        ];
-
-        $driving_behavior = [
-            'sharp_slowdown' => 1, //急减速
-            'slow_start' => 3,//起步慢
-            'speed_limit' => 0//超速
-        ];
-
-        $mileage = [
-            'base' => $base,
-            'consumption' => $consumption,
-            'economic_speed' => $economic_speed,
-            'driving_behavior' => $driving_behavior
-        ];
-
-        $this->data['error']['body']['waybill'] =  $mileage;
-
-        echo json_en($this->data['error']);
-        exit;
-
-    }
-
-    /**
-     * 行程详情
-     */
-    public function tracking(){
-        $mileage_id = trim($this->input->get_post('mileage_id', true));
-        if (empty($mileage_id) || !is_numeric($mileage_id) ) {
-            $this->app_error_func(2198, 'mileage_id 参数错误');
-            exit;
-        }
 
         $tracking = [
             ['longitude' => 130, 'latitude' => 65, 'start_time' => 1448575261, 'end_time'=>1448578862],
@@ -93,30 +54,17 @@ class Mileage extends Public_Android_Controller {
             ['longitude' => 136, 'latitude' => 70, 'start_time' => 1448575271, 'end_time'=>1448578872],
         ];
 
-
-        $this->data['error']['body']['tracking'] =  $tracking;
-
-        echo json_en($this->data['error']);
-        exit;
-
-    }
-
-    public function speed_ratio(){
-        $mileage_id = trim($this->input->get_post('mileage_id', true));
-        if (empty($mileage_id) || !is_numeric($mileage_id) ) {
-            $this->app_error_func(2298, 'mileage_id 参数错误');
-            exit;
-        }
-
-        $speed_ratio= [
-            ['economic_speed' => '60-80', 'ratio' => 0.75],
-            ['high_speed' => '80-', 'ratio' => 0.1],
-            ['slow_speed' => '-60', 'ratio' => 0.15],
+        $mileage = [
+            'base' => $base,
+            'speed_ratio' => $speed_ratio,
+            'tracking' => $tracking
         ];
 
-        $this->data['error']['body']['tracking'] =  $speed_ratio;
+        $this->data['error']['body']['mileage'] =  $mileage;
 
         echo json_en($this->data['error']);
         exit;
+
     }
+
 }

@@ -59,7 +59,7 @@ class Ranking extends Public_Android_Controller {
                 ['driver_id' => 10, 'name' => 'ffh','driving_mileage' => 3807],
                 ['driver_id' => 21, 'name' => 'kldfk','driving_mileage' => 3755],
             ];
-        }elseif($order == 'economic_mileage'){
+        }elseif($order == 'consumption/'){
           $ranking_list = [
               ['driver_id' => 3, 'name' => '11keyew', 'economic_mileage' => 4806],
               ['driver_id' => 4, 'name' => '风e云','economic_mileage' => 4702],
