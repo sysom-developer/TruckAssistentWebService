@@ -52,7 +52,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/waybill/get_waybill_list" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">1. 根据司机id获取运单列表(多个、单个) 历史运单｜ 历史运单</td>
+            <td width="300">1. 根据司机id获取运单列表(多个、单个)</td>
             <td><?php echo $domain?>/waybill/get_waybill_list</td>
         </tr>
         <tr>
@@ -314,7 +314,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/waybill/detail" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">6. 运单详情, 首页 | 停留时间，运单，路段耗油，公里耗油停留</td>
+            <td width="300">6. 运单详情</td>
             <td><?php echo $domain?>/waybill/detail</td>
         </tr>
         <tr>
@@ -355,7 +355,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/mileage/detail" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">7. 行程详情 首页｜ 轨迹详情（基本信息）</td>
+            <td width="300">7. 行程详情</td>
             <td><?php echo $domain?>/mileage/detail</td>
         </tr>
         <tr>
@@ -395,7 +395,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/mileage/tracking" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">8. 轨迹详情 首页｜ 轨迹详情（坐标点）</td>
+            <td width="300">8. 轨迹详情</td>
             <td><?php echo $domain?>/mileage/tracking</td>
         </tr>
         <tr>
@@ -436,7 +436,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/mileage/speed_ratio" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">9. 轨迹速度比例 首页｜ 轨迹详情</td>
+            <td width="300">9. 轨迹速度比例</td>
             <td><?php echo $domain?>/mileage/speed_ratio</td>
         </tr>
         <tr>
@@ -471,48 +471,6 @@ switch (ENVIRONMENT) {
         </tr>
     </table>
 </form>
-
-
-
-<form action="<?php echo $domain?>/waybill/summary" method="get">
-    <table style="margin-left: 30px;" width="100%">
-        <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">10.  获取月份运单统计   历史运单｜ 历史运单</td>
-            <td><?php echo $domain?>/mileage/speed_ratio</td>
-        </tr>
-        <tr>
-            <td>  时间差，0－当月，－1－上一月， －2-上2月（last_count）</td>
-            <td><input type="text" name="mileage_id" value="2"></td>
-        </tr>
-
-        <tr>
-            <td colspan="2">
-                查看json结果：
-                <select name="n">
-                    <option value="2">否</option>
-                    <option value="1">是</option>
-                </select>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2"><input type="submit" value="提 交"></td>
-        </tr>
-
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
-        </tr>
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"2298",&nbsp;&nbsp; "description":"mileage_id 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
-        </tr>
-
-
-        <tr>
-            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
-        </tr>
-    </table>
-</form>
-
 
 </body>
 </html>

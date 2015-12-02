@@ -39,7 +39,7 @@ class Mileage extends Public_Android_Controller {
             'driving_mileage' => 480,//行驶里程
             'average_velocity' => 66.8,//平均速度
             'driving_time'  => 5,//驾驶时间
-            'save_consumption' => 8,//节省油费
+            'average_consumption' => 37,//平均油耗
         ];
 
         $consumption = [
