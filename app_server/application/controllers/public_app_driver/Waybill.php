@@ -126,13 +126,19 @@ class Waybill extends Public_Android_Controller {
     }
 
     public  function summary(){
-        $result = [
-            'count' => 8,
+        $summary = [
+            'waybill_count' => 8,
             'total_mileage' => 21200,
-            'transport_time' => 423434343,
+            'transport_time' => 245.5*60*60*24,
             'consumption_amount' => 27500,
-            'stay_dap/'
+            'total_stay' => 6.5*60*60*24,
+            'longest_stay' => 3.5*60*60*24,
+            'average_stay' => 2.5*60*60*24,
         ];
+
+        $this->data['error']['body']['summary'] = $summary;
+        echo json_en($this->data['error']);
+        exit;
     }
 
 }

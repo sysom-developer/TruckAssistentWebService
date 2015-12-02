@@ -167,69 +167,6 @@ switch (ENVIRONMENT) {
 </form>
 
 
-<form action="<?php echo $domain?>/waybill/get_node_list" method="get">
-    <table style="margin-left: 30px;" width="100%">
-        <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">3. 根据运单id获取节点列表(多个、单个)</td>
-            <td><?php echo $domain?>/waybill/get_node_list</td>
-        </tr>
-        <tr>
-            <td>运单id（waybill_id）</td>
-            <td><input type="text" name="waybill_id" value="2"></td>
-        </tr>
-        <tr>
-            <td> 起始（offset）</td>
-            <td><input type="text" name="offset" value="0"></td>
-        </tr>
-        <tr>
-            <td> 查询数量（limit）</td>
-            <td><input type="text" name="limit" value="3"></td>
-        </tr>
-        <tr>
-            <td>  排序（order）</td>
-            <td><input type="text" name="order" value="create_time"></td>
-        </tr>
-        <tr>
-            <td>  排序（by）</td>
-            <td><input type="text" name="by" value="desc"></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                查看json结果：
-                <select name="n">
-                    <option value="2">否</option>
-                    <option value="1">是</option>
-                </select>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2"><input type="submit" value="提 交"></td>
-        </tr>
-
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
-        </tr>
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"1599",&nbsp;&nbsp; "description":"waybill_id 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
-        </tr>
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"1598",&nbsp;&nbsp; "description":"offset 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
-        </tr>
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"1597",&nbsp;&nbsp; "description":"limit 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
-        </tr>
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"1596",&nbsp;&nbsp; "description":"by 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
-        </tr>
-
-
-        <tr>
-            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
-        </tr>
-    </table>
-</form>
-
 
 <form action="<?php echo $domain?>/waybill/get_hot_city" method="get">
     <table style="margin-left: 30px;" width="100%">
@@ -314,7 +251,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/waybill/detail" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">6. 运单详情, 首页 | 停留时间，运单，路段耗油，公里耗油停留</td>
+            <td width="300">6. 运单详情, 首页，历史运单 | 停留时间，运单，路段耗油，公里耗油停留</td>
             <td><?php echo $domain?>/waybill/detail</td>
         </tr>
         <tr>
@@ -477,8 +414,8 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/waybill/summary" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">10.  获取月份运单统计   历史运单｜ 历史运单</td>
-            <td><?php echo $domain?>/mileage/speed_ratio</td>
+            <td width="300">10.  获取月份运单统计   历史运单｜ 历史运单,停留</td>
+            <td><?php echo $domain?>/waybill/summary</td>
         </tr>
         <tr>
             <td>  时间差，0－当月，－1－上一月， －2-上2月（last_count）</td>
