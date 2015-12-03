@@ -21,64 +21,126 @@ class Ranking extends Public_Android_Controller {
     /**
      * 根据条件获取排行榜列表
      */
-    public function get_ranking_list()
+    public function index()
     {
-        $offset = trim($this->input->get_post('offset', true));
-        $limit = trim($this->input->get_post('limit', true));
-        $order = trim($this->input->get_post('order', true));
+        $type = trim($this->input->get_post('type', true));;
 
-        if(empty($offset)){
-            $offset = 0;
-        }
-        if (!is_numeric($offset) ) {
-            $this->app_error_func(2398, 'offset 参数错误');
-            exit;
-        }
+        $result = [];
+        if($type == 'driving_mileage'){
+            $result = $this->driving_mileage();
 
-        if(empty($limit)){
-            $limit = 0;
         }
-        if (!is_numeric($limit) ) {
-            $this->app_error_func(2397, 'limit 参数错误');
-            exit;
-        }
-        if(empty($order)){
-          $order = 'driving_mileage';
+        elseif($type == 'consumption_per_100km'){
+            $result = $this->consumption_per_100km();
         }
 
-        if($order == 'driving_mileage'){
-            $ranking_list = [
-                ['driver_id' => 2, 'name' => 'key', 'driving_mileage' => 4806],
-                ['driver_id' => 3, 'name' => '风云','driving_mileage' => 4702],
-                ['driver_id' => 4, 'name' => '明天更好','driving_mileage' => 4500],
-                ['driver_id' => 5, 'name' => 'xxx','driving_mileage' => 4406],
-                ['driver_id' => 6, 'name' => 'aaa','driving_mileage' => 4399],
-                ['driver_id' => 7, 'name' => '1hd','driving_mileage' => 4298],
-                ['driver_id' => 8, 'name' => '90jfe','driving_mileage' => 4100],
-                ['driver_id' => 9, 'name' => 'fulkl','driving_mileage' => 4000],
-                ['driver_id' => 10, 'name' => 'ffh','driving_mileage' => 3807],
-                ['driver_id' => 21, 'name' => 'kldfk','driving_mileage' => 3755],
-            ];
-        }elseif($order == 'consumption/'){
-          $ranking_list = [
-              ['driver_id' => 3, 'name' => '11keyew', 'economic_mileage' => 4806],
-              ['driver_id' => 4, 'name' => '风e云','economic_mileage' => 4702],
-              ['driver_id' => 78, 'name' => '明ew天更好','economic_mileage' => 4500],
-              ['driver_id' => 5, 'name' => 'xerxx','economic_mileage' => 4406],
-              ['driver_id' => 6, 'name' => 'aada','economic_mileage' => 4399],
-              ['driver_id' => 18, 'name' => '1hd','economic_mileage' => 4298],
-              ['driver_id' => 8, 'name' => '9d0jfe','economic_mileage' => 4100],
-              ['driver_id' => 9, 'name' => 'fudlkl','economic_mileage' => 4000],
-              ['driver_id' => 10, 'name' => 'fdfh','economic_mileage' => 3807],
-              ['driver_id' => 21, 'name' => 'kl12dfk','economic_mileage' => 3755],
-          ];
-        }
+        $self = [
+            'driver_id' => 90,
+            'name' => 'llldd',
+            'driving_mileage' => 4806,
+            'consumption_per_100km' => 23,
+            'driver_head_icon' => 'xxx',
+        ];
 
-
-        $this->data['error']['body']['waybill_data_list'] = $ranking_list;
+        $this->data['error']['body']['data'] = array_merge($self, $result);
 
         echo json_en($this->data['error']);
         exit;
     }
 
+    private function driving_mileage(){
+        $follow = [
+            ['driver_id' => 2, 'name' => 'key', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4806],
+            ['driver_id' => 3, 'name' => '风云', 'driver_head_icon' => 'xxx','driving_mileage' => 4702],
+            ['driver_id' => 4, 'name' => '明天更好', 'driver_head_icon' => 'xxx','driving_mileage' => 4500],
+            ['driver_id' => 5, 'name' => 'xxx', 'driver_head_icon' => 'xxx','driving_mileage' => 4406],
+            ['driver_id' => 6, 'name' => 'aaa', 'driver_head_icon' => 'xxx','driving_mileage' => 4399],
+            ['driver_id' => 7, 'name' => '1hd', 'driver_head_icon' => 'xxx','driving_mileage' => 4298],
+            ['driver_id' => 8, 'name' => '90jfe', 'driver_head_icon' => 'xxx','driving_mileage' => 4100],
+            ['driver_id' => 9, 'name' => 'fulkl', 'driver_head_icon' => 'xxx','driving_mileage' => 4000],
+            ['driver_id' => 10, 'name' => 'ffh', 'driver_head_icon' => 'xxx','driving_mileage' => 3807],
+            ['driver_id' => 21, 'name' => 'kldfk', 'driver_head_icon' => 'xxx','driving_mileage' => 3755],
+        ];
+        $friend = [
+            ['driver_id' => 2, 'name' => 'key', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4806],
+            ['driver_id' => 3, 'name' => '风云', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4702],
+            ['driver_id' => 4, 'name' => '明天更好', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4500],
+            ['driver_id' => 5, 'name' => 'xxx', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4406],
+            ['driver_id' => 6, 'name' => 'aaa', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4399],
+            ['driver_id' => 7, 'name' => '1hd', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4298],
+            ['driver_id' => 8, 'name' => '90jfe', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4100],
+            ['driver_id' => 9, 'name' => 'fulkl', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4000],
+            ['driver_id' => 10, 'name' => 'ffh', 'driver_head_icon' => 'xxx', 'driving_mileage' => 3807],
+            ['driver_id' => 21, 'name' => 'kldfk', 'driver_head_icon' => 'xxx', 'driving_mileage' => 3755],
+        ];
+        return ['follow' =>$follow, 'friend' => $friend];
+    }
+
+    private function consumption_per_100km(){
+        $follow = [
+            ['driver_id' => 2, 'name' => 'key', 'driver_head_icon' => 'xxx','driving_mileage' => 4806],
+            ['driver_id' => 3, 'name' => '风云', 'driver_head_icon' => 'xxx','driving_mileage' => 4702],
+            ['driver_id' => 4, 'name' => '明天更好', 'driver_head_icon' => 'xxx','driving_mileage' => 4500],
+            ['driver_id' => 5, 'name' => 'xxx', 'driver_head_icon' => 'xxx','driving_mileage' => 4406],
+            ['driver_id' => 6, 'name' => 'aaa', 'driver_head_icon' => 'xxx','driving_mileage' => 4399],
+            ['driver_id' => 7, 'name' => '1hd', 'driver_head_icon' => 'xxx','driving_mileage' => 4298],
+            ['driver_id' => 8, 'name' => '90jfe', 'driver_head_icon' => 'xxx','driving_mileage' => 4100],
+            ['driver_id' => 9, 'name' => 'fulkl', 'driver_head_icon' => 'xxx','driving_mileage' => 4000],
+            ['driver_id' => 10, 'name' => 'ffh', 'driver_head_icon' => 'xxx','driving_mileage' => 3807],
+            ['driver_id' => 21, 'name' => 'kldfk', 'driver_head_icon' => 'xxx','driving_mileage' => 3755],
+        ];
+        $friend = [
+            ['driver_id' => 2, 'name' => 'key', 'driver_head_icon' => 'xxx','consumption_per_100km' => 34],
+            ['driver_id' => 3, 'name' => '风云', 'driver_head_icon' => 'xxx', 'consumption_per_100km' => 35],
+            ['driver_id' => 4, 'name' => '明天更好','driver_head_icon' => 'xxx','consumption_per_100km' => 36],
+            ['driver_id' => 5, 'name' => 'xxx','driver_head_icon' => 'xxx','consumption_per_100km' => 37],
+            ['driver_id' => 6, 'name' => 'aaa','driver_head_icon' => 'xxx','consumption_per_100km' => 38],
+            ['driver_id' => 7, 'name' => '1hd','driver_head_icon' => 'xxx','consumption_per_100km' => 39],
+            ['driver_id' => 8, 'name' => '90jfe','driver_head_icon' => 'xxx','consumption_per_100km' => 45],
+            ['driver_id' => 9, 'name' => 'fulkl','driver_head_icon' => 'xxx','consumption_per_100km' => 47],
+            ['driver_id' => 10, 'name' => 'ffh','driver_head_icon' => 'xxx','consumption_per_100km' => 48],
+            ['driver_id' => 21, 'name' => 'kldfk','driver_head_icon' => 'xxx','consumption_per_100km' => 58],
+        ];
+        return ['follow' =>$follow, 'friend' => $friend];
+    }
+
+    public function detail(){
+
+        $type = trim($this->input->get_post('type', true));;
+
+        $result = [];
+        if($type == 'driving_mileage'){
+            $result = [ 'driving_mileage' => [
+                ['month' => 1, 'mileage' => 23],
+                ['month' => 2, 'mileage' => 28],
+                ['month' => 3, 'mileage' => 29],
+                ['month' => 4, 'mileage' => 22],
+                ['month' => 5, 'mileage' => 23],
+                ['month' => 6, 'mileage' => 25],
+            ]];
+
+        } elseif($type == 'consumption_per_100km'){
+            $result = [ 'consumption_per_100km' => [
+                ['month' => 1, 'consumption' => 23],
+                ['month' => 2, 'consumption' => 28],
+                ['month' => 3, 'consumption' => 29],
+                ['month' => 4, 'consumption' => 22],
+                ['month' => 5, 'consumption' => 23],
+                ['month' => 6, 'consumption' => 25],
+            ]];
+        }
+
+        $self = ['base' => [
+            'driver_id' => 90,
+            'name' => 'llldd',
+            'driving_mileage' => 4806,
+            'consumption_per_100km' => 23,
+            'driver_head_icon' => 'xxx',
+        ]];
+
+        $this->data['error']['body']['data'] = array_merge($self, $result);
+
+        echo json_en($this->data['error']);
+        exit;
+    }
 }

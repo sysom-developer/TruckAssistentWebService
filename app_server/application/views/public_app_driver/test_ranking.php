@@ -49,29 +49,106 @@ switch (ENVIRONMENT) {
 </p>
 
 <br/><br/>
-<form action="<?php echo $domain?>/ranking/get_ranking_list" method="get">
+<form action="<?php echo $domain?>/ranking/index" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
             <td width="300">1. 获取排行榜司机列表(多个)</td>
-            <td><?php echo $domain?>/ranking/get_ranking_list</td>
+            <td><?php echo $domain?>/ranking/index</td>
+        </tr>
+
+
+        <tr>
+            <td>  年（year）</td>
+            <td><input type="text" name="year" value="2015"></td>
+        </tr>
+        <tr>
+            <td>  月（month）</td>
+            <td><input type="text" name="year" value="12"></td>
+        </tr>
+
+
+        <tr>
+            <td>  类型（type）</td>
+
+            <td>
+                <select name="type">
+                    <option value="driving_mileage">驾驶里程</option>
+                    <option value="consumption_per_100km">百里油耗</option>
+                </select>
+            </td>
+
         </tr>
 
         <tr>
             <td> 起始（offset）</td>
             <td><input type="text" name="offset" value="0"></td>
         </tr>
+
         <tr>
             <td> 查询数量（limit）</td>
             <td><input type="text" name="limit" value="3"></td>
         </tr>
+
+
         <tr>
-            <td>  排序（order）</td>
-            <td>
-              <select name="order">
-                  <option value="driving_mileage">driving_mileage</option>
-                  <option value="economic_mileage">economic_mileage</option>
-              </select>
+            <td colspan="2">
+                查看json结果：
+                <select name="n">
+                    <option value="2">否</option>
+                    <option value="1">是</option>
+                </select>
             </td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="提 交"></td>
+        </tr>
+
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
+        </tr>
+    </table>
+</form>
+
+
+<form action="<?php echo $domain?>/ranking/detail" method="get">
+    <table style="margin-left: 30px;" width="100%">
+        <tr style="font-weight: bold; font-size: 14px;">
+            <td width="300">2. 获取司机详细排行信息</td>
+            <td><?php echo $domain?>/ranking/detail</td>
+        </tr>
+
+
+        <tr>
+            <td>  类型（type）</td>
+
+            <td>
+                <select name="type">
+                    <option value="driving_mileage">驾驶里程</option>
+                    <option value="consumption_per_100km">百里油耗</option>
+                </select>
+            </td>
+
+        </tr>
+
+
+        <tr>
+            <td>  司机id（driver_id）</td>
+            <td><input type="text" name="driver_id" value="2"></td>
+        </tr>
+
+        <tr>
+            <td>  年（year）</td>
+            <td><input type="text" name="year" value="2015"></td>
+        </tr>
+        <tr>
+            <td>  月（month）</td>
+            <td><input type="text" name="year" value="12"></td>
         </tr>
 
         <tr>
@@ -92,12 +169,53 @@ switch (ENVIRONMENT) {
             <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
         </tr>
 
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"2398",&nbsp;&nbsp; "description":"offset 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
+
+        <tr>
+            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
         </tr>
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">{"application":{"head":{{"code":"2397",&nbsp;&nbsp; "description":"limit 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
+    </table>
+</form>
+
+
+<form action="<?php echo $domain?>/friend/follow" method="get">
+    <table style="margin-left: 30px;" width="100%">
+        <tr style="font-weight: bold; font-size: 14px;">
+            <td width="300">3. 添加关注</td>
+            <td><?php echo $domain?>/friend/follow</td>
         </tr>
+
+
+        <tr>
+            <td>  被关注者id（followed_driver_id）</td>
+            <td><input type="text" name="followed_driver_id" value="3"></td>
+        </tr>
+
+
+        <tr>
+            <td>  关注者id（follower_driver_id）</td>
+            <td><input type="text" name="follower_driver_id" value="2"></td>
+        </tr>
+
+
+
+        <tr>
+            <td colspan="2">
+                查看json结果：
+                <select name="n">
+                    <option value="2">否</option>
+                    <option value="1">是</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="提 交"></td>
+        </tr>
+
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+
 
         <tr>
             <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
