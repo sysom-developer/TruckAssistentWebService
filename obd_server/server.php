@@ -3,6 +3,7 @@
 use Workerman\Worker;
 use comm\Handler;
 use comm\Protocol\Response_Message;
+use comm\Cache\MyRedis;
 
 require_once __DIR__ . '/autoload.php';
 
@@ -17,6 +18,9 @@ $tcp_worker->count = 1;
 $tcp_worker->onWorkerStart = function($worker)
 {
     echo "Worker starting...\n";
+//    $my_redis = MyRedis::getInstance();
+//    $data = $my_redis->hMGet('pet', array('dog', 'cat'));
+//    var_dump($data);
 //    $response_message = new Response_Message(0x01, 0x55);
 //    $result = $response_message->getResponse();
 //    $socket_data = file_get_contents('../logs/20/log1447953552');

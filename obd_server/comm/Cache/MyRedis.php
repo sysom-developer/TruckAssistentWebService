@@ -160,4 +160,8 @@ class MyRedis {
         return self::$redis->hIncrBy( $key, $hashKey, $value );
     }
 
+
+    public function hMGet( $key, $hashKeys ) {
+        return self::$redis->hMGet( $key, $hashKeys );
+    }
 }
