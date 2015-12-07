@@ -120,4 +120,49 @@ class Vehicle extends Public_Android_Controller {
     public function index()
     {
     }
+
+    /**
+     * 车辆品牌
+     */
+    public function get_vehicle_brand()
+    {
+        $data = $this->config->item('brand', 'vehicle');
+        $this->data['error']['body']['data_list'] =  array_values($data);
+
+        echo json_en($this->data['error']);
+        exit;
+    }
+    /**
+     * 车辆型号
+     */
+    public function get_vehicle_model()
+    {
+        $data = $this->config->item('model', 'vehicle');
+        $this->data['error']['body']['data_list'] =  array_values($data);
+
+        echo json_en($this->data['error']);
+        exit;
+    }
+    /**
+     * 获取发动机品牌
+     */
+    public function get_engine_brand()
+    {
+        $data = $this->config->item('engine_brand', 'vehicle');
+        $this->data['error']['body']['data_list'] =  array_values($data);
+
+        echo json_en($this->data['error']);
+        exit;
+    }
+    /**
+     * 获取发动机排量
+     */
+    public function get_engine_displacement()
+    {
+        $data = $this->config->item('engine_displacement', 'vehicle');
+        $this->data['error']['body']['data_list'] =  array_values($data);
+
+        echo json_en($this->data['error']);
+        exit;
+    }
 }

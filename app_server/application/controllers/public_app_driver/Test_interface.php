@@ -28,6 +28,12 @@ class Test_interface extends Public_Android_Controller {
         $this->load->view($this->appfolder.'/test_ranking', $this->data);
     }
 
+    public function my(){
+        $this->data['title'] = '我的模块，公版APP接口测试';
+
+        $this->load->view($this->appfolder.'/test_my', $this->data);
+    }
+
 
 
     public function obd_server(){

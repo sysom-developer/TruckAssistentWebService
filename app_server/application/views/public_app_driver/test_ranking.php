@@ -48,6 +48,11 @@ switch (ENVIRONMENT) {
     <a href="<?php echo $domain;?>/test_interface/ranking">排行榜模块接口</a>
 </p>
 
+
+<p>
+    <a href="<?php echo $domain;?>/test_interface/my">我的</a>
+</p>
+
 <br/><br/>
 <form action="<?php echo $domain?>/ranking/index" method="get">
     <table style="margin-left: 30px;" width="100%">

@@ -52,6 +52,11 @@ switch (ENVIRONMENT) {
     <a href="<?php echo $domain;?>/test_interface/ranking">排行榜模块接口</a>
 </p>
 
+
+<p>
+    <a href="<?php echo $domain;?>/test_interface/my">我的</a>
+</p>
+
 <br/><br/>
 
 <form action="<?php echo $domain?>/seccode/get_sms_seccode" method="get">
@@ -405,6 +410,26 @@ switch (ENVIRONMENT) {
             <td>odb设备号（obd_device_no）</td>
             <td><input type="text" name="obd_device_no" value="3fdslkfdsfhk"></td>
         </tr>
+
+
+        <tr>
+            <td>车辆品牌（vehicle_brand）</td>
+            <td><input type="text" name="vehicle_brand" value="3fdslkfdsfhk"></td>
+        </tr>
+        <tr>
+            <td>获取车辆型号（obd_device_no）</td>
+            <td><input type="text" name="vehicle_model" value="3fdslkfdsfhk"></td>
+        </tr>
+        <tr>
+            <td>发动机品牌（engine_brand）</td>
+            <td><input type="text" name="engine_brand" value="3fdslkfdsfhk"></td>
+        </tr>
+        <tr>
+            <td>发动机排量（engine_displacement）</td>
+            <td><input type="text" name="engine_displacement" value="3fdslkfdsfhk"></td>
+        </tr>
+
+
 
 <!--        <tr>-->
 <!--            <td>驾驶证照片（driver_license_icon）</td>-->

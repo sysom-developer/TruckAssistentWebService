@@ -51,6 +51,11 @@ switch (ENVIRONMENT) {
     <a href="<?php echo $domain;?>/test_interface/ranking">排行榜模块接口</a>
 </p>
 
+
+<p>
+    <a href="<?php echo $domain;?>/test_interface/my">我的</a>
+</p>
+
 <p>
 <!--    <a href="--><?php //echo $domain;?><!--/test_interface/obd_server">obd_server模块接口</a>-->
 </p>
