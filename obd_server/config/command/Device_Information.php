@@ -20,11 +20,11 @@ $func_device_information= function($packet, $message, $data_file_name) {
 //    var_dump($request);
 
     if(!empty($is_activated)){//已激活
-        $response_message = new Response_Message('01', '55');
-
-        $result = $response_message->getResponse();
-        file_put_contents($data_file_name. 'MSG_01', $result);
-        return $result;
+//        $response_message = new Response_Message('01', '55');
+//
+//        $result = $response_message->getResponse();
+//        file_put_contents($data_file_name. 'MSG_01', $result);
+//        return $result;
     }else{//未激活，发送激活
         $response_message = new Response_Message('01', '00');
         $result = $response_message->getResponse();
