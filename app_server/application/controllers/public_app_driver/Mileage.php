@@ -46,12 +46,12 @@ class Mileage extends Public_Android_Controller {
         ];
 
         $tracking = [
-            ['longitude' => 130, 'latitude' => 65, 'start_time' => 1448575261, 'end_time'=>1448578862],
-            ['longitude' => 131, 'latitude' => 66, 'start_time' => 1448575263, 'end_time'=>1448578864],
-            ['longitude' => 132, 'latitude' => 67, 'start_time' => 1448575265, 'end_time'=>1448578866],
-            ['longitude' => 133, 'latitude' => 68, 'start_time' => 1448575267, 'end_time'=>1448578868],
-            ['longitude' => 135, 'latitude' => 69, 'start_time' => 1448575269, 'end_time'=>1448578870],
-            ['longitude' => 136, 'latitude' => 70, 'start_time' => 1448575271, 'end_time'=>1448578872],
+            ['longitude' => 121.604924, 'ew_indicator' => '45', 'latitude' => 31.282053, 'ns_indicator' => '4e', 'time' => 1448600020],
+            ['longitude' => 121.605203, 'ew_indicator' => '45', 'latitude' => 31.281904, 'ns_indicator' => '4e', 'time' => 1448601722],
+            ['longitude' => 114.7689,   'ew_indicator' => '45', 'latitude' => 32.280327, 'ns_indicator' => '4e', 'time' => 1449107905],
+            ['longitude' => 105.270138, 'ew_indicator' => '45', 'latitude' => 32.149730, 'ns_indicator' => '4e', 'time' => 1449194171],
+            ['longitude' => 105.121904, 'ew_indicator' => '45', 'latitude' => 32.17897,  'ns_indicator' => '4e', 'time' => 1449195250],
+            ['longitude' => 105.9234,   'ew_indicator' => '45', 'latitude' => 31.888799, 'ns_indicator' => '4e', 'time' => 1449196048],
         ];
 
         $mileage = [
