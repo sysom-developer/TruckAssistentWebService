@@ -31,11 +31,11 @@ class TruckInformation extends Model{
 
 
     public function init($packet, $data){
-        $longitude = substr($data, 0, 4*2);
+        $longitude = Byte::Parse_Latitude(substr($data, 0, 4*2));
 
         $ew_indicator = substr($data, 4*2, 1*2);
 
-        $latitude = substr($data, 5*2, 4*2);
+        $latitude = Byte::Parse_Latitude(substr($data, 5*2, 4*2));
 
         $ns_indicator = substr($data, 9*2, 1*2);
 

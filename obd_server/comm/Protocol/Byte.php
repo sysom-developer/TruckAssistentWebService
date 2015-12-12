@@ -50,7 +50,7 @@ class Byte{
     }
 
     /**
-     * 转义
+     * 解析转义
      * @param $str
      * @return string
      */
@@ -66,5 +66,12 @@ class Byte{
         return $str;
     }
 
+    public static function Parse_Latitude($str){
+        $int = hexdec(substr($str, 0, 2));
+        $decimal = hexdec(substr($str, 2));
 
+        $result = $int .'.'. $decimal;
+
+        return $result;
+    }
 }

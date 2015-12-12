@@ -42,10 +42,10 @@ class EventReport extends Model{
         //车辆电瓶电压状态
         $car_battery = substr($data, 5*2, 1*2);
 
-        $longitude = substr($data, 6*2, 4*2);
+        $longitude = Byte::Parse_Latitude(substr($data, 6*2, 4*2));
         $ew_indicator = substr($data, 10*2, 1*2);
 
-        $latitude = substr($data, 11*2, 4*2);
+        $latitude = Byte::Parse_Latitude(substr($data, 11*2, 4*2));
         $ns_indicator = substr($data, 15*2, 1*2);
 
         $gps_vehicle_speed = substr($data, 16*2, 1*2);
@@ -78,7 +78,7 @@ class EventReport extends Model{
             'create_time' => time()
         ];
 
-
+var_dump(self::$data);
     }
 
 
