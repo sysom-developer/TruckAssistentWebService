@@ -164,4 +164,8 @@ class MyRedis {
     public function hMGet( $key, $hashKeys ) {
         return self::$redis->hMGet( $key, $hashKeys );
     }
+
+    public function zAdd( $key, $score, $value){
+        return self::$redis->zAdd( $key, $score, $value);
+    }
 }

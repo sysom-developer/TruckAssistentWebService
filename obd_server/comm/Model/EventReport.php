@@ -78,7 +78,6 @@ class EventReport extends Model{
             'create_time' => time()
         ];
 
-var_dump(self::$data);
     }
 
 
@@ -111,14 +110,25 @@ var_dump(self::$data);
 
         $set_key = 'DevId:'.$data['device_id'];
         $list_key = $data['device_id'] . ':' . 'Event_Report';
-        $hash_key = $list_key. ':' . $count;
-        $hash_value = $data;
 
         //设备id键集合添加元素
         $result1 = $my_redis->sadd($set_key, $list_key);
 
+
+        $last_time = $my_redis->get('last_time');
+        $current_time = $last_time + 15*60;
+        $timing_key = $list_key .':'. $last_time .'-' .$current_time;
+
+        $my_redis->zadd($list_key, $last_time, $timing_key);
+
+
+
+        $hash_key = $list_key. ':' . $count;
+        $hash_value = $data;
+
+
         //事件列表添加值
-        $result = $my_redis->rPush($list_key, $hash_key);
+        $result = $my_redis->rPush($timing_key, $hash_key);
 
         //列表值指向hash
         $result3 = $my_redis->hMset($hash_key, $hash_value);
