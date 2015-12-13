@@ -153,19 +153,10 @@ class Waybill extends Public_Android_Controller {
             'status' => 1,
             'type'=> $type,
         ];
-        $consumption = [
-            ['mileage_id'=>1, 'address' => 'xxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.3, 'mileage' => 20, 'traffic' => '平路'],
-            ['mileage_id'=>2, 'address' => 'xxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.4, 'mileage' => 30, 'traffic' => '平路'],
-            ['mileage_id'=>3, 'address' => 'xxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.5, 'mileage' => 40, 'traffic' => '平路'],
-            ['mileage_id'=>4, 'address' => 'xxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.6, 'mileage' => 20, 'traffic' => '平路'],
-            ['mileage_id'=>5, 'address' => 'xxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.7, 'mileage' => 20, 'traffic' => '平路'],
-            ['mileage_id'=>6, 'address' => 'xxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.8, 'mileage' => 40, 'traffic' => '平路'],
 
-        ];
 
         $waybill = [
-            'base' => $base,
-            'consumption' => $consumption
+            'base' => $base
         ];
 
         $waybill_data_list = [
@@ -279,4 +270,23 @@ class Waybill extends Public_Android_Controller {
         exit;
     }
 
+    public function get_tracking(){
+        $tracking = [
+            ['longitude' => 121.604924, 'ew_indicator' => '45', 'latitude' => 31.282053, 'ns_indicator' => '4e', 'time' => 1448600020],
+            ['longitude' => 121.605203, 'ew_indicator' => '45', 'latitude' => 31.281904, 'ns_indicator' => '4e', 'time' => 1448601722],
+            ['longitude' => 114.7689,   'ew_indicator' => '45', 'latitude' => 32.280327, 'ns_indicator' => '4e', 'time' => 1449107905],
+            ['longitude' => 105.270138, 'ew_indicator' => '45', 'latitude' => 32.149730, 'ns_indicator' => '4e', 'time' => 1449194171],
+            ['longitude' => 105.121904, 'ew_indicator' => '45', 'latitude' => 32.17897,  'ns_indicator' => '4e', 'time' => 1449195250],
+            ['longitude' => 105.9234,   'ew_indicator' => '45', 'latitude' => 31.888799, 'ns_indicator' => '4e', 'time' => 1449196048],
+        ];
+
+        $waybill = [
+            'tracking' => $tracking
+        ];
+
+        $this->data['error']['body']['waybill'] =  $waybill;
+
+        echo json_en($this->data['error']);
+        exit;
+    }
 }

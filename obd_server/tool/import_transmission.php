@@ -40,6 +40,7 @@ for($rowIndex=2; $rowIndex <= $allRow; $rowIndex++){
         'apacity' => $tmp[7],
         'forward_gear_rate' => implode(',', (explode("\n", $tmp[8]))),
         'reverse_gear_rate' => implode(',', (explode("\n", $tmp[9]))),
+        'create_time' => time()
     ];
 
 //    $transmission->save($data);
