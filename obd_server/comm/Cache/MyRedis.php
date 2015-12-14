@@ -168,4 +168,12 @@ class MyRedis {
     public function zAdd( $key, $score, $value){
         return self::$redis->zAdd( $key, $score, $value);
     }
+
+    public function zRange( $key, $start, $end, $withscores = null ) {
+        return self::$redis->zRange( $key, $start, $end, $withscores);
+    }
+
+    public function zRem( $key, $member ) {
+        return self::$redis->zRem( $key, $member );
+    }
 }

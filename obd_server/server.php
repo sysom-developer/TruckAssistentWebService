@@ -18,7 +18,7 @@ $tcp_worker->count = 1;
 $tcp_worker->onWorkerStart = function($worker)
 {
     echo "Worker starting...\n";
-//    $my_redis = MyRedis::getInstance();
+    $my_redis = MyRedis::getInstance();
 //    $data = $my_redis->hMGet('pet', array('dog', 'cat'));
 //    var_dump($data);
 //    $response_message = new Response_Message(0x01, 0x55);
@@ -26,6 +26,21 @@ $tcp_worker->onWorkerStart = function($worker)
 //    $socket_data = file_get_contents('../logs/20/log1447953552');
 //    $result = Handler::exe($socket_data, '00');
 //    var_dump($result);
+
+    //获取有序集合的第一个值
+//    $data = $my_redis->zRange('JTA0000101010002:Event_Report', 0, 0);
+//
+//    var_dump($data);
+//    //打印出有序集合的值
+//    var_dump($my_redis->zRange('JTA0000101010002:Event_Report', 0, -1));
+//
+//    //删除有序集合的值
+//    $my_redis->zRem( 'JTA0000101010002:Event_Report', $data[0] );
+//
+//    //打印出有序集合的值
+//    var_dump($my_redis->zRange('JTA0000101010002:Event_Report', 0, -1));
+
+
 
 };
 
