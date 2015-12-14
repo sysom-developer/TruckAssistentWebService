@@ -135,6 +135,7 @@ class TruckInformation extends Model{
     }
 
     function cached(){
+        global $conf;
         $my_redis = MyRedis::getInstance();
 
         $count = $this->get_redis_list_count();
@@ -147,7 +148,7 @@ class TruckInformation extends Model{
         $result1 = $my_redis->sadd($set_key, $list_key);
 
         $last_time = $my_redis->get('last_time');
-        $current_time = $last_time + 15*60;
+        $current_time = $last_time + $conf['calculate_time'] * 60;
         $timing_key = $list_key .':'. $last_time .'-' .$current_time;
 
         $my_redis->zadd($list_key, $last_time, $timing_key);

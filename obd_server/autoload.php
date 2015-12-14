@@ -21,3 +21,5 @@ $command_table = require_once __DIR__ . '/config/command_table.php';
  */
 $error_code = require_once __DIR__ . '/config/error_code.php';
 
+$conf = require_once __DIR__ . '/config/app_conf.php';
+
