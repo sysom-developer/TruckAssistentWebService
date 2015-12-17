@@ -5,6 +5,8 @@ namespace comm\Model;
 use comm\Cache\MyRedis;
 use \comm\Model\BaseModel as Model;
 use comm\Protocol\Byte;
+use comm\Protocol\Time;
+
 
 
 class TruckAccelerationInformation extends Model{
@@ -42,7 +44,7 @@ class TruckAccelerationInformation extends Model{
                 'x_axis' => Byte::ByteConvert(substr($v, 0, 2*2)),
                 'y_axis' => Byte::ByteConvert(substr($v, 2*2, 2*2)),
                 'z_axis' => Byte::ByteConvert(substr($v, 4*2, 2*2)),
-                'unix_time' => $unix_time,
+                'unix_time' => Time::TimeConvert($unix_time),
 
                 'device_id' => Byte::Hex2String($packet->_DEV_ID),
                 'create_time' => time(),

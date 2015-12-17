@@ -5,6 +5,7 @@ namespace comm\Model;
 use comm\Cache\MyRedis;
 use \comm\Model\BaseModel as Model;
 use comm\Protocol\Byte;
+use comm\Protocol\Time;
 
 
 class GsmLocation extends Model{
@@ -47,7 +48,7 @@ class GsmLocation extends Model{
             'ns_indicator' => $ns_indicator,
 
             'gps_data_status' => $gps_data_status,
-            'unix_time' => $unix_time,
+            'unix_time' => Time::TimeConvert($unix_time),
 
             'device_id' => Byte::Hex2String($packet->_DEV_ID),
             'create_time' => time()

@@ -5,6 +5,7 @@ namespace comm\Model;
 use comm\Cache\MyRedis;
 use \comm\Model\BaseModel as Model;
 use comm\Protocol\Byte;
+use comm\Protocol\Time;
 
 
 class EventReport extends Model{
@@ -38,7 +39,8 @@ class EventReport extends Model{
         $cruise_control_status = substr($data, 2*2, 1*2);
         //车辆电瓶电压值
         $car_battery_value = substr($data, 3*2, 2*2);
-        $car_battery_value = Byte::ByteConvert($car_battery_value);
+        $car_battery_value = hexdec(Byte::ByteConvert($car_battery_value))*0.05;
+
         //车辆电瓶电压状态
         $car_battery = substr($data, 5*2, 1*2);
 
@@ -72,7 +74,7 @@ class EventReport extends Model{
 
             'engine_speed' => $engine_speed,
 
-            'unix_time' => $unix_time,
+            'unix_time' => Time::TimeConvert($unix_time),
 
             'device_id' => Byte::Hex2String($packet->_DEV_ID),
             'create_time' => time()

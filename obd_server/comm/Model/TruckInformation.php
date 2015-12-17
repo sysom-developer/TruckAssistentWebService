@@ -5,6 +5,8 @@ namespace comm\Model;
 use comm\Cache\MyRedis;
 use \comm\Model\BaseModel as Model;
 use comm\Protocol\Byte;
+use comm\Protocol\Time;
+
 
 
 class TruckInformation extends Model{
@@ -39,52 +41,65 @@ class TruckInformation extends Model{
 
         $ns_indicator = substr($data, 9*2, 1*2);
 
-        $gps_vehicle_speed = substr($data, 10*2, 1*2);
+        $gps_vehicle_speed = hexdec(substr($data, 10*2, 1*2));
 
-        $engine_speed = substr($data, 11*2, 2*2);
+        $engine_speed = hexdec(substr($data, 11*2, 2*2)) * 0.125;
 
         $unix_time = substr($data, 13*2, 4*2);
+        $unix_time = Byte::ByteConvert($unix_time);
 
         $gps_data_status = substr($data, 17*2, 1*2);
 
         //发动机扭转百分比
         $percent_torque = substr($data, 18*2, 1*2);
+        $percent_torque = (hexdec($percent_torque)-125)*0.01;
 
         //发动机负载百分比
         $engine_percent_load = substr($data, 19*2, 1*2);
+        $engine_percent_load = hexdec($engine_percent_load)*0.01;
 
         //加速踏板位置百分比
         $accelerator = substr($data, 20*2, 1*2);
+        $accelerator = hexdec($accelerator)*0.4*0.01;
 
         //刹车踏板位置百分比
         $brake_pedal_position = substr($data, 21*2, 1*2);
+        $brake_pedal_position = hexdec($brake_pedal_position) * 0.4*0.01;
 
         //瞬时油耗
         $fuel_rate = substr($data, 22*2, 2*2);
         $fuel_rate = Byte::ByteConvert($fuel_rate);
+        $fuel_rate = hexdec($fuel_rate)*0.05;
 
         //冷却液温度
         $engine_coolant_temperature = substr($data, 24*2, 1*2);
+        $engine_coolant_temperature = hexdec($engine_coolant_temperature) - 40;
 
         //进气歧管压力
         $air_inlet_pressure = substr($data, 25*2, 1*2);
+        $air_inlet_pressure = hexdec($air_inlet_pressure) * 2;
 
         //机油压力
         $engine_oil_pressure = substr($data, 26*2, 1*2);
+        $engine_oil_pressure = hexdec($engine_oil_pressure) * 0.5;
 
         //基于转速传感器的车速
         $wheel_based_vehicle_speed = substr($data, 27*2, 2*2);
         $wheel_based_vehicle_speed = Byte::ByteConvert($wheel_based_vehicle_speed);
+        $wheel_based_vehicle_speed = hexdec($wheel_based_vehicle_speed/256);
 
         //燃油温度
         $fuel_temperature = substr($data, 29*2, 1*2);
+        $fuel_temperature = hexdec($fuel_temperature) - 40;
 
         //机油温度
         $engine_oil_temperature = substr($data, 30*2, 2*2);
         $engine_oil_temperature = Byte::ByteConvert($engine_oil_temperature);
+        $engine_oil_temperature = hexdec($engine_oil_temperature) * 0.03125 - 273;
 
         //进气温度
         $inlet_air_temperature = substr($data, 32*2, 1*2);
+        $inlet_air_temperature = hexdec($inlet_air_temperature) - 40;
 
         self::$data = [
             'longitude' => $longitude,
@@ -93,7 +108,7 @@ class TruckInformation extends Model{
             'ns_indicator' => $ns_indicator,
             'gps_vehicle_speed' => $gps_vehicle_speed,
             'engine_speed' => $engine_speed,
-            'unix_time' => $unix_time,
+            'unix_time' => Time::TimeConvert($unix_time),
             'gps_data_status' => $gps_data_status,
             'percent_torque' => $percent_torque,
             'engine_percent_load' => $engine_percent_load,
