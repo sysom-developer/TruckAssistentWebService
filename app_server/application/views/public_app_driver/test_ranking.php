@@ -68,7 +68,7 @@ switch (ENVIRONMENT) {
         </tr>
         <tr>
             <td>  月（month）</td>
-            <td><input type="text" name="year" value="12"></td>
+            <td><input type="text" name="month" value="12"></td>
         </tr>
 
 
@@ -153,7 +153,7 @@ switch (ENVIRONMENT) {
         </tr>
         <tr>
             <td>  月（month）</td>
-            <td><input type="text" name="year" value="12"></td>
+            <td><input type="text" name="month" value="12"></td>
         </tr>
 
         <tr>

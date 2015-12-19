@@ -23,7 +23,7 @@ class Ranking extends Public_Android_Controller {
      */
     public function index()
     {
-        $type = trim($this->input->get_post('type', true));;
+        $type = trim($this->input->get_post('type', true));
 
         $result = [];
         if($type == 'driving_mileage'){
@@ -40,6 +40,8 @@ class Ranking extends Public_Android_Controller {
             'driving_mileage' => 4806,
             'consumption_per_100km' => 23,
             'driver_head_icon' => 'xxx',
+            'ranking' => 1,
+            'nick_name'=>'东风天龙'
         ];
 
         $this->data['error']['body']['data'] = array_merge($self, $result);
@@ -50,56 +52,56 @@ class Ranking extends Public_Android_Controller {
 
     private function driving_mileage(){
         $follow = [
-            ['driver_id' => 2, 'name' => 'key', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4806],
-            ['driver_id' => 3, 'name' => '风云', 'driver_head_icon' => 'xxx','driving_mileage' => 4702],
-            ['driver_id' => 4, 'name' => '明天更好', 'driver_head_icon' => 'xxx','driving_mileage' => 4500],
-            ['driver_id' => 5, 'name' => 'xxx', 'driver_head_icon' => 'xxx','driving_mileage' => 4406],
-            ['driver_id' => 6, 'name' => 'aaa', 'driver_head_icon' => 'xxx','driving_mileage' => 4399],
-            ['driver_id' => 7, 'name' => '1hd', 'driver_head_icon' => 'xxx','driving_mileage' => 4298],
-            ['driver_id' => 8, 'name' => '90jfe', 'driver_head_icon' => 'xxx','driving_mileage' => 4100],
-            ['driver_id' => 9, 'name' => 'fulkl', 'driver_head_icon' => 'xxx','driving_mileage' => 4000],
-            ['driver_id' => 10, 'name' => 'ffh', 'driver_head_icon' => 'xxx','driving_mileage' => 3807],
-            ['driver_id' => 21, 'name' => 'kldfk', 'driver_head_icon' => 'xxx','driving_mileage' => 3755],
+            ['driver_id' => 2, 'name' => 'key', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4806, 'ranking' => 1],
+            ['driver_id' => 3, 'name' => '风云', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4702, 'ranking' =>2],
+            ['driver_id' => 4, 'name' => '明天更好', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4500, 'ranking' =>3],
+            ['driver_id' => 5, 'name' => 'xxx', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4406, 'ranking' => 4],
+            ['driver_id' => 6, 'name' => 'aaa', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4399, 'ranking' =>5],
+            ['driver_id' => 7, 'name' => '1hd', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4298, 'ranking' =>6],
+            ['driver_id' => 8, 'name' => '90jfe', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4100, 'ranking' =>7],
+            ['driver_id' => 9, 'name' => 'fulkl', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4000, 'ranking' =>8],
+            ['driver_id' => 10, 'name' => 'ffh', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 3807, 'ranking' => 9],
+            ['driver_id' => 21, 'name' => 'kldfk', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 3755, 'ranking' =>10],
         ];
         $friend = [
-            ['driver_id' => 2, 'name' => 'key', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4806],
-            ['driver_id' => 3, 'name' => '风云', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4702],
-            ['driver_id' => 4, 'name' => '明天更好', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4500],
-            ['driver_id' => 5, 'name' => 'xxx', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4406],
-            ['driver_id' => 6, 'name' => 'aaa', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4399],
-            ['driver_id' => 7, 'name' => '1hd', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4298],
-            ['driver_id' => 8, 'name' => '90jfe', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4100],
-            ['driver_id' => 9, 'name' => 'fulkl', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4000],
-            ['driver_id' => 10, 'name' => 'ffh', 'driver_head_icon' => 'xxx', 'driving_mileage' => 3807],
-            ['driver_id' => 21, 'name' => 'kldfk', 'driver_head_icon' => 'xxx', 'driving_mileage' => 3755],
+            ['driver_id' => 2, 'name' => 'key', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4806, 'ranking' => 1],
+            ['driver_id' => 3, 'name' => '风云', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4702, 'ranking' =>2],
+            ['driver_id' => 4, 'name' => '明天更好', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4500, 'ranking' =>3],
+            ['driver_id' => 5, 'name' => 'xxx', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4406, 'ranking' =>4],
+            ['driver_id' => 6, 'name' => 'aaa', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4399, 'ranking' =>5],
+            ['driver_id' => 7, 'name' => '1hd', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4298, 'ranking' =>6],
+            ['driver_id' => 8, 'name' => '90jfe', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4100, 'ranking' =>7],
+            ['driver_id' => 9, 'name' => 'fulkl', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4000, 'ranking' => 8],
+            ['driver_id' => 10, 'name' => 'ffh', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 3807, 'ranking' =>9],
+            ['driver_id' => 21, 'name' => 'kldfk', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 3755, 'ranking' => 10],
         ];
         return ['follow' =>$follow, 'friend' => $friend];
     }
 
     private function consumption_per_100km(){
         $follow = [
-            ['driver_id' => 2, 'name' => 'key', 'driver_head_icon' => 'xxx','driving_mileage' => 4806],
-            ['driver_id' => 3, 'name' => '风云', 'driver_head_icon' => 'xxx','driving_mileage' => 4702],
-            ['driver_id' => 4, 'name' => '明天更好', 'driver_head_icon' => 'xxx','driving_mileage' => 4500],
-            ['driver_id' => 5, 'name' => 'xxx', 'driver_head_icon' => 'xxx','driving_mileage' => 4406],
-            ['driver_id' => 6, 'name' => 'aaa', 'driver_head_icon' => 'xxx','driving_mileage' => 4399],
-            ['driver_id' => 7, 'name' => '1hd', 'driver_head_icon' => 'xxx','driving_mileage' => 4298],
-            ['driver_id' => 8, 'name' => '90jfe', 'driver_head_icon' => 'xxx','driving_mileage' => 4100],
-            ['driver_id' => 9, 'name' => 'fulkl', 'driver_head_icon' => 'xxx','driving_mileage' => 4000],
-            ['driver_id' => 10, 'name' => 'ffh', 'driver_head_icon' => 'xxx','driving_mileage' => 3807],
-            ['driver_id' => 21, 'name' => 'kldfk', 'driver_head_icon' => 'xxx','driving_mileage' => 3755],
+            ['driver_id' => 2, 'name' => 'key', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4806, 'ranking' => 1],
+            ['driver_id' => 3, 'name' => '风云', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4702, 'ranking' => 2],
+            ['driver_id' => 4, 'name' => '明天更好', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4500, 'ranking' => 3],
+            ['driver_id' => 5, 'name' => 'xxx', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4406, 'ranking' => 4],
+            ['driver_id' => 6, 'name' => 'aaa', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4399, 'ranking' => 5],
+            ['driver_id' => 7, 'name' => '1hd', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4298, 'ranking' => 6],
+            ['driver_id' => 8, 'name' => '90jfe', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4100, 'ranking' => 7],
+            ['driver_id' => 9, 'name' => 'fulkl', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4000, 'ranking' => 8],
+            ['driver_id' => 10, 'name' => 'ffh', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 3807, 'ranking' => 9],
+            ['driver_id' => 21, 'name' => 'kldfk', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 3755, 'ranking' => 10],
         ];
         $friend = [
-            ['driver_id' => 2, 'name' => 'key', 'driver_head_icon' => 'xxx','consumption_per_100km' => 34],
-            ['driver_id' => 3, 'name' => '风云', 'driver_head_icon' => 'xxx', 'consumption_per_100km' => 35],
-            ['driver_id' => 4, 'name' => '明天更好','driver_head_icon' => 'xxx','consumption_per_100km' => 36],
-            ['driver_id' => 5, 'name' => 'xxx','driver_head_icon' => 'xxx','consumption_per_100km' => 37],
-            ['driver_id' => 6, 'name' => 'aaa','driver_head_icon' => 'xxx','consumption_per_100km' => 38],
-            ['driver_id' => 7, 'name' => '1hd','driver_head_icon' => 'xxx','consumption_per_100km' => 39],
-            ['driver_id' => 8, 'name' => '90jfe','driver_head_icon' => 'xxx','consumption_per_100km' => 45],
-            ['driver_id' => 9, 'name' => 'fulkl','driver_head_icon' => 'xxx','consumption_per_100km' => 47],
-            ['driver_id' => 10, 'name' => 'ffh','driver_head_icon' => 'xxx','consumption_per_100km' => 48],
-            ['driver_id' => 21, 'name' => 'kldfk','driver_head_icon' => 'xxx','consumption_per_100km' => 58],
+            ['driver_id' => 2, 'name' => 'key', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 34, 'ranking' => 1],
+            ['driver_id' => 3, 'name' => '风云', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'consumption_per_100km' => 35, 'ranking' => 2],
+            ['driver_id' => 4, 'name' => '明天更好', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 36, 'ranking' => 3],
+            ['driver_id' => 5, 'name' => 'xxx', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 37, 'ranking' => 4],
+            ['driver_id' => 6, 'name' => 'aaa', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 38, 'ranking' => 5],
+            ['driver_id' => 7, 'name' => '1hd', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 39, 'ranking' => 6],
+            ['driver_id' => 8, 'name' => '90jfe', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 45, 'ranking' => 7],
+            ['driver_id' => 9, 'name' => 'fulkl', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 47, 'ranking' => 8],
+            ['driver_id' => 10, 'name' => 'ffh', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 48, 'ranking' => 9],
+            ['driver_id' => 21, 'name' => 'kldfk', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 58, 'ranking' => 10],
         ];
         return ['follow' =>$follow, 'friend' => $friend];
     }
@@ -136,6 +138,7 @@ class Ranking extends Public_Android_Controller {
             'driving_mileage' => 4806,
             'consumption_per_100km' => 23,
             'driver_head_icon' => 'xxx',
+            'nick_name'=>'东风天龙',
         ]];
 
         $this->data['error']['body']['data'] = array_merge($self, $result);
