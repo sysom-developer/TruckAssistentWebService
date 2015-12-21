@@ -271,6 +271,34 @@ class Waybill extends Public_Android_Controller {
     }
 
     public function get_tracking(){
+        $base = [
+            'waybill_id' => 1,
+            'start_time' => 1448557261,
+            'end_time'=>1448564461,
+
+            'start_city' => '上海',
+            'end_city' => '成都',
+
+            'consumption_amount'=>1950,
+            'consumption_per_km'=>36,
+            'amount_per_km'=>2.1,
+
+            'total_mileage' => 1200,//总里程
+            'average_velocity' => 75.5,//平均速度
+
+            'stay_time' => 60*60*3,
+            'status' => 1,
+            'type'=> 1,
+
+        ];
+
+
+        $speed_ratio= [
+            ['economic_speed' => '60-80', 'ratio' => 0.75],
+            ['high_speed' => '80-', 'ratio' => 0.1],
+            ['slow_speed' => '-60', 'ratio' => 0.15],
+        ];
+
         $tracking = [
             ['longitude' => 121.604924, 'ew_indicator' => '45', 'latitude' => 31.282053, 'ns_indicator' => '4e', 'time' => 1448600020],
             ['longitude' => 121.605203, 'ew_indicator' => '45', 'latitude' => 31.281904, 'ns_indicator' => '4e', 'time' => 1448601722],
@@ -280,10 +308,12 @@ class Waybill extends Public_Android_Controller {
             ['longitude' => 105.9234,   'ew_indicator' => '45', 'latitude' => 31.888799, 'ns_indicator' => '4e', 'time' => 1449196048],
         ];
 
+
         $waybill = [
+            'base' => $base,
+            'speed_ratio' => $speed_ratio,
             'tracking' => $tracking
         ];
-
         $this->data['error']['body']['waybill'] =  $waybill;
 
         echo json_en($this->data['error']);
