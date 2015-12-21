@@ -84,7 +84,10 @@ class Waybill extends Public_Android_Controller {
 
         $hot_city = $this->config->item('hot_city', 'city');
 
-        $all_city = ['鞍山', '北京'];
+        $all_city = [
+            ['city_id' => 1, 'city_value' => '鞍山'],
+            ['city_id' => 2, 'city_value' => '北京']
+        ];
 
         $data = [
             'history_city' => $history_city,
