@@ -311,13 +311,40 @@ class Waybill extends Public_Android_Controller {
             ['longitude' => 105.9234,   'ew_indicator' => '45', 'latitude' => 31.888799, 'ns_indicator' => '4e', 'time' => 1449196048],
         ];
 
+        $consumption_factor = [
+            ['consumption_factor_type'=>1],
+            ['consumption_factor_type'=>2],
+            ['consumption_factor_type'=>3],
+            ['consumption_factor_type'=>4],
+            ['consumption_factor_type'=>5],
+        ];
 
         $waybill = [
             'base' => $base,
             'speed_ratio' => $speed_ratio,
-            'tracking' => $tracking
+            'tracking' => $tracking,
+            'consumption_factor' => $consumption_factor
         ];
         $this->data['error']['body']['waybill'] =  $waybill;
+
+        echo json_en($this->data['error']);
+        exit;
+    }
+
+    /**
+     * 获取所有油耗因子
+     */
+    public function get_consumption_factor(){
+
+        $consumption_factor = [
+            ['consumption_factor_type'=>1, 'name' => '怠速区'],
+            ['consumption_factor_type'=>2, 'name' => '一般经济区'],
+            ['consumption_factor_type'=>3, 'name' => '低速空档'],
+            ['consumption_factor_type'=>4, 'name' => '全油门'],
+            ['consumption_factor_type'=>5, 'name' => '急刹车'],
+        ];
+
+        $this->data['error']['body']['consumption_factor'] =  $consumption_factor;
 
         echo json_en($this->data['error']);
         exit;

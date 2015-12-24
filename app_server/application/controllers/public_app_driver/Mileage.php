@@ -54,10 +54,19 @@ class Mileage extends Public_Android_Controller {
             ['longitude' => 105.9234,   'ew_indicator' => '45', 'latitude' => 31.888799, 'ns_indicator' => '4e', 'time' => 1449196048],
         ];
 
+        $consumption_factor = [
+            ['consumption_factor_type'=>1],
+            ['consumption_factor_type'=>2],
+            ['consumption_factor_type'=>3],
+            ['consumption_factor_type'=>4],
+            ['consumption_factor_type'=>5],
+        ];
+
         $mileage = [
             'base' => $base,
             'speed_ratio' => $speed_ratio,
-            'tracking' => $tracking
+            'tracking' => $tracking,
+            'consumption_factor' => $consumption_factor
         ];
 
         $this->data['error']['body']['mileage'] =  $mileage;
