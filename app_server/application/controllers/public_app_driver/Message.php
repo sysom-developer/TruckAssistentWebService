@@ -23,7 +23,7 @@ class Message extends Public_Android_Controller {
      */
     public function index()
     {
-        $driver_id = trim($this->input->get_post('type', true));;
+        $driver_id = trim($this->input->get_post('type', true));
 
         $data = [
             ['id' => 1, 'type' => 1, 'contents' => 'xxxxx,xxcfd,xxxx', 'create_time' => time()],
@@ -61,6 +61,22 @@ class Message extends Public_Android_Controller {
 
     public function del()
     {
+        echo json_en($this->data['error']);
+        exit;
+    }
+
+    /**
+     * 获取推送新消息
+     */
+    public function pull_message(){
+        $driver_id = trim($this->input->get_post('type', true));
+
+        $data = [
+            'id' => 1, 'type' => 1, 'contents' => 'xxxxx,xxcfd,xxxx'
+        ];
+
+        $this->data['error']['body']['data'] = $data;
+
         echo json_en($this->data['error']);
         exit;
     }
