@@ -562,5 +562,64 @@ switch (ENVIRONMENT) {
     </table>
 </form>
 
+
+
+<form action="<?php echo $domain?>/member/update_pwd" method="get">
+    <table style="margin-left: 30px;" width="100%">
+        <tr style="font-weight: bold; font-size: 14px;">
+            <td width="300">10. 更新密码</td>
+            <td><?php echo $domain?>/member/update_pwd</td>
+        </tr>
+        <tr>
+            <td>手机号码（mobile_phone）</td>
+            <td><input type="text" name="mobile_phone" value="138xxxxxxxx"></td>
+        </tr>
+        <tr>
+            <td>密码（password）</td>
+            <td><input type="password" name="password" value="123456"></td>
+        </tr>
+        <tr>
+            <td>验证码（seccode）</td>
+            <td><input type="text" name="seccode" value=""></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                查看json结果：
+                <select name="n">
+                    <option value="2">否</option>
+                    <option value="1">是</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提 交"></td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2">输入信息 </td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"mobile_phone":"13427591775", "password":"xxxx", "seccode":"3456", "device":"ff379ksh"}</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">返回结果</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"1199",&nbsp;&nbsp; "description":"验证码不存在"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
+        </tr>
+    </table>
+</form>
+
+
 </body>
 </html>

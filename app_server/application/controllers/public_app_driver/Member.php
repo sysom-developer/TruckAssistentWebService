@@ -195,4 +195,67 @@ class Member extends Public_Android_Controller {
         exit;
     }
 
+    /**
+     * 更新密码
+     */
+    public function update_pwd(){
+
+        $mobile_phone = trim($this->input->get_post('mobile_phone', TRUE));
+        $seccode = trim($this->input->get_post('seccode', TRUE));
+        $password = $this->input->get_post('password');
+
+        $time = time();
+
+        //验证验证码
+        if ($seccode != '88888') {
+            $where = array(
+                'mobile_phone' => $mobile_phone,
+                'seccode' => $seccode,
+                'is_deleted' => '0',
+            );
+            $driver_register_seccode_log_data = $this->common_model->get_data('driver_register_seccode_log', $where, 1, 0, 'id', 'DESC')->row_array();
+            if (empty($driver_register_seccode_log_data)) {
+                $this->app_error_func(1199, '验证码不存在');
+                exit;
+            }
+            if ($time > $driver_register_seccode_log_data['invalid_time']) {
+                $this->app_error_func(1198, '验证码失效，请重新获取');
+                exit;
+            }
+        }
+
+        //验证手机号码
+        $pattern = '#^1([3578][0-9]|45|47)[0-9]{8}$#';
+        if (!preg_match($pattern, $mobile_phone)) {
+            $this->app_error_func(1197, '请正确输入手机号码');
+            exit;
+        }
+
+        //验证密码
+        if (strlen($password) < 6) {
+            $this->app_error_func(1196, '请输入6位或以上的密码');
+            exit;
+        }
+
+        $where = array(
+            'login_name' => $mobile_phone,
+        );
+
+        // 写入司机信息
+        $data = [
+            'login_pwd' => $password,   // do_hash($password, 'md5'),
+        ];
+
+        $this->common_model->update('driver', $data);
+
+        // 删除验证码
+        $where = array(
+            'mobile_phone' => $mobile_phone,
+            'seccode' => $seccode,
+        );
+
+        echo json_en($this->data['error']);
+        exit;
+    }
+
 }
