@@ -621,5 +621,111 @@ switch (ENVIRONMENT) {
 </form>
 
 
+<form action="<?php echo $domain?>/member/binding_obd" method="post" enctype="multipart/form-data">
+    <table style="margin-left: 30px;" width="100%">
+        <tr style="font-weight: bold; font-size: 14px;">
+            <td width="300">11. 绑定obd</td>
+            <td><?php echo $domain?>/member/binding_obd</td>
+        </tr>
+        <tr>
+            <td>司机ID（driver_id）</td>
+            <td><input type="text" name="driver_id" value="1"></td>
+        </tr>
+
+        <tr>
+            <td>odb设备号（obd_device_no）</td>
+            <td><input type="text" name="obd_device_no" value="3fdslkfdsfhk"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                查看json结果：
+                <select name="n">
+                    <option value="2">否</option>
+                    <option value="1">是</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提 交"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">输入信息 </td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"driver_id":"1", "obd_device_no":"k436376bdf8"}</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">返回结果</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"1399",&nbsp;&nbsp; "description":"driver_id 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
+        </tr>
+    </table>
+</form>
+
+
+
+<form action="<?php echo $domain?>/member/unbinding_obd" method="post" enctype="multipart/form-data">
+    <table style="margin-left: 30px;" width="100%">
+        <tr style="font-weight: bold; font-size: 14px;">
+            <td width="300">12. 解绑obd</td>
+            <td><?php echo $domain?>/member/unbinding_obd</td>
+        </tr>
+        <tr>
+            <td>司机ID（driver_id）</td>
+            <td><input type="text" name="driver_id" value="1"></td>
+        </tr>
+
+        <tr>
+            <td>odb设备号（obd_device_no）</td>
+            <td><input type="text" name="obd_device_no" value="3fdslkfdsfhk"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                查看json结果：
+                <select name="n">
+                    <option value="2">否</option>
+                    <option value="1">是</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提 交"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">输入信息 </td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"driver_id":"1", "obd_device_no":"k436376bdf8"}</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">返回结果</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"1399",&nbsp;&nbsp; "description":"driver_id 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
+        </tr>
+    </table>
+</form>
+
 </body>
 </html>
