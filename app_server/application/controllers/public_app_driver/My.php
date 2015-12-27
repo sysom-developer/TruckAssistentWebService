@@ -40,6 +40,34 @@ class My extends Public_Android_Controller {
     }
 
     public function update_head_icon(){
+        if (empty($this->data['driver_id'])) {
+            $this->app_error_func(1899, 'driver_id 参数错误');
+            exit;
+        }
+        $data = [];
+        $driver_head_icon_attachment_id = '';
+        $driver_head_icon_upload_data = upload_img_file('driver_head_icon', 'driver_head_icon_img');
+
+        if ($driver_head_icon_upload_data['status'] != -1) {
+            $filepath = substr($driver_head_icon_upload_data['data']['file_path'], stripos($driver_head_icon_upload_data['data']['file_path'], "data_tmp"));
+            $attachment_data = array(
+                'filetype' => $driver_head_icon_upload_data['data']['file_type'],
+                'filename' => $driver_head_icon_upload_data['data']['file_name'],
+                'filesize' => $driver_head_icon_upload_data['data']['file_size'],
+                'filepath' => $filepath,
+            );
+            $driver_head_icon_img_attachment_id = $this->common_model->insert('attachment_tmp', $attachment_data);
+            $driver_head_icon_attachment_id = move_upload_file($driver_head_icon_img_attachment_id);
+            $data['driver_head_icon'] = $driver_head_icon_attachment_id;
+        }
+
+        $where = array(
+            'driver_id' => $this->data['driver_id'],
+        );
+        if(!empty($data)){
+            $this->common_model->update('driver', $data, $where);
+
+        }
         echo json_en($this->data['error']);
         exit;
     }

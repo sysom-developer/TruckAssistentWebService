@@ -94,7 +94,7 @@ switch (ENVIRONMENT) {
 </form>
 
 
-<form action="<?php echo $domain?>/my/update_head_icon" method="get">
+<form action="<?php echo $domain?>/my/update_head_icon" method="post" enctype="multipart/form-data">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
             <td width="300">2. 更换头像</td>

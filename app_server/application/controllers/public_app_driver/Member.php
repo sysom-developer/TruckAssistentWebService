@@ -50,12 +50,12 @@ class Member extends Public_Android_Controller {
 
         $time = time();
 
-        $data = array(
+        $data = [
             'driver_name' => $driver_name,
             'driver_sex' => $driver_sex,
             'driver_province' => $driver_province,
             'driver_city' => $driver_city,
-        );
+        ];
 
         $driver_head_icon_attachment_id = '';
         $driver_head_icon_upload_data = upload_img_file('driver_head_icon', 'driver_head_icon_img');
