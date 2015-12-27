@@ -411,7 +411,7 @@ switch (ENVIRONMENT) {
             <td width="300">11. 首页 | 获取所有油耗因子</td>
             <td><?php echo $domain?>/waybill/get_consumption_factor</td>
         </tr>
-       
+
         <tr>
             <td colspan="2">
                 查看json结果：

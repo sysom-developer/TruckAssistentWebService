@@ -118,7 +118,9 @@ class Member extends Public_Android_Controller {
     }
 
 
-
+    /**
+     * 更新车辆资料
+     */
     public function update_info()
     {
         $vehicle_card_num = trim($this->input->get_post('vehicle_card_num', TRUE));
@@ -134,29 +136,29 @@ class Member extends Public_Android_Controller {
             exit;
         }
 
-        if (empty($vehicle_type)) {
-            $this->app_error_func(1397, '请选择车辆类型');
-            exit;
-        }
-
-        if (empty($vehicle_load)) {
-            $this->app_error_func(1396, '请选择车辆载重');
-            exit;
-        }
-
-        if (empty($vehicle_length)) {
-            $this->app_error_func(1395, '请选择车辆长度');
-            exit;
-        }
-        if (empty($vehicle_length)) {
-            $this->app_error_func(1395, '请选择车辆长度');
-            exit;
-        }
-
-        if (empty($rear_axle_ratio)) {
-            $this->app_error_func(1394, '请选择车辆后桥速比');
-            exit;
-        }
+//        if (empty($vehicle_type)) {
+//            $this->app_error_func(1397, '请选择车辆类型');
+//            exit;
+//        }
+//
+//        if (empty($vehicle_load)) {
+//            $this->app_error_func(1396, '请选择车辆载重');
+//            exit;
+//        }
+//
+//        if (empty($vehicle_length)) {
+//            $this->app_error_func(1395, '请选择车辆长度');
+//            exit;
+//        }
+//        if (empty($vehicle_length)) {
+//            $this->app_error_func(1395, '请选择车辆长度');
+//            exit;
+//        }
+//
+//        if (empty($rear_axle_ratio)) {
+//            $this->app_error_func(1394, '请选择车辆后桥速比');
+//            exit;
+//        }
 
         $this->common_model->trans_begin();
 
@@ -175,12 +177,23 @@ class Member extends Public_Android_Controller {
 
         //车辆记录是否存在
         $vehicle_data = $this->vehicle_service->get_vehicle_data($where);
-        $data = [
-            'vehicle_type' => $vehicle_type,
-            'vehicle_load' => $vehicle_load,
-            'vehicle_length' => $vehicle_length,
-            'rear_axle_ratio' => $rear_axle_ratio
-        ];
+        $data = [];
+        if (!empty($vehicle_type)) {
+            $data['vehicle_type'] = $vehicle_type;
+        }
+
+        if (!empty($vehicle_load)) {
+            $data['vehicle_load'] = $vehicle_load;
+        }
+
+        if (!empty($vehicle_length)) {
+            $data['vehicle_length'] = $vehicle_length;
+        }
+
+        if (!empty($rear_axle_ratio)) {
+            $data['rear_axle_ratio'] = $rear_axle_ratio;
+        }
+
         if (!empty($vehicle_card_num)) {
             $data['vehicle_card_num'] = $vehicle_card_num;
         }
