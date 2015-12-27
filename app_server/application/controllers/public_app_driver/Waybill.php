@@ -349,4 +349,28 @@ class Waybill extends Public_Android_Controller {
         echo json_en($this->data['error']);
         exit;
     }
+
+    /**
+     * 油耗分析
+     */
+    public function get_consumption_analysis(){
+
+        $factor = [
+            ['factor_type'=>1, 'factor_value' => '油耗top1原因'],
+        ];
+
+        $contrast = [
+            'average' => 212,
+            'current' => 323,
+            'friend' => 232
+        ];
+
+        $this->data['error']['body']['data'] =  [
+            'factor' => $factor,
+            'contrast' => $contrast
+        ];
+
+        echo json_en($this->data['error']);
+        exit;
+    }
 }

@@ -413,6 +413,16 @@ switch (ENVIRONMENT) {
         </tr>
 
         <tr>
+            <td>  运单id（waybill_id）</td>
+            <td><input type="text" name="waybill_id" value="2"></td>
+        </tr>
+
+        <tr>
+            <td>  行程id（mileage_id）</td>
+            <td><input type="text" name="mileage_id" value="2"></td>
+        </tr>
+        
+        <tr>
             <td colspan="2">
                 查看json结果：
                 <select name="n">
@@ -442,6 +452,51 @@ switch (ENVIRONMENT) {
 
 
 
+<form action="<?php echo $domain?>/waybill/get_consumption_analysis" method="get">
+    <table style="margin-left: 30px;" width="100%">
+        <tr style="font-weight: bold; font-size: 14px;">
+            <td width="300">12. 首页 | 油耗分析</td>
+            <td><?php echo $domain?>/waybill/get_consumption_analysis</td>
+        </tr>
+
+
+        <tr>
+            <td>  运单id（waybill_id）</td>
+            <td><input type="text" name="waybill_id" value="2"></td>
+        </tr>
+
+        <tr>
+            <td>  行程id（mileage_id）</td>
+            <td><input type="text" name="mileage_id" value="2"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                查看json结果：
+                <select name="n">
+                    <option value="2">否</option>
+                    <option value="1">是</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2"><input type="submit" value="提 交"></td>
+        </tr>
+
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"E000000000",&nbsp;&nbsp; "description":"success"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+        <tr bgcolor="#ffe4c4">
+            <td colspan="2">{"application":{"head":{{"code":"1899",&nbsp;&nbsp; "description":"detail 参数错误"}},&nbsp;&nbsp; "body":[]}</td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
+        </tr>
+    </table>
+</form>
 
 
 
