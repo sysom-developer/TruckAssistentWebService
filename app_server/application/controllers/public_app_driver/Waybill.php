@@ -373,4 +373,22 @@ class Waybill extends Public_Android_Controller {
         echo json_en($this->data['error']);
         exit;
     }
+
+    /**
+     * 油耗分析
+     */
+    public function depth_report(){
+
+        $depth_report = [
+            ['consumption_factor_type'=>1, 'name' => '怠速区', 'value' => '下降'],
+            ['consumption_factor_type'=>2, 'name' => '一般经济区', 'value' => '下降'],
+            ['consumption_factor_type'=>3, 'name' => '低速空档', 'value' => '下降'],
+            ['consumption_factor_type'=>4, 'name' => '全油门', 'value' => '下降'],
+            ['consumption_factor_type'=>5, 'name' => '急刹车', 'value' => '下降'],
+        ];
+        $this->data['error']['body']['depth_report'] =  $depth_report;
+
+        echo json_en($this->data['error']);
+        exit;
+    }
 }
