@@ -360,9 +360,9 @@ class Waybill extends Public_Android_Controller {
         ];
 
         $contrast = [
-            'average' => 212,
-            'current' => 323,
-            'friend' => 232
+            'average' => 212.4,
+            'current' => 323.6,
+            'friend' => 232.8
         ];
 
         $this->data['error']['body']['data'] =  [
@@ -390,5 +390,31 @@ class Waybill extends Public_Android_Controller {
 
         echo json_en($this->data['error']);
         exit;
+    }
+
+    public function get_trucking_by_consumption(){
+        $tracking = [
+            ['longitude' => 121.604924, 'ew_indicator' => '45', 'latitude' => 31.282053, 'ns_indicator' => '4e', 'time' => 1448600020],
+            ['longitude' => 121.605203, 'ew_indicator' => '45', 'latitude' => 31.281904, 'ns_indicator' => '4e', 'time' => 1448601722],
+            ['longitude' => 114.7689,   'ew_indicator' => '45', 'latitude' => 32.280327, 'ns_indicator' => '4e', 'time' => 1449107905],
+            ['longitude' => 105.270138, 'ew_indicator' => '45', 'latitude' => 32.149730, 'ns_indicator' => '4e', 'time' => 1449194171],
+            ['longitude' => 105.121904, 'ew_indicator' => '45', 'latitude' => 32.17897,  'ns_indicator' => '4e', 'time' => 1449195250],
+            ['longitude' => 105.9234,   'ew_indicator' => '45', 'latitude' => 31.888799, 'ns_indicator' => '4e', 'time' => 1449196048],
+        ];
+        $base=[
+            'time' => 2,
+            'start_time' => 3213232,
+            'end_time' => 321321312,
+        ];
+        $address = [
+            ['start_time' => 32321, 'end_time' => 32312, 'start_address' => 'xxxx地址', 'end_address' => 'xxx地址'],
+            ['start_time' => 32321, 'end_time' => 32312, 'start_address' => 'xxxx地址', 'end_address' => 'xxx地址'],
+            ['start_time' => 32321, 'end_time' => 32312, 'start_address' => 'xxxx地址', 'end_address' => 'xxx地址'],
+            ['start_time' => 32321, 'end_time' => 32312, 'start_address' => 'xxxx地址', 'end_address' => 'xxx地址']
+        ];
+
+        $this->data['error']['body']['data'] =  ['base' => $base, 'tracking' => $tracking, 'address' => $address];
+
+        echo json_en($this->data['error']);
     }
 }
