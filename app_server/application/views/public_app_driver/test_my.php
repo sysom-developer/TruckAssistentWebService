@@ -407,8 +407,8 @@ switch (ENVIRONMENT) {
             <td><?php echo $domain?>/message/del</td>
         </tr>
         <tr>
-            <td>消息id（message_id）</td>
-            <td><input type="text" name="message_id" value="2"></td>
+            <td>消息id列表（message_id_list）</td>
+            <td><input type="text" name="message_id_list" value="2,3,4"></td>
         </tr>
 
 

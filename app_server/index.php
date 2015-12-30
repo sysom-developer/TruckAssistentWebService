@@ -289,4 +289,7 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+
+require_once __DIR__ . '/autoload.php';
+
 require_once BASEPATH.'core/CodeIgniter.php';
