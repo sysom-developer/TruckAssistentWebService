@@ -222,31 +222,17 @@ switch (ENVIRONMENT) {
 
 
 
-<form action="<?php echo $domain?>/vehicle/get_engine_brand" method="get">
+<form action="<?php echo $domain?>/vehicle/get_engine_brand_displacement" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">6. 获取发动机品牌－－采用配置文件</td>
-            <td><?php echo $domain?>/vehicle/get_engine_brand</td>
+            <td width="300">6. 根据车辆品牌获取发动机品牌和排量－－采用配置文件</td>
+            <td><?php echo $domain?>/vehicle/get_engine_brand_displacement</td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="提 交"></td>
+            <td>车辆品牌（vehicle_brand）</td>
+            <td><input type="text"  name="vehicle_brand"></td>
         </tr>
-        <tr bgcolor="#ffe4c4">
-            <td colspan="2">直接点击提交查看</td>
-        </tr>
-        <tr>
-            <td colspan="2"><hr style="border:1px dashed #000; height:1px"></td>
-        </tr>
-    </table>
-</form>
 
-
-<form action="<?php echo $domain?>/vehicle/get_engine_displacement" method="get">
-    <table style="margin-left: 30px;" width="100%">
-        <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">7. 获取发动机排量－－采用配置文件</td>
-            <td><?php echo $domain?>/vehicle/get_engine_displacement</td>
-        </tr>
         <tr>
             <td colspan="2"><input type="submit" value="提 交"></td>
         </tr>

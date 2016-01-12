@@ -21,13 +21,15 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 
+//
+//		$cond = ['_id' => new \MongoId('5682a0490cd8d80c4374481f')];
+//		$conn = \League\Monga::connection('121.40.210.117');
+//		$mongo =  $conn->database('calc_output');
+//		$data = $mongo->collection('JTA0000102180002')->findOne($cond);
+//
+//		var_dump($data);
 
-		$cond = ['_id' => new \MongoId('5682a0490cd8d80c4374481f')];
-		$conn = \League\Monga::connection('121.40.210.117');
-		$mongo =  $conn->database('calc_output');
-		$data = $mongo->collection('JTA0000102180002')->findOne($cond);
 
-		var_dump($data);
 
 	}
 }

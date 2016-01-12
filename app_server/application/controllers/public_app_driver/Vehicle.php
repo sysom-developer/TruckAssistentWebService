@@ -144,23 +144,17 @@ class Vehicle extends Public_Android_Controller {
         exit;
     }
     /**
-     * 获取发动机品牌
+     * 根据车辆品牌获取发动机品牌
      */
-    public function get_engine_brand()
+    public function get_engine_brand_displacement()
     {
-        $data = $this->config->item('engine_brand', 'vehicle');
-        $this->data['error']['body']['data_list'] =  array_values($data);
-
-        echo json_en($this->data['error']);
-        exit;
-    }
-    /**
-     * 获取发动机排量
-     */
-    public function get_engine_displacement()
-    {
-        $data = $this->config->item('engine_displacement', 'vehicle');
-        $this->data['error']['body']['data_list'] =  array_values($data);
+        $engine_brand = $this->config->item('engine_brand', 'vehicle');
+        $engine_displacement = $this->config->item('engine_displacement', 'vehicle');
+        $data = [
+            'engine_brand' => $engine_brand,
+            'engine_displacement' => $engine_displacement
+        ];
+        $this->data['error']['body']['data_list'] =  $data;
 
         echo json_en($this->data['error']);
         exit;
