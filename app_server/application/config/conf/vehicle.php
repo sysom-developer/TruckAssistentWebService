@@ -116,8 +116,8 @@ $model = [
 $engine_brand = [
     ['engine_brand_id'=>'1', 'engine_brand_value' => '4.2'],
     ['engine_brand_id'=>'2', 'engine_brand_value' => '5.2'],
-    ['engine_brand'=>'3', 'engine_brand_value' => '5.8'],
-    ['engine_brand'=>'4', 'engine_brand_value' => '6.2'],
+    ['engine_brand_id'=>'3', 'engine_brand_value' => '5.8'],
+    ['engine_brand_id'=>'4', 'engine_brand_value' => '6.2'],
 
 ];
 

@@ -229,8 +229,8 @@ switch (ENVIRONMENT) {
             <td><?php echo $domain?>/vehicle/get_engine_brand_displacement</td>
         </tr>
         <tr>
-            <td>车辆品牌（vehicle_brand）</td>
-            <td><input type="text"  name="vehicle_brand"></td>
+            <td>车辆品牌id（vehicle_brand_id）</td>
+            <td><input type="text"  name="vehicle_brand_id"></td>
         </tr>
 
         <tr>

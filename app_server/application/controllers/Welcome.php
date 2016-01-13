@@ -29,7 +29,7 @@ class Welcome extends CI_Controller {
 //
 //		var_dump($data);
 
-
-
+		$result = $this->xingeapp->PushAccountAndroid(2100125550, 'cd847e25372faeb9cfd5d1a54dd5ab61', 'app', '测试', '15050542378');
+		var_dump($result);
 	}
 }

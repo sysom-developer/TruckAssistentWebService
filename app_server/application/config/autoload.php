@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('sms', 'service', 'upload_conf','upload');
+$autoload['libraries'] = array('sms', 'service', 'upload_conf','upload', 'xingeApp');
 
 
 /*
