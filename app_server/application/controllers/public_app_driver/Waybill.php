@@ -360,9 +360,9 @@ class Waybill extends Public_Android_Controller {
         ];
 
         $contrast = [
-            'average' => 212.4,
-            'current' => 323.6,
-            'friend' => 232.8
+            'average' => 38.4,
+            'current' => 42.6,
+            'friend' => 36.8
         ];
 
         $this->data['error']['body']['data'] =  [
