@@ -67,9 +67,27 @@ class Waybill_service extends Service {
             'end_city'   => $tmp['end_city']
         ];
         $waybill = ['base' => $base];
-        
+
         return $waybill;
     }
+
+    public function get_waybill_by_id($waybill_id){
+        //根据运单id获取运单
+        $waybill =  $this->waybill_model->get_waybill_by_id($waybill_id);
+        $tmp = $waybill;
+        $base = [
+            'waybill_id' => json_decode(json_encode( $tmp['_id']),true)['$id'],
+            'start_time' => $tmp['start_time'],
+            'end_time'   => $tmp['end_time'],
+            'start_city' => $tmp['start_city_name'],
+            'end_city'   => $tmp['end_city']
+        ];
+        $waybill = ['base' => $base];
+
+        return $waybill;
+    }
+
+
 
     public function update_waybill_data($where = array(), $data = '')
     {

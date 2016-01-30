@@ -56,6 +56,17 @@ class Waybill_model{
         return array_values($result);
     }
 
+    /**
+     * 根据运单id获取运单详情
+     * @param $waybill_id
+     * @return mixed
+     */
+    public function get_waybill_by_id($waybill_id){
+        //根据运单id获取运单
+        $cond = ['_id'=> new \MongoId($waybill_id)];
+        $waybill = $this->getMongo()->collection('waybill')->findOne($cond);
+        return $waybill;
+    }
 
 
 }

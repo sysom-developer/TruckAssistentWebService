@@ -58,7 +58,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/waybill/index" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">1.首页 | 运单,停留时间,路段耗油,公里耗油停留</td>
+            <td width="300">ok.1.首页 | 运单,停留时间,路段耗油,公里耗油停留</td>
             <td><?php echo $domain?>/waybill/index</td>
         </tr>
         <tr>
@@ -245,7 +245,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/waybill/get_waybill_list" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">8. 历史运单｜ 历史运单</td>
+            <td width="300">ok.8. 历史运单｜ 历史运单</td>
             <td><?php echo $domain?>/waybill/get_waybill_list</td>
         </tr>
         <tr>
@@ -332,7 +332,7 @@ switch (ENVIRONMENT) {
         </tr>
         <tr>
             <td>  运单id（waybill_id）</td>
-            <td><input type="text" name="waybill_id" value="2"></td>
+            <td><input type="text" name="waybill_id" value="56aa3aa87a042bf104004551"></td>
         </tr>
 
         <tr>

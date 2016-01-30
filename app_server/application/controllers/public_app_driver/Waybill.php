@@ -244,6 +244,13 @@ class Waybill extends Public_Android_Controller {
 
         $type = trim($this->input->get_post('type', true));
 
+
+        $waybill = $this->waybill_service->get_waybill_by_id($waybill_id);
+
+        $this->data['error']['body']['waybill'] = $waybill;
+        echo json_en($this->data['error']);
+        exit;
+
         $type = isset($type)? $type : 1;
 
         $base = [
