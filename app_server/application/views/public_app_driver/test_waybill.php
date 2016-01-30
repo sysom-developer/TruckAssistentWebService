@@ -63,7 +63,7 @@ switch (ENVIRONMENT) {
         </tr>
         <tr>
             <td>  司机id（driver_id）</td>
-            <td><input type="text" name="driver_id" value="2"></td>
+            <td><input type="text" name="driver_id" value="3"></td>
         </tr>
 
         <tr>
@@ -250,7 +250,7 @@ switch (ENVIRONMENT) {
         </tr>
         <tr>
             <td>司机id（driver_id）</td>
-            <td><input type="text" name="driver_id" value="2"></td>
+            <td><input type="text" name="driver_id" value="3"></td>
         </tr>
         <tr>
             <td>类型（type）1--运单，2--停留</td>

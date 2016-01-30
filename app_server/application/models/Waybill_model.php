@@ -19,7 +19,7 @@ class Waybill_model{
 
 
     /**
-     * 根据设备号查询运单
+     * 根据设备号查询运单列表
      * @param $device_no
      * @param $limit
      * @return array
@@ -38,6 +38,22 @@ class Waybill_model{
                     ->limit($limit);
         $result = iterator_to_array($waybills);
         return $result;
+    }
+
+    /**
+     * 根据设备号查询当前运单
+     * @param $device_no
+     * @return mixed
+     */
+    public function get_current_waybill($device_no){
+        //生成查询条件
+        $cond = ['device_id'=> $device_no];
+        $waybills = $this->getMongo()->collection('waybill')
+            ->find($cond)
+            ->sort(['start_time' => -1])
+            ->limit(1);
+        $result = iterator_to_array($waybills);
+        return array_values($result);
     }
 
 

@@ -47,6 +47,30 @@ class Waybill_service extends Service {
         return $result;
     }
 
+    public function get_waybill($driver_id, $type) {
+
+        //获取司机id对应的设备号
+        $driver_where = ['driver_id' => $driver_id];
+        $driver_data = $this->driver_service->get_driver_data($driver_where);
+        $device_no = $driver_data['device_no'];
+
+        //根据设备号获取运单
+        $waybill =  $this->waybill_model->get_current_waybill($device_no);
+        //格式化运单
+
+        $tmp = $waybill[0];
+        $base = [
+            'waybill_id' => json_decode(json_encode( $tmp['_id']),true)['$id'],
+            'start_time' => $tmp['start_time'],
+            'end_time'   => $tmp['end_time'],
+            'start_city' => $tmp['start_city_name'],
+            'end_city'   => $tmp['end_city']
+        ];
+        $waybill = ['base' => $base];
+        
+        return $waybill;
+    }
+
     public function update_waybill_data($where = array(), $data = '')
     {
         $result = $this->common_model->update('waybill', $data, $where);
