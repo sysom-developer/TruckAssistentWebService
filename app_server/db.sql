@@ -1,0 +1,1 @@
+ALTER TABLE `thy_driver` ADD `device_no` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '设备号' ;

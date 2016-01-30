@@ -128,7 +128,7 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('common_model');
+$autoload['model'] = array('common_model', 'waybill_model');
 
 
 

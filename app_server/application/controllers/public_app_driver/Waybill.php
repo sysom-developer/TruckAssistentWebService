@@ -111,6 +111,9 @@ class Waybill extends Public_Android_Controller {
         $type = trim($this->input->get_post('type', true));
         $offset = trim($this->input->get_post('offset', true));
         $limit = trim($this->input->get_post('limit', true));
+        $year = trim($this->input->get_post('year', true));
+        $month = trim($this->input->get_post('month', true));
+
         $order = trim($this->input->get_post('order', true));
         $by = strtolower(trim($this->input->get_post('by', true)));
 
@@ -134,6 +137,12 @@ class Waybill extends Public_Android_Controller {
             $this->app_error_func(1495, 'type 参数错误');
             exit;
         }
+
+        $data = $this->waybill_service->get_waybill_data_list($driver_id, $offset, $limit, $year, $month, $type);
+        $this->data['error']['body']['data'] = $data;
+        echo json_en($this->data['error']);
+        exit;
+
 
         // 运单信息
 
@@ -175,7 +184,6 @@ class Waybill extends Public_Android_Controller {
             'longest_stay' => 3.5*60*60*24,
             'average_stay' => 2.5*60*60*24,
         ];
-
 
 
         $this->data['error']['body']['data'] = [

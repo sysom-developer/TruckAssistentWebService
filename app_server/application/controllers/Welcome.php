@@ -154,4 +154,14 @@ class Welcome extends CI_Controller {
 		return $o->bin;
 	}
 
+
+	public function test(){
+		$conn = \League\Monga::connection('127.0.0.1');
+		$waybill_mongo =  $conn->database('waybill');
+		$cond = ['device_id' => 'JTA0000108770002'];
+		$data = $waybill_mongo->collection('waybill')->find($cond);
+		$data = iterator_to_array($data);
+		var_dump($data);
+	}
+
 }

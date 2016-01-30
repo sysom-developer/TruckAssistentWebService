@@ -17,10 +17,34 @@ class Waybill_service extends Service {
      * @param string $by
      * @return mixed
      */
-    public function get_waybill_data_list($where = array(), $limit = '', $offset = 0, $order = 'waybill_id', $by = 'desc') {
-        $data = $this->common_model->get_data('waybill', $where, $limit, $offset, $order, $by)->result_array();
+    public function get_waybill_data_list($driver_id, $offset = 0, $limit, $year, $month, $type) {
+        //初始化开始结束时间
+        $start_time_from = strtotime($year.'-'.$month);
+        $start_time_to = strtotime('+1 month', $start_time_from);
 
-        return $data;
+
+        //获取司机id对应的设备号
+        $driver_where = ['driver_id' => $driver_id];
+        $driver_data = $this->driver_service->get_driver_data($driver_where);
+        $device_no = $driver_data['device_no'];
+
+        //根据设备号获取运单
+        $waybills =  $this->waybill_model->get_waybill_by_device_no($device_no, $offset, $limit, $start_time_from, $start_time_to);
+        //格式化运单
+        array_walk($waybills, function(&$v, $k){
+            $tmp = $v;
+            $base = [
+                'waybill_id' => $k,
+                'start_time' => $tmp['start_time'],
+                'end_time'   => $tmp['end_time'],
+                'start_city' => $tmp['start_city_name'],
+                'end_city'   => $tmp['end_city']
+            ];
+            $v = ['base' => $base];
+
+        });
+        $result = ['waybill_data_list' => $waybills];
+        return $result;
     }
 
     public function update_waybill_data($where = array(), $data = '')
@@ -31,3 +55,5 @@ class Waybill_service extends Service {
 
 
     }
+
+

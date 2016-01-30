@@ -274,11 +274,11 @@ switch (ENVIRONMENT) {
         </tr>
         <tr>
             <td>  年（year）</td>
-            <td><input type="text" name="year" value="2015"></td>
+            <td><input type="text" name="year" value="2016"></td>
         </tr>
         <tr>
             <td>  月（month）</td>
-            <td><input type="text" name="year" value="12"></td>
+            <td><input type="text" name="month" value="1"></td>
         </tr>
         <tr>
             <td colspan="2">

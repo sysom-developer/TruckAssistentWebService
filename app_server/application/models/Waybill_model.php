@@ -1,0 +1,45 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/**
+ *
+ * 运单mongo接口
+ * @author andy0010
+ *
+ */
+
+class Waybill_model{
+
+    public function getMongo($db='waybill')
+    {
+        $ip = '127.0.0.1';
+        $conn = \League\Monga::connection($ip);
+        return $conn->database($db);
+    }
+
+
+    /**
+     * 根据设备号查询运单
+     * @param $device_no
+     * @param $limit
+     * @return array
+     */
+    public function get_waybill_by_device_no($device_no, $offset, $limit, $start_time_from, $start_time_to){
+        //生成查询条件
+        $q = function($query) use ($device_no, $start_time_from, $start_time_to){
+            $query->where('device_id', $device_no)
+                ->andWhereBetween('start_time', intval($start_time_from), intval($start_time_to));
+        };
+
+        $waybills = $this->getMongo()->collection('waybill')
+                    ->find($q)
+                    ->sort(['start_time' => -1])
+                    ->skip($offset*$limit)
+                    ->limit($limit);
+        $result = iterator_to_array($waybills);
+        return $result;
+    }
+
+
+
+}
