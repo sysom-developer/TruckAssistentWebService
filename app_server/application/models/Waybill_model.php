@@ -12,7 +12,7 @@ class Waybill_model{
 
     public function getMongo($db='waybill')
     {
-        $ip = '127.0.0.1';
+        $ip = 'www.thy56.com';
         $conn = \League\Monga::connection($ip);
         return $conn->database($db);
     }
