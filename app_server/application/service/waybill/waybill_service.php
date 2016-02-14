@@ -38,12 +38,34 @@ class Waybill_service extends Service {
                 'start_time' => $tmp['start_time'],
                 'end_time'   => $tmp['end_time'],
                 'start_city' => $tmp['start_city_name'],
-                'end_city'   => $tmp['end_city']
+                'end_city'   => $tmp['end_city'],
+
+                'consumption_amount'=>null,
+                'consumption_per_km'=>null,
+                'amount_per_km'=>null,
+                'total_mileage' => null,//总里程
+                'average_velocity' => null,//平均速度
+                'stay_time' => null,
+                'status' => null,
+                'type'=> null,
+                'current_address' => null
             ];
             $v = ['base' => $base];
 
         });
-        $result = ['waybill_data_list' => $waybills];
+
+        $summary = [
+            'waybill_count' => 8,
+            'total_mileage' => 21200,
+            'transport_time' => 245.5*60*60*24,
+            'consumption_amount' => 27500,
+            'total_stay' => 6.5*60*60*24,
+            'longest_stay' => 3.5*60*60*24,
+            'average_stay' => 2.5*60*60*24,
+        ];
+
+
+        $result = ['waybill_data_list' => $waybills, 'summary' => $summary];
         return $result;
     }
 
@@ -64,9 +86,31 @@ class Waybill_service extends Service {
             'start_time' => $tmp['start_time'],
             'end_time'   => $tmp['end_time'],
             'start_city' => $tmp['start_city_name'],
-            'end_city'   => $tmp['end_city']
+            'end_city'   => $tmp['end_city'],
+
+
+            'consumption_amount'=>null,
+            'consumption_per_km'=>null,
+            'amount_per_km'=>null,
+            'total_mileage' => null,//总里程
+            'average_velocity' => null,//平均速度
+            'stay_time' => null,
+            'status' => null,
+            'type'=> null,
+            'current_address' => null
         ];
-        $waybill = ['base' => $base];
+
+        //根据运单id获取行程数据
+        $consumption = [
+            ['mileage_id'=>1, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.3, 'mileage' => 20, 'traffic' => '平路'],
+            ['mileage_id'=>2, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.4, 'mileage' => 30, 'traffic' => '平路'],
+            ['mileage_id'=>3, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.5, 'mileage' => 40, 'traffic' => '平路'],
+            ['mileage_id'=>4, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.6, 'mileage' => 20, 'traffic' => '平路'],
+            ['mileage_id'=>5, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.7, 'mileage' => 20, 'traffic' => '平路'],
+            ['mileage_id'=>6, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.8, 'mileage' => 40, 'traffic' => '平路'],
+
+        ];
+        $waybill = ['base' => $base,'consumption' => $consumption];
 
         return $waybill;
     }
@@ -80,9 +124,34 @@ class Waybill_service extends Service {
             'start_time' => $tmp['start_time'],
             'end_time'   => $tmp['end_time'],
             'start_city' => $tmp['start_city_name'],
-            'end_city'   => $tmp['end_city']
+            'end_city'   => $tmp['end_city'],
+
+
+
+            'consumption_amount'=>null,
+            'consumption_per_km'=>null,
+            'amount_per_km'=>null,
+            'total_mileage' => null,//总里程
+            'average_velocity' => null,//平均速度
+            'stay_time' => null,
+            'status' => null,
+            'type'=> null,
+            'current_address' => null
         ];
-        $waybill = ['base' => $base];
+
+
+        //根据运单id获取行程数据
+        $consumption = [
+            ['mileage_id'=>1, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.3, 'mileage' => 20, 'traffic' => '平路'],
+            ['mileage_id'=>2, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.4, 'mileage' => 30, 'traffic' => '平路'],
+            ['mileage_id'=>3, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.5, 'mileage' => 40, 'traffic' => '平路'],
+            ['mileage_id'=>4, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.6, 'mileage' => 20, 'traffic' => '平路'],
+            ['mileage_id'=>5, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.7, 'mileage' => 20, 'traffic' => '平路'],
+            ['mileage_id'=>6, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.8, 'mileage' => 40, 'traffic' => '平路'],
+
+        ];
+
+        $waybill = ['base' => $base,'consumption' => $consumption];
 
         return $waybill;
     }

@@ -327,7 +327,7 @@ switch (ENVIRONMENT) {
 <form action="<?php echo $domain?>/waybill/detail" method="get">
     <table style="margin-left: 30px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
-            <td width="300">9. 历史运单 | 运单详情</td>
+            <td width="300">9. ok历史运单 | 运单详情</td>
             <td><?php echo $domain?>/waybill/detail</td>
         </tr>
         <tr>
