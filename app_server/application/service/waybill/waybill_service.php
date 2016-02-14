@@ -36,7 +36,7 @@ class Waybill_service extends Service {
             $base = [
                 'waybill_id' => $k,
                 'start_time' => $tmp['start_time'],
-                'end_time'   => $tmp['end_time'],
+                'end_time'   => empty($tmp['end_time'])? time() : $tmp['end_time'],
                 'start_city' => $tmp['start_city_name'],
                 'end_city'   => $tmp['end_city'],
 
@@ -83,7 +83,7 @@ class Waybill_service extends Service {
         $base = [
             'waybill_id' => json_decode(json_encode( $tmp['_id']),true)['$id'],
             'start_time' => $tmp['start_time'],
-            'end_time'   => $tmp['end_time'],
+            'end_time'   => empty($tmp['end_time'])? time() : $tmp['end_time'],
             'start_city' => $tmp['start_city_name'],
             'end_city'   => $tmp['end_city'],
 
@@ -122,7 +122,7 @@ class Waybill_service extends Service {
         $base = [
             'waybill_id' => json_decode(json_encode( $tmp['_id']),true)['$id'],
             'start_time' => $tmp['start_time'],
-            'end_time'   => $tmp['end_time'],
+            'end_time'   => empty($tmp['end_time'])? time() : $tmp['end_time'],
             'start_city' => $tmp['start_city_name'],
             'end_city'   => $tmp['end_city'],
 
