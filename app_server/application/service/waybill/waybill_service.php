@@ -40,15 +40,14 @@ class Waybill_service extends Service {
                 'start_city' => $tmp['start_city_name'],
                 'end_city'   => $tmp['end_city'],
 
-                'consumption_amount'=>null,
-                'consumption_per_km'=>null,
-                'amount_per_km'=>null,
-                'total_mileage' => null,//总里程
-                'average_velocity' => null,//平均速度
-                'stay_time' => null,
-                'status' => null,
-                'type'=> null,
-                'current_address' => null
+                'consumption_amount'=>1950,
+                'consumption_per_km'=>36,
+                'amount_per_km'=>2.1,
+                'total_mileage' => 1200,//总里程
+                'average_velocity' => 75.5,//平均速度
+                'stay_time' => 60*60*3,
+                'status' => 1,
+                'type'=> 1,
             ];
             $v = ['base' => $base];
 
@@ -88,16 +87,17 @@ class Waybill_service extends Service {
             'start_city' => $tmp['start_city_name'],
             'end_city'   => $tmp['end_city'],
 
+            'consumption_amount'=>1950,
+            'consumption_per_km'=>36,
+            'amount_per_km'=>2.1,
 
-            'consumption_amount'=>null,
-            'consumption_per_km'=>null,
-            'amount_per_km'=>null,
-            'total_mileage' => null,//总里程
-            'average_velocity' => null,//平均速度
-            'stay_time' => null,
-            'status' => null,
-            'type'=> null,
-            'current_address' => null
+            'total_mileage' => 1200,//总里程
+            'average_velocity' => 75.5,//平均速度
+
+            'stay_time' => 60*60*3,
+            'status' => 1,
+            'type'=> 1,
+            'current_address' => 'xxx地址'
         ];
 
         //根据运单id获取行程数据
@@ -127,16 +127,14 @@ class Waybill_service extends Service {
             'end_city'   => $tmp['end_city'],
 
 
-
-            'consumption_amount'=>null,
-            'consumption_per_km'=>null,
-            'amount_per_km'=>null,
-            'total_mileage' => null,//总里程
-            'average_velocity' => null,//平均速度
-            'stay_time' => null,
-            'status' => null,
-            'type'=> null,
-            'current_address' => null
+            'consumption_amount'=>1950,
+            'consumption_per_km'=>36,
+            'amount_per_km'=>2.1,
+            'total_mileage' => 1200,//总里程
+            'average_velocity' => 75.5,//平均速度
+            'stay_time' => 60*60*3,
+            'status' => 1,
+            'type'=> 1,
         ];
 
 
