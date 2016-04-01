@@ -25,16 +25,15 @@ class Waybill extends Public_Android_Controller {
     {
 
         $driver_id = trim($this->input->get_post('driver_id', true));
-
+        
         $type = trim($this->input->get_post('type', true));
-
         $type = isset($type)? $type : 1;
 
         $data = $this->waybill_service->get_waybill($driver_id, $type);
+        
         $this->data['error']['body']['waybill'] = $data;
         echo json_en($this->data['error']);
         exit;
-
         $base = [
             'waybill_id' => 1,
             'start_time' => 1448557261,

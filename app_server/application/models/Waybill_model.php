@@ -25,6 +25,7 @@ class Waybill_model{
      * @return array
      */
     public function get_waybill_by_device_no($device_no, $offset, $limit, $start_time_from, $start_time_to){
+
         //生成查询条件
         $q = function($query) use ($device_no, $start_time_from, $start_time_to){
             $query->where('device_id', $device_no)
@@ -36,6 +37,7 @@ class Waybill_model{
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
+
         $result = iterator_to_array($waybills);
         return $result;
     }
@@ -48,10 +50,12 @@ class Waybill_model{
     public function get_current_waybill($device_no){
         //生成查询条件
         $cond = ['device_id'=> $device_no];
+
         $waybills = $this->getMongo()->collection('waybill')
             ->find($cond)
-            ->sort(['start_time' => -1])
+            ->sort(['_id' => -1])
             ->limit(1);
+        
         $result = iterator_to_array($waybills);
         return array_values($result);
     }

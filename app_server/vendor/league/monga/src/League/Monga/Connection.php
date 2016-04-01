@@ -50,7 +50,7 @@ class Connection
             if (!isset($options['connect'])) {
                 $options['connect'] = true;
             }
-
+            
             $this->connection = new MongoClient($server ?: 'mongodb://localhost:27017', $options, $driverOptions);
         }
     }
