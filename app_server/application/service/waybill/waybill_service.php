@@ -99,11 +99,11 @@ class Waybill_service extends Service {
             'type'=> 1,
             'current_address' => 'xxx地址'
         ];
+
         $consumption = $this->logic_model->get_current_logic($tmp['device_id'],$tmp['logic_id']);
-        var_dump($consumption);
-        exit;
+
         //根据运单id获取行程数据
-        $consumption = [
+/*        $consumption = [
             ['mileage_id'=>1, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.3, 'mileage' => 20, 'traffic' => '平路'],
             ['mileage_id'=>2, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.4, 'mileage' => 30, 'traffic' => '平路'],
             ['mileage_id'=>3, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.5, 'mileage' => 40, 'traffic' => '平路'],
@@ -111,7 +111,7 @@ class Waybill_service extends Service {
             ['mileage_id'=>5, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.7, 'mileage' => 20, 'traffic' => '平路'],
             ['mileage_id'=>6, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.8, 'mileage' => 40, 'traffic' => '平路'],
 
-        ];
+        ];*/
         $waybill = ['base' => $base,'consumption' => $consumption];
 
         return $waybill;

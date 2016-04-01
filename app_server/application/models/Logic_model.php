@@ -69,7 +69,7 @@ class logic_model{
             }
             $trip['start_time'] =json_decode(json_encode($vehicle_driving_section['start_time']),true)['bin'];
             $trip['end_time'] =json_decode(json_encode($vehicle_driving_section['end_time']),true)['bin'];
-            $trip['mileage'] =$vehicle_driving_section['distance'];
+            $trip['mileage'] =intval($vehicle_driving_section['distance']);
             $trip['amount_per_km'] =5.2*intval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
             $logics[$key]=$trip;
