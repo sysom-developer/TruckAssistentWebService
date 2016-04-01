@@ -74,7 +74,7 @@ class Waybill_service extends Service {
         $driver_where = ['driver_id' => $driver_id];
         $driver_data = $this->driver_service->get_driver_data($driver_where);
         $device_no = $driver_data['device_no'];
-        
+
         //根据设备号获取运单
         $waybill =  $this->waybill_model->get_current_waybill($device_no);
         //格式化运单
@@ -99,9 +99,10 @@ class Waybill_service extends Service {
             'type'=> 1,
             'current_address' => 'xxx地址'
         ];
-
+        /*$tmp['logic_id'] = array_slice($tmp['logic_id'], 0, 100);*/
         $consumption = $this->logic_model->get_current_logic($tmp['device_id'],$tmp['logic_id']);
-
+        /*var_dump($consumption);
+        exit;*/
         //根据运单id获取行程数据
 /*        $consumption = [
             ['mileage_id'=>1, 'start_address' => 'xxx地址', 'end_address' => 'asxxx地址', 'start_time' => 1448557261, 'end_time' => 1448564461, 'amount_per_km' => 2.3, 'mileage' => 20, 'traffic' => '平路'],

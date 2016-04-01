@@ -73,6 +73,12 @@ class logic_model{
             $trip['amount_per_km'] =5.2*intval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
             $logics[$key]=$trip;
+/*            $trip['_id']=$value;
+            if($key==2)
+            {
+                var_dump($logic);
+                echo $value;exit;
+            }*/
         }
         
         return $logics;
