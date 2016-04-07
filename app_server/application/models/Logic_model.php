@@ -48,7 +48,12 @@ class logic_model{
             $trip['mileage_id'] = $key;
             if(is_array($start_poi))
             {
-
+/*              if($key==7)
+            {
+                var_dump($vehicle_driving_section);
+                echo "$value";
+                exit;
+            }*/
                 $trip['start_address'] =$start_poi[0]['addr'];
             }
             else
@@ -67,18 +72,14 @@ class logic_model{
                 $end_poi=json_decode($end_poi,true);
                 $trip['end_address'] =$end_poi['contents'][0]['address'];
             }
-            $trip['start_time'] =json_decode(json_encode($vehicle_driving_section['start_time']),true)['bin'];
-            $trip['end_time'] =json_decode(json_encode($vehicle_driving_section['end_time']),true)['bin'];
-            $trip['mileage'] =intval($vehicle_driving_section['distance']);
+            $trip['start_time'] =$vehicle_driving_section['start_time'];
+            $trip['end_time'] = $vehicle_driving_section['end_time'];
+            $trip['mileage'] =intval(floatval($vehicle_driving_section['distance']));
             $trip['amount_per_km'] =5.2*intval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
             $logics[$key]=$trip;
-/*            $trip['_id']=$value;
-            if($key==2)
-            {
-                var_dump($logic);
-                echo $value;exit;
-            }*/
+            $trip['_id']=$value;
+
         }
         
         return $logics;
