@@ -81,7 +81,7 @@ class logic_model{
                var_dump($logic);
                exit; 
             }*/
-            $trip['mileage'] =floatval($vehicle_driving_section['distance']);
+            $trip['mileage'] =round(floatval($vehicle_driving_section['distance']),2);
             $trip['amount_per_km'] =5.2*floatval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
             $logics[$key]=$trip;
