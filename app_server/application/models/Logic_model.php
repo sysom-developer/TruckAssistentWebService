@@ -74,8 +74,8 @@ class logic_model{
             }
             $trip['start_time'] =$vehicle_driving_section['start_time'];
             $trip['end_time'] = $vehicle_driving_section['end_time'];
-            $trip['mileage'] =intval(floatval($vehicle_driving_section['distance']));
-            $trip['amount_per_km'] =5.2*intval($vehicle_driving_section['fuel_quantity']);
+            $trip['mileage'] =floatval($vehicle_driving_section['distance']);
+            $trip['amount_per_km'] =5.2*floatval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
             $logics[$key]=$trip;
             $trip['_id']=$value;
