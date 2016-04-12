@@ -74,6 +74,13 @@ class logic_model{
             }
             $trip['start_time'] =$vehicle_driving_section['start_time'];
             $trip['end_time'] = $vehicle_driving_section['end_time'];
+/*            if(floatval($vehicle_driving_section['distance'])>10000)
+            {
+               
+                echo "$value";
+               var_dump($logic);
+               exit; 
+            }*/
             $trip['mileage'] =floatval($vehicle_driving_section['distance']);
             $trip['amount_per_km'] =5.2*floatval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
