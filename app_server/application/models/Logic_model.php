@@ -28,11 +28,20 @@ class logic_model{
     public function get_current_logic($device_id,$ids){
         //生成查询条件
         $logics=array();
-
+        $data=array();
+        $i=0;
         foreach ($ids as $key => $value) {
             $cond = ['_id'=> $value];
             $logic = $this->getMongo()->collection($device_id)
             ->find($cond);
+            $i++;
+            $data[$i]=$logic;
+        }
+        $i=0;
+        foreach ($data as $key => $logic) {
+            /*$cond = ['_id'=> $value];
+            $logic = $this->getMongo()->collection($device_id)
+            ->find($cond);*/
             $result = iterator_to_array($logic);
             $logic = array_values($result)[0]['vehicle_section'];
             $vehicle_driving_section=array();
@@ -43,52 +52,62 @@ class logic_model{
                 else
                     $vehicle_stop_section=$vehicle_section;
             }
-            $start_poi=json_decode(json_encode($vehicle_driving_section['start_poi']),TRUE);
-            $end_poi=json_decode(json_encode($vehicle_driving_section['end_poi']),TRUE);
+            $start_poi=$this->getpoi($vehicle_driving_section['start_poi']);
+            $end_poi=$this->getpoi($vehicle_driving_section['end_poi']);
             $trip['mileage_id'] = $key;
-            if(is_array($start_poi))
+            if($start_poi == null)
             {
-/*              if($key==7)
-            {
-                var_dump($vehicle_driving_section);
-                echo "$value";
-                exit;
-            }*/
-                $trip['start_address'] =$start_poi[0]['addr'];
+                if($vehicle_driving_section['start_time']>$vehicle_stop_section['start_time'])
+                {
+                    $start_poi_ls=$this->getpro_poi($data[$i-1],1);
+                    if($start_poi_ls == null)
+                        {
+                            $start_poi=$logics[$key-1]['end_address'];
+                        }
+                    else{
+                        $start_poi=$start_poi_ls;
+                    }    
+                    
+                }
+                else{
+                    $start_poi=$this->getpoi($vehicle_stop_section['poi']);
+                }
             }
-            else
+            $trip['start_address'] =$start_poi;
+            if($logics[$key-1]['end_address']==null)
             {
-                $start_poi=json_decode($start_poi,true);
-                
-                $trip['start_address'] =$start_poi['contents'][0]['address'];
+                $logics[$key-1]['end_address']=$trip['start_address'];
             }
-            if(is_array($end_poi))
+            if($end_poi == null)
             {
-                $trip['end_address'] =$end_poi[0]['addr'];
-                
+                if($vehicle_driving_section['start_time']>$vehicle_stop_section['start_time'])
+                {
+                    $end_poi=$this->getpoi($vehicle_stop_section['poi']);
+                   
+                }
+                else{
+                     $end_poi=$this->getpro_poi($data[$i+1],2);
+                }
             }
-            else
-            {
-                $end_poi=json_decode($end_poi,true);
-                $trip['end_address'] =$end_poi['contents'][0]['address'];
-            }
+            $trip['end_address'] =$end_poi;
             $trip['start_time'] =$vehicle_driving_section['start_time'];
             $trip['end_time'] = $vehicle_driving_section['end_time'];
-/*            if(floatval($vehicle_driving_section['distance'])>10000)
+            if($trip['start_time']==null)
             {
-               
-                echo "$value";
-               var_dump($logic);
-               exit; 
-            }*/
+                $trip['start_time']=$this->gettime($data[$i-1],2);
+            }
+            if($trip['end_time']==null)
+            {
+                $trip['end_time']=$this->gettime($data[$i+1],1);
+            }
             $trip['mileage'] =round(floatval($vehicle_driving_section['distance']),2);
             $trip['amount_per_km'] =5.2*floatval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
             $logics[$key]=$trip;
-            $trip['_id']=$value;
-
+          /*  $trip['_id']=$value;*/
+            $i++;
         }
-        
+        /*  exit;*/
         return $logics;
     }
 
@@ -103,6 +122,49 @@ class logic_model{
         $waybill = $this->getMongo()->collection('waybill')->findOne($cond);
         return $waybill;
     }
-
+    public function getpoi($data){
+        $poi=json_decode(json_encode($data),TRUE);
+        if(is_array($poi))
+            {
+               return  $poi[0]['addr'];
+            }
+        else
+            {
+                $poi=json_decode($poi,true);
+                return  $poi['contents'][0]['address'];
+            }
+    }
+    public function gettime($data,$type){
+         $result_pro = iterator_to_array($data);
+        $logic_pro = array_values($result_pro)[0]['vehicle_section'];
+            if($type==1)
+            {
+                return  $logic_pro[0]['start_time'];
+            }
+            else
+            {
+                return  $logic_pro[1]['end_time'];
+            }
+    }
+    public function getpro_poi($data,$type){
+         $result_pro = iterator_to_array($data);
+        $logic_pro = array_values($result_pro)[0]['vehicle_section'];
+        $vehicle_driving_section_pro=array();
+        foreach ($logic_pro as $v => $vehicle_section) {
+                if($vehicle_section['type'] == "vehicle_driving_section")
+                    {
+                        $vehicle_driving_section_pro=$vehicle_section;
+                    }
+                    }
+            if($type==1)
+            {
+                return $this->getpoi($vehicle_driving_section_pro['end_poi']);
+            }
+            else
+            {
+                return $this->getpoi($vehicle_driving_section_pro['start_poi']);
+            }
+        
+    }
 
 }
