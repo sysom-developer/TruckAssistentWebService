@@ -89,9 +89,9 @@ class Waybill_service extends Service {
             'start_city' => $tmp['start_city_name'],
             'end_city'   => $tmp['end_city_name'],
 
-            'consumption_amount'=>1950,
-            'consumption_per_km'=>36,
-            'amount_per_km'=>2.1,
+            'consumption_amount'=>$logic_data['consumption_amount'],
+            'consumption_per_km'=>$logic_data['consumption_per_km'],
+            'amount_per_km'=>$logic_data['amount_per_km'],
 
             'total_mileage' => $logic_data['total_mileage'],//总里程
             'average_velocity' => $logic_data['average_velocity'],//平均速度

@@ -32,8 +32,11 @@ class logic_model{
         $logics=array();
         $data=array();
         $i=0;
+        $youjia=5.2;
+        $total_fuel_quantity=0;
         $total_mileage=0;
         $total_time=0;
+        $consumption_amount=0;
         foreach ($ids as $key => $value) {
             $cond = ['_id'=> $value];
             $logic = $this->getMongo()->collection($device_id)
@@ -128,17 +131,22 @@ class logic_model{
             $logic_data['total_mileage']+=$trip['mileage'];
             $trip['mileage'] =round(floatval($vehicle_driving_section['distance']),2);
             
-            $trip['amount_per_km'] =5.2*floatval($vehicle_driving_section['fuel_quantity']);
+            $trip['amount_per_km'] =$youjia*floatval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
             $logics[$i]=$trip;
-          /*  $trip['_id']=$value;*/
+            $trip['_id']=$value;
           $total_mileage+=$trip['mileage'];
           $total_time+=$vehicle_driving_section['time_interval'];
           $total_time+=$vehicle_stop_section['time_interval'];
             $i++;
-             
+         $consumption_amount+=$youjia*floatval($vehicle_driving_section['fuel_quantity']);
+         $consumption_amount+=$youjia*floatval($vehicle_stop_section['fuel_quantity']);
+         
         }
-
+        $total_fuel_quantity=round($consumption_amount/$youjia,2);
+        $logic_data['consumption_per_km']=round($total_fuel_quantity/$total_mileage*100,2);
+        $logic_data['amount_per_km']=$logic_data['consumption_per_km']/100*$youjia;
+        $logic_data['consumption_amount']=$consumption_amount;
        $logic_data['consumption']=$logics;
        $logic_data['total_mileage']=$total_mileage;
        $logic_data['average_velocity']=round($logic_data['total_mileage']/($total_time/60/60),2);
