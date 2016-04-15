@@ -26,10 +26,14 @@ class logic_model{
      * @return mixed
      */
     public function get_current_logic($device_id,$ids){
+        $logic_data=array();
+        $logic_data['total_mileage']=0;
         //生成查询条件
         $logics=array();
         $data=array();
         $i=0;
+        $total_mileage=0;
+        $total_time=0;
         foreach ($ids as $key => $value) {
             $cond = ['_id'=> $value];
             $logic = $this->getMongo()->collection($device_id)
@@ -37,13 +41,18 @@ class logic_model{
             $i++;
             $data[$i]=$logic;
         }
+
         $i=0;
-        foreach ($data as $key => $logic) {
+        foreach ($data as $logic) {
+                
             /*$cond = ['_id'=> $value];
             $logic = $this->getMongo()->collection($device_id)
             ->find($cond);*/
             $result = iterator_to_array($logic);
+            
+          
             $logic = array_values($result)[0]['vehicle_section'];
+           
             $vehicle_driving_section=array();
             $vehicle_stop_section=array();
             foreach ($logic as $v => $vehicle_section) {
@@ -52,17 +61,26 @@ class logic_model{
                 else
                     $vehicle_stop_section=$vehicle_section;
             }
+            
             $start_poi=$this->getpoi($vehicle_driving_section['start_poi']);
+
             $end_poi=$this->getpoi($vehicle_driving_section['end_poi']);
+
             $trip['mileage_id'] = $key;
             if($start_poi == null)
             {
                 if($vehicle_driving_section['start_time']>$vehicle_stop_section['start_time'])
                 {
+                    if($i>=1)
+                    {
                     $start_poi_ls=$this->getpro_poi($data[$i-1],1);
+                    }
                     if($start_poi_ls == null)
                         {
-                            $start_poi=$logics[$key-1]['end_address'];
+                            if($i>=1)
+                            {
+                            $start_poi=$logics[$i-1]['end_address'];
+                            }
                         }
                     else{
                         $start_poi=$start_poi_ls;
@@ -74,9 +92,12 @@ class logic_model{
                 }
             }
             $trip['start_address'] =$start_poi;
-            if($logics[$key-1]['end_address']==null)
+            if($i>=1)
             {
-                $logics[$key-1]['end_address']=$trip['start_address'];
+            if($logics[$i-1]['end_address']==null)
+            {
+                $logics[$i-1]['end_address']=$trip['start_address'];
+            }
             }
             if($end_poi == null)
             {
@@ -92,23 +113,39 @@ class logic_model{
             $trip['end_address'] =$end_poi;
             $trip['start_time'] =$vehicle_driving_section['start_time'];
             $trip['end_time'] = $vehicle_driving_section['end_time'];
+            
             if($trip['start_time']==null)
             {
+                if($i>=1)
+            {
                 $trip['start_time']=$this->gettime($data[$i-1],2);
+            }
             }
             if($trip['end_time']==null)
             {
                 $trip['end_time']=$this->gettime($data[$i+1],1);
             }
+            $logic_data['total_mileage']+=$trip['mileage'];
             $trip['mileage'] =round(floatval($vehicle_driving_section['distance']),2);
+            
             $trip['amount_per_km'] =5.2*floatval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
-            $logics[$key]=$trip;
+            $logics[$i]=$trip;
           /*  $trip['_id']=$value;*/
+          $total_mileage+=$trip['mileage'];
+          $total_time+=$vehicle_driving_section['time_interval'];
+          $total_time+=$vehicle_stop_section['time_interval'];
             $i++;
+             
         }
-        /*  exit;*/
-        return $logics;
+
+       $logic_data['consumption']=$logics;
+       $logic_data['total_mileage']=$total_mileage;
+       $logic_data['average_velocity']=round($logic_data['total_mileage']/($total_time/60/60),2);
+       $logic_data['total_mileage']=$total_mileage;
+        /*var_dump($logic_data['consumption'][0]);
+        exit;*/
+        return $logic_data;
     }
 
     /**

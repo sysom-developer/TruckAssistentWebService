@@ -80,6 +80,8 @@ class Waybill_service extends Service {
         //格式化运单
 
         $tmp = $waybill[0];
+        $logic_data=$this->logic_model->get_current_logic($tmp['device_id'],$tmp['logic_id']);
+        $consumption = $logic_data['consumption'];
         $base = [
             'waybill_id' => json_decode(json_encode( $tmp['_id']),true)['$id'],
             'start_time' => $tmp['start_time'],
@@ -91,8 +93,8 @@ class Waybill_service extends Service {
             'consumption_per_km'=>36,
             'amount_per_km'=>2.1,
 
-            'total_mileage' => 1200,//总里程
-            'average_velocity' => 75.5,//平均速度
+            'total_mileage' => $logic_data['total_mileage'],//总里程
+            'average_velocity' => $logic_data['average_velocity'],//平均速度
 
             'stay_time' => 60*60*3,
             'status' => 1,
@@ -100,7 +102,7 @@ class Waybill_service extends Service {
             'current_address' => 'xxx地址'
         ];
         /*$tmp['logic_id'] = array_slice($tmp['logic_id'], 0, 100);*/
-        $consumption = $this->logic_model->get_current_logic($tmp['device_id'],$tmp['logic_id']);
+       
        /* var_dump($consumption);
         exit;*/
         //根据运单id获取行程数据
