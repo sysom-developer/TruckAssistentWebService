@@ -75,7 +75,7 @@ class logic_model{
 
             $end_poi=$this->getpoi($vehicle_driving_section['end_poi']);
 
-            $trip['mileage_id'] = $key;
+            $trip['mileage_id'] = $i;
             if($start_poi == null)
             {
                 if($vehicle_driving_section['start_time']>$vehicle_stop_section['start_time'])
