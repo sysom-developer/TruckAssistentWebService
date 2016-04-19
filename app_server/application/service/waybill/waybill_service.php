@@ -93,8 +93,8 @@ class Waybill_service extends Service {
             'consumption_per_km'=>$logic_data['consumption_per_km'],
             'amount_per_km'=>$logic_data['amount_per_km'],
 
-            'total_mileage' => $logic_data['total_mileage'],//总里程
-            'average_velocity' => $logic_data['average_velocity'],//平均速度
+            'total_mileage' => intval($logic_data['total_mileage']),//总里程
+            'average_velocity' => intval($logic_data['average_velocity']),//平均速度
 
             'stay_time' => 60*60*3,
             'status' => 1,
