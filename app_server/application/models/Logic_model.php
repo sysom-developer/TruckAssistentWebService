@@ -37,13 +37,19 @@ class logic_model{
         $total_mileage=0;
         $total_time=0;
         $consumption_amount=0;
-        foreach ($ids as $key => $value) {
+        for ($i=sizeof($ids)-20; $i <sizeof($ids); $i++) { 
+            $cond = ['_id'=> $ids[$i]];
+            $logic = $this->getMongo()->collection($device_id)
+            ->find($cond);
+            $data[$i]=$logic;
+        }
+/*        foreach ($ids as $key => $value) {
             $cond = ['_id'=> $value];
             $logic = $this->getMongo()->collection($device_id)
             ->find($cond);
             $i++;
             $data[$i]=$logic;
-        }
+        }*/
 
         $i=0;
         foreach ($data as $logic) {
@@ -134,7 +140,7 @@ class logic_model{
             $trip['amount_per_km'] =$youjia*floatval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
             $logics[$i]=$trip;
-            $trip['_id']=$value;
+            $trip['_id']=$result['_id'];
           $total_mileage+=$trip['mileage'];
           $total_time+=$vehicle_driving_section['time_interval'];
           $total_time+=$vehicle_stop_section['time_interval'];
