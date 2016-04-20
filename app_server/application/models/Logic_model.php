@@ -139,8 +139,17 @@ class logic_model{
             
             $trip['amount_per_km'] =$youjia*floatval($vehicle_driving_section['fuel_quantity']);
             $trip['traffic']='平路';
-            $logics[$i]=$trip;
             $trip['_id']=$result['_id'];
+            if($vehicle_driving_section)
+            {
+                $trip['city']=$vehicle_driving_section['end_poi'][0]['city'];
+            }
+            else
+            {
+                $trip['city']=$vehicle_stop_section['poi'][0]['city'];
+            }
+            $logics[$i]=$trip;
+            
           $total_mileage+=$trip['mileage'];
           $total_time+=$vehicle_driving_section['time_interval'];
           $total_time+=$vehicle_stop_section['time_interval'];
@@ -149,6 +158,7 @@ class logic_model{
          $consumption_amount+=$youjia*floatval($vehicle_stop_section['fuel_quantity']);
          
         }
+
         $total_fuel_quantity=round($consumption_amount/$youjia,2);
         $logic_data['consumption_per_km']=round($total_fuel_quantity/$total_mileage*100,2);
         $logic_data['amount_per_km']=$logic_data['consumption_per_km']/100*$youjia;

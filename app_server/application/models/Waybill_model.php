@@ -47,15 +47,23 @@ class Waybill_model{
      * @param $device_no
      * @return mixed
      */
-    public function get_current_waybill($device_no){
+    public function get_current_waybill($device_no,$type){
         //生成查询条件
         $cond = ['device_id'=> $device_no];
-
+        if($type==1)
+        {
         $waybills = $this->getMongo()->collection('waybill')
             ->find($cond)
             ->sort(['_id' => -1])
             ->limit(1);
-        
+        }
+        else
+        {
+            $waybills = $this->getMongo()->collection('settle')
+            ->find($cond)
+            ->sort(['_id' => -1])
+            ->limit(1);
+        }
         $result = iterator_to_array($waybills);
         return array_values($result);
     }

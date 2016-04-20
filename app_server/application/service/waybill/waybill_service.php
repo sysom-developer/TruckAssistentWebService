@@ -74,14 +74,23 @@ class Waybill_service extends Service {
         $driver_where = ['driver_id' => $driver_id];
         $driver_data = $this->driver_service->get_driver_data($driver_where);
         $device_no = $driver_data['device_no'];
-
+        $type=1;
         //根据设备号获取运单
-        $waybill =  $this->waybill_model->get_current_waybill($device_no);
+        $waybill =  $this->waybill_model->get_current_waybill($device_no,1);
         //格式化运单
-
+        if(!$waybill)
+        {
+            $waybill = $this->waybill_model->get_current_waybill($device_no,2);
+             $type=2;
+        }
         $tmp = $waybill[0];
         $logic_data=$this->logic_model->get_current_logic($tmp['device_id'],$tmp['logic_id']);
         $consumption = $logic_data['consumption'];
+        if($tmp['end_city_name']==0)
+        {
+            $tmp['end_city_name']=end($consumption)['city'];
+            $tmp['end_time']=end($consumption)['end_time'];
+        }
         $base = [
             'waybill_id' => json_decode(json_encode( $tmp['_id']),true)['$id'],
             'start_time' => $tmp['start_time'],
@@ -98,7 +107,7 @@ class Waybill_service extends Service {
 
             'stay_time' => 60*60*3,
             'status' => 1,
-            'type'=> 1,
+            'type'=> $type,
             'current_address' => 'xxx地址'
         ];
         /*$tmp['logic_id'] = array_slice($tmp['logic_id'], 0, 100);*/
@@ -118,6 +127,7 @@ class Waybill_service extends Service {
         $waybill = ['base' => $base,'consumption' => $consumption];
 
         return $waybill;
+
     }
 
     public function get_waybill_by_id($waybill_id){
