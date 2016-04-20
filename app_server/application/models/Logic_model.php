@@ -134,10 +134,10 @@ class logic_model{
             {
                 $trip['end_time']=$this->gettime($data[$i+1],1);
             }
-            $logic_data['total_mileage']+=$trip['mileage'];
+            $logic_data['total_mileage']+=round($trip['mileage'],2);
             $trip['mileage'] =round(floatval($vehicle_driving_section['distance']),2);
             
-            $trip['amount_per_km'] =$youjia*floatval($vehicle_driving_section['fuel_quantity']);
+            $trip['amount_per_km'] =round($youjia*floatval($vehicle_driving_section['fuel_quantity']),2);
             $trip['traffic']='平路';
             $trip['_id']=$result['_id'];
             if($vehicle_driving_section)
