@@ -37,21 +37,22 @@ class logic_model{
         $total_mileage=0;
         $total_time=0;
         $consumption_amount=0;
-        for ($i=sizeof($ids)-20; $i <sizeof($ids); $i++) { 
+/*        for ($i=sizeof($ids)-20; $i <sizeof($ids); $i++) { 
             $cond = ['_id'=> $ids[$i]];
             $logic = $this->getMongo()->collection($device_id)
             ->find($cond);
             $data[$i]=$logic;
-        }
-/*        foreach ($ids as $key => $value) {
+        }*/
+        
+        foreach ($ids as $key => $value) {
             $cond = ['_id'=> $value];
             $logic = $this->getMongo()->collection($device_id)
             ->find($cond);
-            $i++;
             $data[$i]=$logic;
-        }*/
-
-        $i=0;
+            $i++;
+            /*$data[$i]['_id']=$value;*/
+        }
+       
         foreach ($data as $logic) {
                 
             /*$cond = ['_id'=> $value];
@@ -139,17 +140,11 @@ class logic_model{
             
             $trip['amount_per_km'] =round($youjia*floatval($vehicle_driving_section['fuel_quantity']),2);
             $trip['traffic']='平路';
-            $trip['_id']=$result['_id'];
-            if($vehicle_driving_section)
-            {
-                $trip['city']=$vehicle_driving_section['end_poi'][0]['city'];
-            }
-            else
-            {
-                $trip['city']=$vehicle_stop_section['poi'][0]['city'];
-            }
-            $logics[$i]=$trip;
+            /*$trip['_id']=$result['_id'];*/
             
+            
+            $logics[$i]=$trip;
+
           $total_mileage+=$trip['mileage'];
           $total_time+=$vehicle_driving_section['time_interval'];
           $total_time+=$vehicle_stop_section['time_interval'];
@@ -182,6 +177,18 @@ class logic_model{
         $cond = ['_id'=> new \MongoId($waybill_id)];
         $waybill = $this->getMongo()->collection('waybill')->findOne($cond);
         return $waybill;
+    }
+    public function getcity($data){
+        $poi=json_decode(json_encode($data),TRUE);
+        if(is_array($poi))
+            {
+               return  $poi[0]['city'];
+            }
+        else
+            {
+                $poi=json_decode($poi,true);
+                return  $poi['contents'][0]['city'];
+            }
     }
     public function getpoi($data){
         $poi=json_decode(json_encode($data),TRUE);

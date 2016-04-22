@@ -84,14 +84,15 @@ class Waybill_service extends Service {
              $type=2;
         }
         $tmp = $waybill[0];
+        
         $logic_data=$this->logic_model->get_current_logic($tmp['device_id'],$tmp['logic_id']);
         $consumption = $logic_data['consumption'];
-        if(is_numeric($tmp['end_city_name']))
+/*        if(is_numeric($tmp['end_city_name']))
         {
 
             $tmp['end_city_name']=end($consumption)['city'];
             $tmp['end_time']=end($consumption)['end_time'];
-        }
+        }*/
 
         $base = [
             'waybill_id' => json_decode(json_encode( $tmp['_id']),true)['$id'],
