@@ -43,7 +43,7 @@ class logic_model{
             ->find($cond);
             $data[$i]=$logic;
         }*/
-        
+
         foreach ($ids as $key => $value) {
             $cond = ['_id'=> $value];
             $logic = $this->getMongo()->collection($device_id)
@@ -52,7 +52,7 @@ class logic_model{
             $i++;
             /*$data[$i]['_id']=$value;*/
         }
-       
+       $i=0;
         foreach ($data as $logic) {
                 
             /*$cond = ['_id'=> $value];
