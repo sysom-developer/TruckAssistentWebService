@@ -146,21 +146,20 @@ class logic_model{
             $logics[$i]=$trip;
 
           $total_mileage+=$trip['mileage'];
-          $total_time+=$vehicle_driving_section['time_interval'];
-          $total_time+=$vehicle_stop_section['time_interval'];
+          /*$total_time+=$vehicle_driving_section['time_interval'];
+          $total_time+=$vehicle_stop_section['time_interval'];*/
             $i++;
          $consumption_amount+=$youjia*floatval($vehicle_driving_section['fuel_quantity']);
          $consumption_amount+=$youjia*floatval($vehicle_stop_section['fuel_quantity']);
          
         }
-
         $total_fuel_quantity=round($consumption_amount/$youjia,2);
         $logic_data['consumption_per_km']=round($total_fuel_quantity/$total_mileage*100,2);
         $logic_data['amount_per_km']=$logic_data['consumption_per_km']/100*$youjia;
         $logic_data['consumption_amount']=$consumption_amount;
        $logic_data['consumption']=$logics;
        $logic_data['total_mileage']=$total_mileage;
-       $logic_data['average_velocity']=round($logic_data['total_mileage']/($total_time/60/60),2);
+/*       $logic_data['average_velocity']=round($logic_data['total_mileage']/($total_time/60/60),2);*/
        $logic_data['total_mileage']=$total_mileage;
         /*var_dump($logic_data['consumption'][0]);
         exit;*/

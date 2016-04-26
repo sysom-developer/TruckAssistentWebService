@@ -93,7 +93,7 @@ class Waybill_service extends Service {
             $tmp['end_city_name']=end($consumption)['city'];
             $tmp['end_time']=end($consumption)['end_time'];
         }*/
-
+        $total_time=empty($tmp['end_time'])? time()-intval($tmp['start_time']) : intval($tmp['end_time'])-intval($tmp['start_time']);
         $base = [
             'waybill_id' => json_decode(json_encode( $tmp['_id']),true)['$id'],
             'start_time' => $tmp['start_time'],
@@ -106,9 +106,9 @@ class Waybill_service extends Service {
             'amount_per_km'=>$logic_data['amount_per_km'],
 
             'total_mileage' => intval($logic_data['total_mileage']),//总里程
-            'average_velocity' => intval($logic_data['average_velocity']),//平均速度
+            'average_velocity' => round(intval($logic_data['total_mileage'])/($total_time/60/60),2),//平均速度
 
-            'stay_time' => 60*60*3,
+            'stay_time' =>$total_time,
             'status' => 1,
             'type'=> $type,
             'current_address' => 'xxx地址'
