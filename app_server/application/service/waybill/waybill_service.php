@@ -52,26 +52,26 @@ class Waybill_service extends Service {
                 'start_city' => $tmp['start_city_name'],
                 'end_city'   => $tmp['end_city_name'],
 
-                'consumption_amount'=>$logic_data['consumption_amount'],
+                'consumption_amount'=>round($logic_data['consumption_amount'],2),
                 'consumption_per_km'=>$logic_data['consumption_per_km'],
-                'amount_per_km'=>$logic_data['amount_per_km'],
+                'amount_per_km'=>round($logic_data['amount_per_km'],2),
                 'total_mileage' =>intval($logic_data['total_mileage']),//总里程
                 'average_velocity' =>round(intval($logic_data['total_mileage'])/($total_time/60/60),2),//平均速度
                 'stay_time' => $total_time,
                 'status' => 1,
-                'type'=> $type,
+                'type'=> 1,
             ];
             $v['base']= $base;
 
         });
         
         $waybills['average_stay']=round($waybills['total_stay']/$waybills['waybill_count'],2);
-       
+        
         $summary = [
             'waybill_count' => $waybills['waybill_count'],
             'total_mileage' =>$waybills['total_mileage'],
             'transport_time' => 245.5*60*60*24,
-            'consumption_amount' => $waybills['consumption_amount'],
+            'consumption_amount' => round($waybills['consumption_amount'],2),
             'total_stay' => $waybills['total_stay'],
             'longest_stay' => $waybills['longest_stay'],
             'average_stay' => $waybills['average_stay'],
@@ -79,6 +79,8 @@ class Waybill_service extends Service {
 
 
         $result = ['waybill_data_list' => $waybills, 'summary' => $summary];
+        var_dump($result);
+        exit;
         return $result;
     }
 
