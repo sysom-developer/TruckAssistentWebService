@@ -24,21 +24,31 @@ class Waybill_model{
      * @param $limit
      * @return array
      */
-    public function get_waybill_by_device_no($device_no, $offset, $limit, $start_time_from, $start_time_to){
+    public function get_waybill_by_device_no($device_no, $offset, $limit, $start_time_from, $start_time_to,$type){
 
         //生成查询条件
         $q = function($query) use ($device_no, $start_time_from, $start_time_to){
             $query->where('device_id', $device_no)
                 ->andWhereBetween('start_time', intval($start_time_from), intval($start_time_to));
         };
-
-        $waybills = $this->getMongo()->collection('waybill')
+        if($type==1)
+        {
+            $waybills = $this->getMongo()->collection('waybill')
                     ->find($q)
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
-
+        }
+        else{
+            $waybills = $this->getMongo()->collection('settle')
+                    ->find($q)
+                    ->sort(['start_time' => -1])
+                    ->skip($offset*$limit)
+                    ->limit($limit);
+        }
+        
         $result = iterator_to_array($waybills);
+      
         return $result;
     }
 

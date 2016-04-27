@@ -29,38 +29,52 @@ class Waybill_service extends Service {
         $device_no = $driver_data['device_no'];
 
         //根据设备号获取运单
-        $waybills =  $this->waybill_model->get_waybill_by_device_no($device_no, $offset, $limit, $start_time_from, $start_time_to);
+        $waybills =  $this->waybill_model->get_waybill_by_device_no($device_no, $offset, $limit, $start_time_from, $start_time_to,$type);
+        
         //格式化运单
         array_walk($waybills, function(&$v, $k){
             $tmp = $v;
+            $logic_data=$this->logic_model->get_current_logic($tmp['device_id'],$tmp['logic_id']);
+            $total_time=empty($tmp['end_time'])? time()-intval($tmp['start_time']) : intval($tmp['end_time'])-intval($tmp['start_time']);
+            $v['consumption_amount']+=$logic_data['consumption_amount'];
+            $v['waybill_count']+=1;
+            $v['total_mileage']+=intval($logic_data['total_mileage']);
+            $v['total_stay']+=$total_time;
+            $v['total_stay']+=$total_time;
+            if($v['longest_stay']<$total_time)
+            {
+                $v['longest_stay']=$total_time;
+            }
             $base = [
                 'waybill_id' => $k,
                 'start_time' => $tmp['start_time'],
                 'end_time'   => empty($tmp['end_time'])? time() : $tmp['end_time'],
                 'start_city' => $tmp['start_city_name'],
-                'end_city'   => $tmp['end_city'],
+                'end_city'   => $tmp['end_city_name'],
 
-                'consumption_amount'=>1950,
-                'consumption_per_km'=>36,
-                'amount_per_km'=>2.1,
-                'total_mileage' => 1200,//总里程
-                'average_velocity' => 75.5,//平均速度
-                'stay_time' => 60*60*3,
+                'consumption_amount'=>$logic_data['consumption_amount'],
+                'consumption_per_km'=>$logic_data['consumption_per_km'],
+                'amount_per_km'=>$logic_data['amount_per_km'],
+                'total_mileage' =>intval($logic_data['total_mileage']),//总里程
+                'average_velocity' =>round(intval($logic_data['total_mileage'])/($total_time/60/60),2),//平均速度
+                'stay_time' => $total_time,
                 'status' => 1,
-                'type'=> 1,
+                'type'=> $type,
             ];
-            $v = ['base' => $base];
+            $v['base']= $base;
 
         });
-
+        
+        $waybills['average_stay']=round($waybills['total_stay']/$waybills['waybill_count'],2);
+       
         $summary = [
-            'waybill_count' => 8,
-            'total_mileage' => 21200,
+            'waybill_count' => $waybills['waybill_count'],
+            'total_mileage' =>$waybills['total_mileage'],
             'transport_time' => 245.5*60*60*24,
-            'consumption_amount' => 27500,
-            'total_stay' => 6.5*60*60*24,
-            'longest_stay' => 3.5*60*60*24,
-            'average_stay' => 2.5*60*60*24,
+            'consumption_amount' => $waybills['consumption_amount'],
+            'total_stay' => $waybills['total_stay'],
+            'longest_stay' => $waybills['longest_stay'],
+            'average_stay' => $waybills['average_stay'],
         ];
 
 
@@ -78,7 +92,7 @@ class Waybill_service extends Service {
         //根据设备号获取运单
         $waybill =  $this->waybill_model->get_current_waybill($device_no,1);
         //格式化运单
-        if(!$waybill)
+        if(!$waybill || $waybill[0]['end_city_name']!=0)
         {
             $waybill = $this->waybill_model->get_current_waybill($device_no,2);
              $type=2;
