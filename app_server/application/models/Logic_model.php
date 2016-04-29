@@ -32,8 +32,8 @@ class logic_model{
         $logics=array();
         $data=array();
         $i=0;
-/*        $youjia=5.2;
-        $total_fuel_quantity=0;
+       $youjia=5.2;
+       /*  $total_fuel_quantity=0;
         $total_mileage=0;
         $total_time=0;
         $consumption_amount=0;*/
@@ -145,8 +145,7 @@ class logic_model{
             $i++;
       /*    $total_mileage+=$trip['mileage'];*/
           /*$total_time+=$vehicle_driving_section['time_interval'];
-          $total_time+=$vehicle_stop_section['time_interval'];*/
-            
+          $total_time+=$vehicle_stop_section['time_interval'];*/ 
   /*       $consumption_amount+=$youjia*floatval($vehicle_driving_section['fuel_quantity']);
          $consumption_amount+=$youjia*floatval($vehicle_stop_section['fuel_quantity']);*/
          
