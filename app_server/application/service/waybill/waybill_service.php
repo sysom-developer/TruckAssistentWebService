@@ -53,7 +53,7 @@ class Waybill_service extends Service {
                 'end_city'   => $tmp['end_city_name'],
 
                 'consumption_amount'=>round($tmp['consumption_amount'],2),
-                'consumption_per_km'=>$tmp['consumption_per_km'],
+                'consumption_per_km'=>round($tmp['consumption_per_km'],2),
                 'amount_per_km'=>round($tmp['amount_per_km'],2),
                 'total_mileage' =>intval($tmp['total_mileage']),//总里程
                 'average_velocity' =>round(intval($tmp['total_mileage'])/($total_time/60/60),2),//平均速度
