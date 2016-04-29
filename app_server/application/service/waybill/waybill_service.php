@@ -52,9 +52,9 @@ class Waybill_service extends Service {
                 'start_city' => $tmp['start_city_name'],
                 'end_city'   => $tmp['end_city_name'],
 
-                'consumption_amount'=>round($tmp['consumption_amount'],2),
-                'consumption_per_km'=>round($tmp['consumption_per_km'],2),
-                'amount_per_km'=>round($tmp['amount_per_km'],2),
+                'consumption_amount'=>round(floatval($tmp['consumption_amount']),2),
+                'consumption_per_km'=>round(floatval($tmp['consumption_per_km']),2),
+                'amount_per_km'=>round(floatval($tmp['amount_per_km']),2),
                 'total_mileage' =>intval($tmp['total_mileage']),//总里程
                 'average_velocity' =>round(intval($tmp['total_mileage'])/($total_time/60/60),2),//平均速度
                 'stay_time' => $total_time,
@@ -117,8 +117,8 @@ class Waybill_service extends Service {
             'end_city'   => $tmp['end_city_name'],
 
             'consumption_amount'=>round($tmp['consumption_amount'],2),
-            'consumption_per_km'=>$tmp['consumption_per_km'],
-            'amount_per_km'=>$tmp['amount_per_km'],
+            'consumption_per_km'=>round($tmp['consumption_per_km'],2),
+            'amount_per_km'=>round($tmp['amount_per_km'],2),
 
             'total_mileage' => intval($tmp['total_mileage']),//总里程
             'average_velocity' => round(intval($tmp['total_mileage'])/($total_time/60/60),2),//平均速度
