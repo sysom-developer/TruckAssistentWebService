@@ -21,7 +21,7 @@ class Waybill_service extends Service {
         //初始化开始结束时间
         $start_time_from = strtotime($year.'-'.$month);
         $start_time_to = strtotime('+1 month', $start_time_from);
-
+        $total=array();
 
         //获取司机id对应的设备号
         $driver_where = ['driver_id' => $driver_id];
@@ -30,51 +30,49 @@ class Waybill_service extends Service {
 
         //根据设备号获取运单
         $waybills =  $this->waybill_model->get_waybill_by_device_no($device_no, $offset, $limit, $start_time_from, $start_time_to,$type);
-        
+       
         //格式化运单
-        array_walk($waybills, function(&$v, $k){
-            $tmp = $v;
-            $logic_data=$this->logic_model->get_current_logic($tmp['device_id'],$tmp['logic_id']);
-            $total_time=empty($tmp['end_time'])? time()-intval($tmp['start_time']) : intval($tmp['end_time'])-intval($tmp['start_time']);
-            $v['consumption_amount']+=$tmp['consumption_amount'];
-            $v['waybill_count']+=1;
-            $v['total_mileage']+=intval($tmp['total_mileage']);
-            $v['total_stay']+=$total_time;
-            $v['total_stay']+=$total_time;
-            if($v['longest_stay']<$total_time)
+        foreach ($waybills as $key => $value) {
+            $logic_data=$this->logic_model->get_current_logic($value['device_id'],$value['logic_id']);
+            $total_time=empty($value['end_time'])? time()-intval($value['start_time']) : intval($value['end_time'])-intval($value['start_time']);
+            $total['consumption_amount']+=$value['consumption_amount'];
+            $total['waybill_count']+=1;
+            $total['total_mileage']+=intval($value['total_mileage']);
+            $total['total_stay']+=$total_time;
+            $total['total_stay']+=$total_time;
+            
+            if($total['longest_stay']<$total_time)
             {
-                $v['longest_stay']=$total_time;
+                $total['longest_stay']=$total_time;
             }
             $base = [
-                'waybill_id' => $k,
-                'start_time' => $tmp['start_time'],
-                'end_time'   => empty($tmp['end_time'])? time() : $tmp['end_time'],
-                'start_city' => $tmp['start_city_name'],
-                'end_city'   => $tmp['end_city_name'],
+                'waybill_id' => $key,
+                'start_time' => $value['start_time'],
+                'end_time'   => empty($value['end_time'])? time() : $value['end_time'],
+                'start_city' => $value['start_city_name'],
+                'end_city'   => $value['end_city_name'],
 
-                'consumption_amount'=>round(floatval($tmp['consumption_amount']),2),
-                'consumption_per_km'=>round(floatval($tmp['consumption_per_km']),2),
-                'amount_per_km'=>round(floatval($tmp['amount_per_km']),2),
-                'total_mileage' =>intval($tmp['total_mileage']),//总里程
-                'average_velocity' =>round(intval($tmp['total_mileage'])/($total_time/60/60),2),//平均速度
+                'consumption_amount'=>round(floatval($value['consumption_amount']),2),
+                'consumption_per_km'=>round(floatval($value['consumption_per_km']),2),
+                'amount_per_km'=>round(floatval($value['amount_per_km']),2),
+                'total_mileage' =>intval($value['total_mileage']),//总里程
+                'average_velocity' =>round(intval($value['total_mileage'])/($total_time/60/60),2),//平均速度
                 'stay_time' => $total_time,
                 'status' => 1,
                 'type'=> 1,
             ];
-            $v['base']= $base;
-
-        });
-        
-        $waybills['average_stay']=round($waybills['total_stay']/$waybills['waybill_count'],2);
+            $waybills[$key]['base']= $base;
+        }
+        $total['average_stay']=round($total['total_stay']/$total['waybill_count'],2);
         
         $summary = [
-            'waybill_count' => $waybills['waybill_count'],
-            'total_mileage' =>$waybills['total_mileage'],
+            'waybill_count' => $total['waybill_count'],
+            'total_mileage' =>$total['total_mileage'],
             'transport_time' => 245.5*60*60*24,
-            'consumption_amount' => round($waybills['consumption_amount'],2),
-            'total_stay' => $waybills['total_stay'],
-            'longest_stay' => $waybills['longest_stay'],
-            'average_stay' => $waybills['average_stay'],
+            'consumption_amount' => round($total['consumption_amount'],2),
+            'total_stay' => $total['total_stay'],
+            'longest_stay' => $total['longest_stay'],
+            'average_stay' => $total['average_stay'],
         ];
 
 
