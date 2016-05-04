@@ -22,8 +22,8 @@ class Waybill_model{
      * @param $limit
      * @return array
      */
-    public function get_history_city($driver_id, $count){
-        $where['driver_id'] = $driver_id;
+    public function get_history_city($device_no, $count){
+        $where['device_id'] = $device_no;
         $limit = $count;
 /*        $data =  $this->getMongo()
             ->collection('waybill')
@@ -35,17 +35,23 @@ class Waybill_model{
             ->result_array();
         $ids = array_column($data, 'end_city_id');*/
 
-            $waybills = $this->getMongo()->collection('waybill')
-                    ->find($q)
+            $waybills = $this->getMongo()->collection('settle')
+                    ->find($where)
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
-        unset($data);
-        $data = $this->city_service->get_city_by_ids($ids);
+        $data=iterator_to_array($waybills);
+        
+        $return=array();
+        foreach ($data as $key => $value) {
+            array_push($return,$value['end_city_name']);
 
+        }
+/*        $data = $this->city_service->get_city_by_ids($ids);
+*/
 //        echo $this->db->last_query();
 
-        return $data;
+        return array_unique($return);
     }
     /**
      * 根据设备号查询运单列表

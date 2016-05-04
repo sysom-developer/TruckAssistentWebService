@@ -53,17 +53,15 @@ class Driver_service extends Service {
      * @param $count
      */
     public function get_history_city($driver_id, $count){
-        $where['driver_id'] = $driver_id;
-        $limit = $count;
-        $data = $this->common_model
-            ->select('end_city_id')
-            ->group_by('end_city_id')
-            ->get_data('waybill', $where, $limit, $offset = 0, $order = 'create_time', $by = 'DESC' )
-            ->result_array();
+        $driver_where = ['driver_id' => $driver_id];
+        $driver_data = $this->get_driver_data($driver_where);
+        $device_no = $driver_data['device_no'];
+        $data =$this->waybill_model->get_history_city($device_no, $count);
+/*
         $ids = array_column($data, 'end_city_id');
 
         unset($data);
-        $data = $this->city_service->get_city_by_ids($ids);
+        $data = $this->city_service->get_city_by_ids($ids);*/
 
 //        echo $this->db->last_query();
 
