@@ -39,7 +39,7 @@ class Waybill_service extends Service {
             $total['waybill_count']+=1;
             $total['total_mileage']+=intval($value['total_mileage']);
             $total['total_stay']+=$total_time;
-            $total['total_stay']+=$total_time;
+
             
             if($total['longest_stay']<$total_time)
             {

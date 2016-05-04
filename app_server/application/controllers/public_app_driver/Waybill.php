@@ -81,7 +81,12 @@ class Waybill extends Public_Android_Controller {
 
         $order = trim($this->input->get_post('order', true));
         $by = strtolower(trim($this->input->get_post('by', true)));
-
+        $driver_id=19;
+        $type=2;
+        $offset=0;
+        $limit =5;
+        $year=2016;
+        $month=4;
         if (empty($driver_id) || !is_numeric($driver_id) ) {
             $this->app_error_func(1499, 'driver_id 参数错误');
             exit;
