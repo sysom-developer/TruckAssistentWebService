@@ -16,8 +16,37 @@ class Waybill_model{
         $conn = \League\Monga::connection($ip);
         return $conn->database($db);
     }
+/**
+     * 根据司机查询历史城市
+     * @param $device_no
+     * @param $limit
+     * @return array
+     */
+    public function get_history_city($driver_id, $count){
+        $where['driver_id'] = $driver_id;
+        $limit = $count;
+/*        $data =  $this->getMongo()
+            ->collection('waybill')
+            ->find($where)
+            ->select('end_city_id')
+            ->limit($limit);
+            ->group_by('end_city_id')
+            ->get_data('waybill', $where, $limit, $offset = 0, $order = 'create_time', $by = 'DESC' )
+            ->result_array();
+        $ids = array_column($data, 'end_city_id');*/
 
+            $waybills = $this->getMongo()->collection('waybill')
+                    ->find($q)
+                    ->sort(['start_time' => -1])
+                    ->skip($offset*$limit)
+                    ->limit($limit);
+        unset($data);
+        $data = $this->city_service->get_city_by_ids($ids);
 
+//        echo $this->db->last_query();
+
+        return $data;
+    }
     /**
      * 根据设备号查询运单列表
      * @param $device_no

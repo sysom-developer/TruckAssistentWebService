@@ -33,6 +33,7 @@ class Waybill_service extends Service {
        
         //格式化运单
         foreach ($waybills as $key => $value) {
+            unset($waybills[$key]['_id']);
             $logic_data=$this->logic_model->get_current_logic($value['device_id'],$value['logic_id']);
             $total_time=empty($value['end_time'])? time()-intval($value['start_time']) : intval($value['end_time'])-intval($value['start_time']);
             $total['consumption_amount']+=$value['consumption_amount'];
@@ -114,9 +115,9 @@ class Waybill_service extends Service {
             'start_city' => $tmp['start_city_name'],
             'end_city'   => $tmp['end_city_name'],
 
-            'consumption_amount'=>round($tmp['consumption_amount'],2),
-            'consumption_per_km'=>round($tmp['consumption_per_km'],2),
-            'amount_per_km'=>round($tmp['amount_per_km'],2),
+            'consumption_amount'=>$tmp['consumption_amount'],
+            'consumption_per_km'=>$tmp['consumption_per_km'],
+            'amount_per_km'=>$tmp['amount_per_km'],
 
             'total_mileage' => intval($tmp['total_mileage']),//总里程
             'average_velocity' => round(intval($tmp['total_mileage'])/($total_time/60/60),2),//平均速度
