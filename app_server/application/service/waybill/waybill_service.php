@@ -22,7 +22,8 @@ class Waybill_service extends Service {
         $start_time_from = strtotime($year.'-'.$month);
         $start_time_to = strtotime('+1 month', $start_time_from);
         $total=array();
-
+        $result=array();
+        $result['waybill_data_list']=array();
         //获取司机id对应的设备号
         $driver_where = ['driver_id' => $driver_id];
         $driver_data = $this->driver_service->get_driver_data($driver_where);
@@ -63,6 +64,8 @@ class Waybill_service extends Service {
                 'type'=> 1,
             ];
             $waybills[$key]['base']= $base;
+            
+            array_push($result['waybill_data_list'],$waybills[$key]);
         }
         $total['average_stay']=round($total['total_stay']/$total['waybill_count'],2);
         
@@ -77,7 +80,7 @@ class Waybill_service extends Service {
         ];
 
 
-        $result = ['waybill_data_list' => $waybills, 'summary' => $summary];
+        $result['summary'] =$summary;
         
         return $result;
     }
