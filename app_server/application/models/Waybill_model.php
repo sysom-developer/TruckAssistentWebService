@@ -35,6 +35,7 @@ class Waybill_model{
         $ids = array_column($data, 'end_city_id');*/
 
             $waybills = $this->getMongo()->collection('settle'.$device_no)
+                    ->find()
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
@@ -61,17 +62,19 @@ class Waybill_model{
 
         //生成查询条件
         $q = function($query) use ($device_no, $start_time_from, $start_time_to){
-                ->andWhereBetween('start_time', intval($start_time_from), intval($start_time_to));
+            $query->WhereBetween('start_time', intval($start_time_from), intval($start_time_to));
         };
         if($type==1)
         {
             $waybills = $this->getMongo()->collection('waybill'.$device_no)
+                    ->find($q)
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
         }
         else{
             $waybills = $this->getMongo()->collection('settle'.$device_no)
+                    ->find($q)
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
@@ -93,13 +96,14 @@ class Waybill_model{
         if($type==1)
         {
         $waybills = $this->getMongo()->collection('waybill'.$device_no)
-
+            ->find()
             ->sort(['_id' => -1])
             ->limit(1);
         }
         else
         {
             $waybills = $this->getMongo()->collection('settle'.$device_no)
+            ->find()
             ->sort(['_id' => -1])
             ->limit(1);
         }
