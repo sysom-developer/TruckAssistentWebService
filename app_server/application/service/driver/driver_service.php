@@ -6,7 +6,14 @@ class Driver_service extends Service {
     public function __construct() {
         parent::__construct();
     }
-
+    public function validate_token($token)
+    {
+        $where = array(
+            'token' => $token
+        );
+        $data = $this->common_model->get_data('token', $where, $limit, $offset, $order, $by)->row_array();
+        return $data;
+    }
     public function get_driver_data($where = array(), $limit = '', $offset = '', $order = 'driver_id', $by = 'ASC') {
         // $where['driver_type'] = 1;
         

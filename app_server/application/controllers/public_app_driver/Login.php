@@ -98,8 +98,20 @@ class Login extends Public_Android_Controller {
             exit;
         }
         $this->common_model->trans_commit();
+        $token=$this->random(20);
+        $data=array(
+                'driver_id' => $driver_data['driver_id'],
+                'token' => $token,
+                'create_time' => time()
+            );
+        $driver_id = $this->common_model->insert('token', $data);
+        if ($driver_id == 0) {//写入失败，回滚
+            $this->common_model->trans_rollback();
 
-
+            $this->app_error_func(1302, 'token创建失败');
+            exit;
+        }
+        $driver_data['token'] = $token;
         //成功登陆返回司机信息
         $attachment_data_http_file = $this->attachment_service->get_attachment_by_id($driver_data['driver_head_icon']);
         $driver_data['driver_head_icon'] = $attachment_data_http_file;
@@ -124,6 +136,13 @@ class Login extends Public_Android_Controller {
         echo json_en($this->data['error']);
         exit;
     }
-
+    public function random($n){
+    $str = "0123456789abcdefghijklmnopqrstuvwxyz~@#()_";//输出字符集
+    $len = strlen($str)-1;
+    for($i=0 ; $i<$n; $i++){
+        $s .= $str[rand(0,$len)];
+    }
+    return $s;
+}
 
 }

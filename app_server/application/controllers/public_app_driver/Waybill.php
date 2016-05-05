@@ -263,12 +263,18 @@ class Waybill extends Public_Android_Controller {
         
         $type = trim($this->input->get_post('type', true));
         $type = isset($type)? $type : 1;
-     
+
         $data = $this->waybill_service->get_waybill($driver_id, $type);
         $economic_speed=0;
         $high_speed=0;
         $slow_speed=0;
+        $tracking=array();
         foreach ($data['consumption'] as $key => $value) {
+            $tracking[$key]['longitude']=$value['first_point']['longitude'];
+            $tracking[$key]['latitude']=$value['first_point']['latitude'];
+            $tracking[$key]['time']=$value['start_time'];
+            $tracking[$key]['ew_indicator']="45";
+            $tracking[$key]['ns_indicator']="4e";
             if($value['average_speed']<=60)
             {
                 $slow_speed+=$value['mileage'];
@@ -285,15 +291,6 @@ class Waybill extends Public_Android_Controller {
             ['economic_speed' => '60-80', 'ratio' => round($economic_speed/$data['base']['total_mileage'],2)],
             ['high_speed' => '80-', 'ratio' => round($high_speed/$data['base']['total_mileage'],2)],
             ['slow_speed' => '-60', 'ratio' =>round($slow_speed/$data['base']['total_mileage'],2)],
-        ];
-
-        $tracking = [
-            ['longitude' => 121.604924, 'ew_indicator' => '45', 'latitude' => 31.282053, 'ns_indicator' => '4e', 'time' => 1448600020],
-            ['longitude' => 121.605203, 'ew_indicator' => '45', 'latitude' => 31.281904, 'ns_indicator' => '4e', 'time' => 1448601722],
-            ['longitude' => 114.7689,   'ew_indicator' => '45', 'latitude' => 32.280327, 'ns_indicator' => '4e', 'time' => 1449107905],
-            ['longitude' => 105.270138, 'ew_indicator' => '45', 'latitude' => 32.149730, 'ns_indicator' => '4e', 'time' => 1449194171],
-            ['longitude' => 105.121904, 'ew_indicator' => '45', 'latitude' => 32.17897,  'ns_indicator' => '4e', 'time' => 1449195250],
-            ['longitude' => 105.9234,   'ew_indicator' => '45', 'latitude' => 31.888799, 'ns_indicator' => '4e', 'time' => 1449196048],
         ];
 
         $consumption_factor = [

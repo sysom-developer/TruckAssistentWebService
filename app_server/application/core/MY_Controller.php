@@ -39,7 +39,21 @@ class Public_Android_Controller extends CI_Controller {
         
         // 当前方法名
         $this->data['fetch_method'] = $this->router->fetch_method();
-
+/*        if($this->data['fetch_class']!="Login")
+        {
+            $this->data['token'] = $this->input->get_post('token', TRUE);
+             if(empty($this->data['token']))
+            {
+                $this->app_error_func(1301, 'token不存在');
+                return TRUE;
+            }
+            $return=$this->driver_service->validate_token($this->data['token']);
+            if(empty($return))
+            {
+                $this->app_error_func(1300, 'token无效');
+                return TRUE;
+            }
+        }*/
         //如果是已登陆，获取司机信息
         $this->data['driver_id'] = $this->input->get_post('driver_id', TRUE);
 
