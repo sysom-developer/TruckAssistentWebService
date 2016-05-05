@@ -23,7 +23,6 @@ class Waybill_model{
      * @return array
      */
     public function get_history_city($device_no, $count){
-        $where['device_id'] = $device_no;
         $limit = $count;
 /*        $data =  $this->getMongo()
             ->collection('waybill')
@@ -35,8 +34,7 @@ class Waybill_model{
             ->result_array();
         $ids = array_column($data, 'end_city_id');*/
 
-            $waybills = $this->getMongo()->collection('settle')
-                    ->find($where)
+            $waybills = $this->getMongo()->collection('settle'.$device_no)
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
@@ -63,20 +61,17 @@ class Waybill_model{
 
         //生成查询条件
         $q = function($query) use ($device_no, $start_time_from, $start_time_to){
-            $query->where('device_id', $device_no)
                 ->andWhereBetween('start_time', intval($start_time_from), intval($start_time_to));
         };
         if($type==1)
         {
-            $waybills = $this->getMongo()->collection('waybill')
-                    ->find($q)
+            $waybills = $this->getMongo()->collection('waybill'.$device_no)
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
         }
         else{
-            $waybills = $this->getMongo()->collection('settle')
-                    ->find($q)
+            $waybills = $this->getMongo()->collection('settle'.$device_no)
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
@@ -94,18 +89,17 @@ class Waybill_model{
      */
     public function get_current_waybill($device_no,$type){
         //生成查询条件
-        $cond = ['device_id'=> $device_no];
+        /*$cond = ['device_id'=> $device_no];*/
         if($type==1)
         {
-        $waybills = $this->getMongo()->collection('waybill')
-            ->find($cond)
+        $waybills = $this->getMongo()->collection('waybill'.$device_no)
+
             ->sort(['_id' => -1])
             ->limit(1);
         }
         else
         {
-            $waybills = $this->getMongo()->collection('settle')
-            ->find($cond)
+            $waybills = $this->getMongo()->collection('settle'.$device_no)
             ->sort(['_id' => -1])
             ->limit(1);
         }
