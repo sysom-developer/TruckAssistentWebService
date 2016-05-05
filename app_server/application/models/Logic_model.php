@@ -135,8 +135,10 @@ class logic_model{
             {
                 $trip['end_time']=$this->gettime($data[$i+1],1);
             }
-            /*echo floatval($vehicle_driving_section['distance']);*/
             $trip['mileage'] =round(floatval($vehicle_driving_section['distance']),2);
+            /*echo floatval($vehicle_driving_section['distance']);*/
+            $trip['average_speed']=round($trip['mileage']/(intval($trip['end_time'])-intval($trip['start_time'])),2);
+            
             /*echo $trip['mileage'];*/
             $trip['amount_per_km'] =round($youjia*floatval($vehicle_driving_section['fuel_quantity']/$trip['mileage']),2);
             $trip['traffic']='平路';

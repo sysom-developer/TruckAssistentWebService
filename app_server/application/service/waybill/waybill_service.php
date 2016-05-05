@@ -103,6 +103,8 @@ class Waybill_service extends Service {
         $tmp = $waybill[0];
         
         $logic_data=$this->logic_model->get_current_logic($tmp['device_id'],$tmp['logic_id']);
+        /*var_dump($logic_data);
+        exit;*/
         $consumption = $logic_data['consumption'];
 /*        if(is_numeric($tmp['end_city_name']))
         {
