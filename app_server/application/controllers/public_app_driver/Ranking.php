@@ -51,6 +51,7 @@ class Ranking extends Public_Android_Controller {
     }
 
     private function driving_mileage(){
+        
         $follow = [
             ['driver_id' => 2, 'name' => 'key', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4806, 'ranking' => 1],
             ['driver_id' => 3, 'name' => '风云', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4702, 'ranking' =>2],

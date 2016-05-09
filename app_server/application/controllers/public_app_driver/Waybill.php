@@ -273,8 +273,8 @@ class Waybill extends Public_Android_Controller {
             $tracking[$key]['longitude']=$value['first_point']['longitude'];
             $tracking[$key]['latitude']=$value['first_point']['latitude'];
             $tracking[$key]['time']=$value['start_time'];
-            $tracking[$key]['ew_indicator']="45";
-            $tracking[$key]['ns_indicator']="4e";
+            $tracking[$key]['ew_indicator']=$value['first_point']['ew_indicator'];
+            $tracking[$key]['ns_indicator']=$value['first_point']['ns_indicator'];
             if($value['average_speed']<=60)
             {
                 $slow_speed+=$value['mileage'];
@@ -336,7 +336,9 @@ class Waybill extends Public_Android_Controller {
      * 油耗分析
      */
     public function get_consumption_analysis(){
-
+        $waybill_id = trim($this->input->get_post('waybill_id', true));
+        $waybill=$this->waybill_model->get_waybill_by_id($waybill_id);
+        $mileage_id = trim($this->input->get_post('mileage_id', true));
         $factor = [
             ['factor_type'=>1, 'factor_value' => '油耗top1原因'],
         ];

@@ -32,7 +32,6 @@ class logic_model{
         $logics=array();
         $data=array();
         $i=0;
-       $youjia=5.2;
        /*  $total_fuel_quantity=0;
         $total_mileage=0;
         $total_time=0;
@@ -140,8 +139,9 @@ class logic_model{
             $trip['average_speed']=round($trip['mileage']/(intval($trip['end_time'])-intval($trip['start_time'])),2);
             
             /*echo $trip['mileage'];*/
-            $trip['amount_per_km'] =round($youjia*floatval($vehicle_driving_section['fuel_quantity']/$trip['mileage']),2);
+            $trip['amount_per_km'] =round(floatval($vehicle_driving_section['amount_per_km']),2);
             $trip['traffic']='平路';
+            
             /*$trip['_id']=$result['_id'];*/
             $logics[$i]=$trip;
             $i++;
