@@ -24,87 +24,53 @@ class Ranking extends Public_Android_Controller {
     public function index()
     {
         $type = trim($this->input->get_post('type', true));
-
+        $post['driver_id'] = trim($this->input->get_post('driver_id', true));
+        $post['offset'] = trim($this->input->get_post('offset', true));
+        $post['limit'] = trim($this->input->get_post('limit', true));
+        $post['year'] = trim($this->input->get_post('year', true));
+        $post['month'] = trim($this->input->get_post('month', true));
+        $type='consumption_per_100km';
+        $post['driver_id']=19;
+        $post['offset']=0;
+        $post['limit']=10;
+        $post['year'] ='2016';
+        $post['month']='05';
         $result = [];
         if($type == 'driving_mileage'){
-            $result = $this->driving_mileage();
-
+            $result = $this->driving_mileage($post);
+            $type='total_mileage';
         }
         elseif($type == 'consumption_per_100km'){
-            $result = $this->consumption_per_100km();
+            $result = $this->consumption_per_100km($post);
+            $type='consumption_per_km';
         }
+        $where=['driver_id'=>$post['driver_id']];
+        $data =$this->common_model->get_data('driver',$where)->result_array()[0];
 
+        $rank=$this->ranking_model->getrank_by_device_id($data['device_no'],$type);
         $self = [
-            'driver_id' => 90,
-            'name' => 'llldd',
-            'driving_mileage' => 4806,
-            'consumption_per_100km' => 23,
-            'driver_head_icon' => 'xxx',
-            'ranking' => 1,
-            'nick_name'=>'东风天龙'
+            'driver_id' => $post['driver_id'],
+            'name' => $data['driver_name'],
+            $type => $rank[$type],
+            'driver_head_icon' => $data['driver_head_icon'],
+            'ranking' => $rank['ranking'],
+            'nick_name'=>$data['driver_nick_name']
         ];
-
+        
         $this->data['error']['body']['data'] = array_merge($self, $result);
 
         echo json_en($this->data['error']);
         exit;
     }
 
-    private function driving_mileage(){
-        
-        $follow = [
-            ['driver_id' => 2, 'name' => 'key', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4806, 'ranking' => 1],
-            ['driver_id' => 3, 'name' => '风云', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4702, 'ranking' =>2],
-            ['driver_id' => 4, 'name' => '明天更好', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4500, 'ranking' =>3],
-            ['driver_id' => 5, 'name' => 'xxx', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4406, 'ranking' => 4],
-            ['driver_id' => 6, 'name' => 'aaa', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4399, 'ranking' =>5],
-            ['driver_id' => 7, 'name' => '1hd', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4298, 'ranking' =>6],
-            ['driver_id' => 8, 'name' => '90jfe', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4100, 'ranking' =>7],
-            ['driver_id' => 9, 'name' => 'fulkl', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4000, 'ranking' =>8],
-            ['driver_id' => 10, 'name' => 'ffh', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 3807, 'ranking' => 9],
-            ['driver_id' => 21, 'name' => 'kldfk', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 3755, 'ranking' =>10],
-        ];
-        $friend = [
-            ['driver_id' => 2, 'name' => 'key', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4806, 'ranking' => 1],
-            ['driver_id' => 3, 'name' => '风云', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4702, 'ranking' =>2],
-            ['driver_id' => 4, 'name' => '明天更好', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4500, 'ranking' =>3],
-            ['driver_id' => 5, 'name' => 'xxx', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4406, 'ranking' =>4],
-            ['driver_id' => 6, 'name' => 'aaa', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4399, 'ranking' =>5],
-            ['driver_id' => 7, 'name' => '1hd', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4298, 'ranking' =>6],
-            ['driver_id' => 8, 'name' => '90jfe', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4100, 'ranking' =>7],
-            ['driver_id' => 9, 'name' => 'fulkl', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 4000, 'ranking' => 8],
-            ['driver_id' => 10, 'name' => 'ffh', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 3807, 'ranking' =>9],
-            ['driver_id' => 21, 'name' => 'kldfk', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'driving_mileage' => 3755, 'ranking' => 10],
-        ];
-        return ['follow' =>$follow, 'friend' => $friend];
+    private function driving_mileage($post){
+        return $this->ranking_model->ranking_type($post,'total_mileage');
+    
     }
 
-    private function consumption_per_100km(){
-        $follow = [
-            ['driver_id' => 2, 'name' => 'key', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4806, 'ranking' => 1],
-            ['driver_id' => 3, 'name' => '风云', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4702, 'ranking' => 2],
-            ['driver_id' => 4, 'name' => '明天更好', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4500, 'ranking' => 3],
-            ['driver_id' => 5, 'name' => 'xxx', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4406, 'ranking' => 4],
-            ['driver_id' => 6, 'name' => 'aaa', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4399, 'ranking' => 5],
-            ['driver_id' => 7, 'name' => '1hd', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4298, 'ranking' => 6],
-            ['driver_id' => 8, 'name' => '90jfe', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4100, 'ranking' => 7],
-            ['driver_id' => 9, 'name' => 'fulkl', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 4000, 'ranking' => 8],
-            ['driver_id' => 10, 'name' => 'ffh', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 3807, 'ranking' => 9],
-            ['driver_id' => 21, 'name' => 'kldfk', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','driving_mileage' => 3755, 'ranking' => 10],
-        ];
-        $friend = [
-            ['driver_id' => 2, 'name' => 'key', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 34, 'ranking' => 1],
-            ['driver_id' => 3, 'name' => '风云', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx', 'consumption_per_100km' => 35, 'ranking' => 2],
-            ['driver_id' => 4, 'name' => '明天更好', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 36, 'ranking' => 3],
-            ['driver_id' => 5, 'name' => 'xxx', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 37, 'ranking' => 4],
-            ['driver_id' => 6, 'name' => 'aaa', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 38, 'ranking' => 5],
-            ['driver_id' => 7, 'name' => '1hd', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 39, 'ranking' => 6],
-            ['driver_id' => 8, 'name' => '90jfe', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 45, 'ranking' => 7],
-            ['driver_id' => 9, 'name' => 'fulkl', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 47, 'ranking' => 8],
-            ['driver_id' => 10, 'name' => 'ffh', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 48, 'ranking' => 9],
-            ['driver_id' => 21, 'name' => 'kldfk', 'nick_name'=>'东风天龙', 'driver_head_icon' => 'xxx','consumption_per_100km' => 58, 'ranking' => 10],
-        ];
-        return ['follow' =>$follow, 'friend' => $friend];
+    private function consumption_per_100km($post){
+       return $this->ranking_model->ranking_type($post,'"consumption_per_km');
+        
     }
 
     public function detail(){

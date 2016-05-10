@@ -34,7 +34,7 @@ class Waybill_service extends Service {
        
         //格式化运单
         foreach ($waybills as $key => $value) {
-            unset($waybills[$key]['_id']);
+            
             $logic_data=$this->logic_model->get_current_logic($value['device_id'],$value['logic_id']);
             $total_time=empty($value['end_time'])? time()-intval($value['start_time']) : intval($value['end_time'])-intval($value['start_time']);
             $total['consumption_amount']+=$value['consumption_amount'];

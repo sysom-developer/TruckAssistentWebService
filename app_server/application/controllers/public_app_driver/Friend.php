@@ -19,14 +19,32 @@ class Friend extends Public_Android_Controller {
     }
 
     /**
-     * 根据条件获取排行榜列表
+     * 添加关注
      */
     public function follow()
     {
-
+         $followed_driver_id = trim($this->input->get_post('followed_driver_id', true));
+        
+        $follower_driver_id = trim($this->input->get_post('follower_driver_id', true));
+        $followed_driver_id=1;
+        $follower_driver_id=19;
+        $this->data['error']['body']=$this->ranking_model->follow($followed_driver_id,$follower_driver_id);
         echo json_en($this->data['error']);
         exit;
     }
-
+    /**
+     * 取消关注
+     */
+    public function unfollow()
+    {
+         $followed_driver_id = trim($this->input->get_post('followed_driver_id', true));
+        
+        $follower_driver_id = trim($this->input->get_post('follower_driver_id', true));
+        $followed_driver_id=1;
+        $follower_driver_id=2;
+        $this->ranking_model->unfollow($followed_driver_id,$follower_driver_id);
+        echo json_en($this->data['error']);
+        exit;
+    }
 
 }

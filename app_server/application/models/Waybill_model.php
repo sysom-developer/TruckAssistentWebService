@@ -68,6 +68,7 @@ class Waybill_model{
         {
             $waybills = $this->getMongo()->collection('waybill'.$device_no)
                     ->find($q)
+                    ->fields(["_id"=>false])
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
@@ -75,6 +76,7 @@ class Waybill_model{
         else{
             $waybills = $this->getMongo()->collection('settle'.$device_no)
                     ->find($q)
+                    ->fields(["_id"=>false])
                     ->sort(['start_time' => -1])
                     ->skip($offset*$limit)
                     ->limit($limit);
