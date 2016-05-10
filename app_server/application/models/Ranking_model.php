@@ -77,10 +77,11 @@ class ranking_model extends Common_model{
             ->skip($post['offset']*$post['limit'])
             ->limit($post['limit']);
        	$friend=iterator_to_array($friend);
+
        	foreach ($friend as $key => $value) {
         	$where=['device_no'=>$value['device_id']];
 
-        	$data =$this->common_model->get_data('driver',$where)->result_array();
+        	$data =$this->common_model->get_data('driver',$where)->result_array()[0];
         	
         	$friend[$key]['name']=$data['driver_name'];
         	$friend[$key]['nick_name']=$data['driver_nick_name'];
@@ -109,11 +110,12 @@ class ranking_model extends Common_model{
         foreach ($data as $key => $value) {
         	$where=['device_id'=>$value['device_no']];
 
-        	$follows[$key] = iterator_to_array($this->getMongo('waybill')->collection('total')->find($where)->fields($field));
-        	$follows[$key]['name']=$value['driver_name'];
-        	$follows[$key]['nick_name']=$value['driver_nick_name'];
-        	$follows[$key]['driver_head_icon']=$value['driver_head_icon'];
-        	$follows[$key]['ranking']=$key+1;
+        	$follow_ls = iterator_to_array($this->getMongo('waybill')->collection('total')->find($where)->fields($field));
+        	$follow_ls['name']=$value['driver_name'];
+        	$follow_ls['nick_name']=$value['driver_nick_name'];
+        	$follow_ls['driver_head_icon']=$value['driver_head_icon'];
+        	$follow_ls['ranking']=$key+1;
+        	array_push($follows,$follow_ls);
         }
  
         return ['friend'=>$friend,'follow'=>$follows];
