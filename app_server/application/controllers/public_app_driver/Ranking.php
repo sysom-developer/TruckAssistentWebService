@@ -29,7 +29,7 @@ class Ranking extends Public_Android_Controller {
         $post['limit'] = trim($this->input->get_post('limit', true));
         $post['year'] = trim($this->input->get_post('year', true));
         $post['month'] = trim($this->input->get_post('month', true));
-        $type='consumption_per_100km';
+       /* $type='consumption_per_100km';*/
         $post['driver_id']=19;
         $post['offset']=0;
         $post['limit']=10;
@@ -38,11 +38,9 @@ class Ranking extends Public_Android_Controller {
         $result = [];
         if($type == 'driving_mileage'){
             $result = $this->driving_mileage($post);
-            $type='total_mileage';
         }
         elseif($type == 'consumption_per_100km'){
             $result = $this->consumption_per_100km($post);
-            $type='consumption_per_km';
         }
         $where=['driver_id'=>$post['driver_id']];
         $data =$this->common_model->get_data('driver',$where)->result_array()[0];
@@ -51,7 +49,7 @@ class Ranking extends Public_Android_Controller {
         $self = [
             'driver_id' => $post['driver_id'],
             'name' => $data['driver_name'],
-            $type =>intval($rank[$type]),
+            $type =>$rank[$type],
             'driver_head_icon' => $data['driver_head_icon'],
             'ranking' => $rank['ranking'],
             'nick_name'=>$data['driver_nick_name']
@@ -64,12 +62,12 @@ class Ranking extends Public_Android_Controller {
     }
 
     private function driving_mileage($post){
-        return $this->ranking_model->ranking_type($post,'total_mileage');
+        return $this->ranking_model->ranking_type($post,'driving_mileage');
     
     }
 
     private function consumption_per_100km($post){
-       return $this->ranking_model->ranking_type($post,'consumption_per_km');
+       return $this->ranking_model->ranking_type($post,'consumption_per_100km');
         
     }
 

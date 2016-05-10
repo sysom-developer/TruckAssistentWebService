@@ -88,7 +88,7 @@ class ranking_model extends Common_model{
         	$friend[$key]['nick_name']=$data['driver_nick_name'];
         	$friend[$key]['driver_head_icon']=$data['driver_head_icon'];
         	$friend[$key]['ranking']=$key+1;
-        	$friend[$key][$type]=intval($friend[$key][$type]);
+        	$friend[$key][$type]=$friend[$key][$type];
         }
         $field=["_id"=>false];
 
@@ -118,7 +118,7 @@ class ranking_model extends Common_model{
         	$follow_ls['nick_name']=$value['driver_nick_name'];
         	$follow_ls['driver_head_icon']=$value['driver_head_icon'];
         	$follow_ls['ranking']=$key+1;
-        	$follow_ls[$type]=intval($follow_ls_m[$type]);
+        	$follow_ls[$type]=$follow_ls_m[$type];
         	array_push($follows,$follow_ls);
         }
  
