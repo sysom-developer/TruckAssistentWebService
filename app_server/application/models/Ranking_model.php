@@ -70,14 +70,15 @@ class ranking_model extends Common_model{
      */
     public function ranking_type($post,$type){
     	$time = ['time'=> $post['year'].'-'.$post['month']];
-    	$field=[$type=>true,"device_id"=>true,"_id"=>false];
+
+    	$field=["$type"=>true,"device_id"=>true,"_id"=>false];
     	$friend=$this->getMongo('waybill')->collection('total')->find($time)
     		->fields($field)
     	    ->sort([$type => -1])
             ->skip($post['offset']*$post['limit'])
             ->limit($post['limit']);
        	$friend=iterator_to_array($friend);
-
+       
        	foreach ($friend as $key => $value) {
         	$where=['device_no'=>$value['device_id']];
 
@@ -87,6 +88,7 @@ class ranking_model extends Common_model{
         	$friend[$key]['nick_name']=$data['driver_nick_name'];
         	$friend[$key]['driver_head_icon']=$data['driver_head_icon'];
         	$friend[$key]['ranking']=$key+1;
+        	$friend[$key][$type]=intval($friend[$key][$type]);
         }
         $field=["_id"=>false];
 
@@ -110,11 +112,13 @@ class ranking_model extends Common_model{
         foreach ($data as $key => $value) {
         	$where=['device_id'=>$value['device_no']];
 
-        	$follow_ls = iterator_to_array($this->getMongo('waybill')->collection('total')->find($where)->fields($field));
+        	$follow_ls_m = iterator_to_array($this->getMongo('waybill')->collection('total')->find($where)->fields($field))[0];
+        	
         	$follow_ls['name']=$value['driver_name'];
         	$follow_ls['nick_name']=$value['driver_nick_name'];
         	$follow_ls['driver_head_icon']=$value['driver_head_icon'];
         	$follow_ls['ranking']=$key+1;
+        	$follow_ls[$type]=intval($follow_ls_m[$type]);
         	array_push($follows,$follow_ls);
         }
  

@@ -51,7 +51,7 @@ class Ranking extends Public_Android_Controller {
         $self = [
             'driver_id' => $post['driver_id'],
             'name' => $data['driver_name'],
-            $type => $rank[$type],
+            $type =>intval($rank[$type]),
             'driver_head_icon' => $data['driver_head_icon'],
             'ranking' => $rank['ranking'],
             'nick_name'=>$data['driver_nick_name']
@@ -69,7 +69,7 @@ class Ranking extends Public_Android_Controller {
     }
 
     private function consumption_per_100km($post){
-       return $this->ranking_model->ranking_type($post,'"consumption_per_km');
+       return $this->ranking_model->ranking_type($post,'consumption_per_km');
         
     }
 
