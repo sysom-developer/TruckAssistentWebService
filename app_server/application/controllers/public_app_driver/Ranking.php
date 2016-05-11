@@ -30,12 +30,7 @@ class Ranking extends Public_Android_Controller {
         $post['year'] = trim($this->input->get_post('year', true));
         $post['month'] = trim($this->input->get_post('month', true));
        /* $type='consumption_per_100km';*/
-        $post['driver_id']=19;
-        $post['offset']=0;
-        $post['limit']=10;
-        $post['year'] ='2016';
-        $post['month']='05';
-        $result = [];
+        
         if($type == 'driving_mileage'){
             $result = $this->driving_mileage($post);
         }
@@ -43,7 +38,7 @@ class Ranking extends Public_Android_Controller {
             $result = $this->consumption_per_100km($post);
         }
         $where=['driver_id'=>$post['driver_id']];
-        $data =$this->common_model->get_data('driver',$where)->result_array()[0];
+        $data =$this->driver_service->get_driver_by_id($post['driver_id']);
 
         $rank=$this->ranking_model->getrank_by_device_id($data['device_no'],$type);
         $self = [
@@ -73,38 +68,24 @@ class Ranking extends Public_Android_Controller {
 
     public function detail(){
 
-        $type = trim($this->input->get_post('type', true));;
+        $type = trim($this->input->get_post('type', true));
+        $post['driver_id'] = trim($this->input->get_post('driver_id', true));
+        $post['year'] = trim($this->input->get_post('year', true));
+        $post['month'] = trim($this->input->get_post('month', true));
+        
+        $driver=$this->driver_service->get_driver_by_id($post['driver_id']);
+        $post['device_id']=$driver['device_no'];
+        $result=$this->ranking_model->getranklist($post,$type);
 
-        $result = [];
-        if($type == 'driving_mileage'){
-            $result = [ 'driving_mileage' => [
-                ['month' => 1, 'mileage' => 23],
-                ['month' => 2, 'mileage' => 28],
-                ['month' => 3, 'mileage' => 29],
-                ['month' => 4, 'mileage' => 22],
-                ['month' => 5, 'mileage' => 23],
-                ['month' => 6, 'mileage' => 25],
-            ]];
-
-        } elseif($type == 'consumption_per_100km'){
-            $result = [ 'consumption_per_100km' => [
-                ['month' => 1, 'consumption' => 23],
-                ['month' => 2, 'consumption' => 28],
-                ['month' => 3, 'consumption' => 29],
-                ['month' => 4, 'consumption' => 22],
-                ['month' => 5, 'consumption' => 23],
-                ['month' => 6, 'consumption' => 25],
-            ]];
-        }
-
-        $self = ['base' => [
-            'driver_id' => 90,
-            'name' => 'llldd',
-            'driving_mileage' => 4806,
-            'consumption_per_100km' => 23,
-            'driver_head_icon' => 'xxx',
-            'nick_name'=>'东风天龙',
-        ]];
+        $rank=$this->ranking_model->getrank_by_device_id($data['device_no'],$type);
+        $self = [
+            'driver_id' => $post['driver_id'],
+            'name' => $driver['driver_name'],
+            $type =>$rank[$type],
+            'driver_head_icon' => $driver['driver_head_icon'],
+            'ranking' => $rank['ranking'],
+            'nick_name'=>$driver['driver_nick_name']
+        ];
 
         $this->data['error']['body']['data'] = array_merge($self, $result);
 

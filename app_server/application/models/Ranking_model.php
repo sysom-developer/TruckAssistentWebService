@@ -64,6 +64,34 @@ class ranking_model extends Common_model{
         return  $rank;
     }
      /**
+     * 根据设备id获取历史数据
+     * @param $driver_id
+     * @return mixed
+     */
+    public function getranklist($post,$type){
+    
+    	$return=array();
+    	if($type=='driving_mileage')
+    	{
+    		$type_name='mileage';
+    	}
+    	else{
+    		$type_name='consumption';
+    	}	
+    	$field=["_id"=>false,$type=>true,'device_id'=>true];
+    	for ($i=0; $i <=6 ; $i++) { 
+            $post['time']=date("Y-m", strtotime("-".$i." months", strtotime($post['year'].'-'.$post['month'])));
+		$where=['device_id'=>$post['device_id'],'time'=>$post['time']];
+    	
+    	$rank=iterator_to_array($this->getMongo('waybill')->collection('total')->find($where)
+    		->fields($field))[0]; 
+    	$return[$i]['month']=date("m", strtotime("-".$i." months", strtotime($post['year'].'-'.$post['month'])));
+    	$return[$i][$type_name]=$rank[$type]?$rank[$type]:0;
+        }
+
+        return [$type=>$return];
+      }
+     /**
      * 排行
      * @param $driver_id
      * @return mixed

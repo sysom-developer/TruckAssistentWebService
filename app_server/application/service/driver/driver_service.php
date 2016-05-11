@@ -24,8 +24,7 @@ class Driver_service extends Service {
 
     public function get_driver_by_id($driver_id) {
         $where = array(
-            'driver_id' => $driver_id,
-            'driver_status' => 1,
+            'driver_id' => $driver_id
             // 'driver_type' => 1,
         );
         $data = $this->common_model->get_data('driver', $where)->row_array();
