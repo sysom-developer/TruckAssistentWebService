@@ -20,7 +20,7 @@
 <?php
 switch (ENVIRONMENT) {
     case 'development':
-        $domain = 'http://local.newtuhaoyun.com/'.$this->appfolder;
+        $domain = 'http://localhost/TruckAssistentWebService/app_server/index.php/'.$this->appfolder;
         break;
     case 'testing':
         $domain = 'http://local.newtuhaoyun.com/'.$this->appfolder;
@@ -374,7 +374,10 @@ switch (ENVIRONMENT) {
             <td>  运单id（waybill_id）</td>
             <td><input type="text" name="waybill_id" value="2"></td>
         </tr>
-
+        <tr>
+            <td>  司机id（driver_id）</td>
+            <td><input type="text" name="driver_id" value="2"></td>
+        </tr>
         <tr>
             <td colspan="2">
                 查看json结果：

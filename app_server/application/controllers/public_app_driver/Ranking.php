@@ -30,7 +30,12 @@ class Ranking extends Public_Android_Controller {
         $post['year'] = trim($this->input->get_post('year', true));
         $post['month'] = trim($this->input->get_post('month', true));
        /* $type='consumption_per_100km';*/
-        
+        $post['driver_id']=19;
+        $post['offset']=0;
+        $post['limit']=10;
+        $post['year'] ='2016';
+        $post['month']='05';
+        $result = [];
         if($type == 'driving_mileage'){
             $result = $this->driving_mileage($post);
         }

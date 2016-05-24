@@ -196,7 +196,36 @@ class Waybill_service extends Service {
         $result = $this->common_model->update('waybill', $data, $where);
 
     }
-
+    public function  get_consumption_analysis($mileage){
+        $emergency_brake=array();
+        $vehicle_diancha=array();
+        $vehicle_idling=array();
+        $vehicle_overspeed=array();
+        $vehicle_full_throttle=array();
+        
+        $best_economic_speed=array();
+        $normal_economic_speed=array();
+        foreach ($mileage['vehicle_section'] as $key => $value) {
+          /* var_dump($value['vehicle_idling_section']);*/
+             empty($value['vehicle_economic_speed']['best_economic_speed'])?:array_push($best_economic_speed,$value['vehicle_economic_speed']['best_economic_speed']);
+            empty($value['vehicle_economic_speed']['normal_economic_speed'])?:array_push($normal_economic_speed,$value['vehicle_economic_speed']['normal_economic_speed']);
+            $emergency_brake=array_merge($emergency_brake,$value['vehicle_emergency_brake_section']);
+            $vehicle_diancha=array_merge($vehicle_diancha,$value['vehicle_diancha_section']);
+          /*  $vehicle_idling=array_merge($vehicle_idling,$value['vehicle_idling_section']);*/
+            empty($value['vehicle_idling_section'])?:array_push($vehicle_idling,$value['vehicle_idling_section']);
+            $vehicle_overspeed=array_merge($vehicle_overspeed,$value['vehicle_overspeed_section']);
+            $vehicle_full_throttle=array_merge($vehicle_full_throttle,$value['vehicle_full_throttle_section']);
+        }
+        
+         $result['best_economic_speed']=sizeof($best_economic_speed);
+         $result['normal_economic_speed']=sizeof($normal_economic_speed);
+        $result['vehicle_diancha_count']=sizeof($vehicle_diancha);
+        $result['emergency_brake_count']=sizeof($emergency_brake);
+        $result['vehicle_idling_count']=sizeof($vehicle_idling);
+        $result['vehicle_overspeed_count']=sizeof($vehicle_overspeed);
+        $result['vehicle_full_throttle_count']=sizeof($vehicle_full_throttle);
+       return $result;
+    }
 
     }
 

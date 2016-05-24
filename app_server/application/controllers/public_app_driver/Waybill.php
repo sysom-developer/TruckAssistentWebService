@@ -2,11 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Waybill extends Public_Android_Controller {
-
+    public $driver;
     public function __construct()
     {
         parent::__construct();
-
+        $driver_id = trim($this->input->get_post('driver_id', true));
+        $driver_where = ['driver_id' => $driver_id];
+        
+        $this->driver = $this->driver_service->get_driver_data($driver_where);
+      
         $this->data['error'] = array(
             'application' => array(
                 'head' => array(
@@ -29,9 +33,9 @@ class Waybill extends Public_Android_Controller {
         $type = trim($this->input->get_post('type', true));
         $type = isset($type)? $type : 1;
 
-        $data = $this->waybill_service->get_waybill($driver_id, $type);
+        $this->driver = $this->waybill_service->get_waybill($driver_id, $type);
         
-        $this->data['error']['body']['waybill'] = $data;
+        $this->data['error']['body']['waybill'] = $this->driver;
         echo json_en($this->data['error']);
         exit;
     }
@@ -260,16 +264,16 @@ class Waybill extends Public_Android_Controller {
 
     public function get_tracking(){
         $driver_id = trim($this->input->get_post('driver_id', true));
-        
+      /*  $waybill_id = trim($this->input->get_post('waybill_id', true));*/
         $type = trim($this->input->get_post('type', true));
         $type = isset($type)? $type : 1;
 
-        $data = $this->waybill_service->get_waybill($driver_id, $type);
+        $this->driver = $this->waybill_service->get_waybill($driver_id, $type);
         $economic_speed=0;
         $high_speed=0;
         $slow_speed=0;
         $tracking=array();
-        foreach ($data['consumption'] as $key => $value) {
+        foreach ($this->driver['consumption'] as $key => $value) {
             $tracking[$key]['longitude']=$value['first_point']['longitude'];
             $tracking[$key]['latitude']=$value['first_point']['latitude'];
             $tracking[$key]['time']=$value['start_time'];
@@ -288,9 +292,9 @@ class Waybill extends Public_Android_Controller {
             }
         }
         $speed_ratio= [
-            ['economic_speed' => '60-80', 'ratio' => round($economic_speed/$data['base']['total_mileage'],2)],
-            ['high_speed' => '80-', 'ratio' => round($high_speed/$data['base']['total_mileage'],2)],
-            ['slow_speed' => '-60', 'ratio' =>round($slow_speed/$data['base']['total_mileage'],2)],
+            ['economic_speed' => '60-80', 'ratio' => round($economic_speed/$this->driver['base']['total_mileage'],2)],
+            ['high_speed' => '80-', 'ratio' => round($high_speed/$this->driver['base']['total_mileage'],2)],
+            ['slow_speed' => '-60', 'ratio' =>round($slow_speed/$this->driver['base']['total_mileage'],2)],
         ];
 
         $consumption_factor = [
@@ -302,7 +306,7 @@ class Waybill extends Public_Android_Controller {
         ];
 
         $waybill = [
-            'base' => $data['base'],
+            'base' => $this->driver['base'],
             'speed_ratio' => $speed_ratio,
             'tracking' => $tracking,
             'consumption_factor' => $consumption_factor
@@ -336,13 +340,29 @@ class Waybill extends Public_Android_Controller {
      * 油耗分析
      */
     public function get_consumption_analysis(){
+
         $waybill_id = trim($this->input->get_post('waybill_id', true));
-        $waybill=$this->waybill_model->get_waybill_by_id($waybill_id);
+        /*$waybill=$this->waybill_model->get_waybill_by_id($waybill_id);*/
         $mileage_id = trim($this->input->get_post('mileage_id', true));
+
+        
+        $type=1;
+        //根据设备号获取运单
+        $waybill =  $this->waybill_model->get_current_waybill($this->driver['device_no'],1);
+        //格式化运单
+        if(!$waybill || $waybill[0]['end_city_name']!=0)
+        {
+            $waybill = $this->waybill_model->get_current_waybill($this->driver['device_no'],2);
+             $type=2;
+        }
+        $tmp = $waybill[0];
+        foreach ($tmp['logic_id'] as $key => $value) {
+          $mileage=$this->logic_model->get_logic_by_id($value,$this->driver['device_no']);
+          $result=$this->waybill_service->get_consumption_analysis($mileage);
+        }
         $factor = [
             ['factor_type'=>1, 'factor_value' => '油耗top1原因'],
         ];
-
         $contrast = [
             'average' => 38.4,
             'current' => 42.6,

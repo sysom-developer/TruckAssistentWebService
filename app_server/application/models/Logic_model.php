@@ -154,15 +154,19 @@ class logic_model{
     }
 
     /**
-     * 根据运单id获取运单详情
+     * 根据行程id获取运单详情
      * @param $waybill_id
      * @return mixed
      */
-    public function get_waybill_by_id($waybill_id){
-        //根据运单id获取运单
-        $cond = ['_id'=> new \MongoId($waybill_id)];
-        $waybill = $this->getMongo()->collection('waybill')->findOne($cond);
-        return $waybill;
+    public function get_logic_by_id($logic_id,$device_no){
+        //根据行程id获取行程
+        $cond = ['_id'=> new \MongoId($logic_id)];
+
+        $logic = $this->getMongo()->collection($device_no)->find($cond)->fields(["_id"=>false]);
+        $result=iterator_to_array($logic);
+       
+          
+        return  array_values($result)[0];
     }
     public function getcity($data){
         $poi=json_decode(json_encode($data),TRUE);
