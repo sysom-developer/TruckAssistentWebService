@@ -55,7 +55,7 @@ switch (ENVIRONMENT) {
 
 <br/><br/>
 <form action="<?php echo $domain?>/ranking/index" method="get">
-    <table style="margin-left: 30px;" width="100%">
+    <table style="margin-left: 31px;" width="100%">
         <tr style="font-weight: bold; font-size: 14px;">
             <td width="300">1. 获取排行榜司机列表(多个)</td>
             <td><?php echo $domain?>/ranking/index</td>
