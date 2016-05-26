@@ -207,7 +207,7 @@ class TruckInformation extends Model{
 
         echo $data_str . PHP_EOL;
 
-        file_put_contents($data_file_name .'MSG_' .$_MSG_ID, $data_str);
+        file_put_contents($data_file_name .'MSG_' .$_MSG_ID, $data_str,FILE_APPEND);
 
     }
 }

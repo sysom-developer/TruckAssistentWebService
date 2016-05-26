@@ -138,7 +138,7 @@ class logic_model{
             /*echo floatval($vehicle_driving_section['distance']);*/
             $trip['average_speed']=round($trip['mileage']/(intval($trip['end_time'])-intval($trip['start_time'])),2);
             
-            /*echo $trip['mileage'];*/
+            /*echo $vehicle_driving_section['amount_per_km']."-----";*/
             $trip['amount_per_km'] =round(floatval($vehicle_driving_section['amount_per_km']),2);
             $trip['traffic']='平路';
             
@@ -184,6 +184,14 @@ class logic_model{
         $poi=json_decode(json_encode($data),TRUE);
         if(is_array($poi))
             {
+                /*echo $poi[0]['addr'];
+                foreach ($poi as $user) 
+                {
+                    $distance[] = $user['distance'];
+                    echo $user['distance']."-----";
+                }
+                array_multisort($distance, SORT_ASC, $poi);
+                echo $poi[0]['addr'];*/
                return  $poi[0]['addr'];
             }
         else

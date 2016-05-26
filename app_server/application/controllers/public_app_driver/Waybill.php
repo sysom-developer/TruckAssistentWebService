@@ -27,7 +27,7 @@ class Waybill extends Public_Android_Controller {
      */
     public function index()
     {
-
+        
         $driver_id = trim($this->input->get_post('driver_id', true));
         
         $type = trim($this->input->get_post('type', true));
@@ -344,7 +344,6 @@ class Waybill extends Public_Android_Controller {
         $waybill_id = trim($this->input->get_post('waybill_id', true));
         /*$waybill=$this->waybill_model->get_waybill_by_id($waybill_id);*/
         $mileage_id = trim($this->input->get_post('mileage_id', true));
-
         
         $type=1;
         //根据设备号获取运单
